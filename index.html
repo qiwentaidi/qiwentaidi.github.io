@@ -96,7 +96,7 @@
       <h1 class="site-title">qwtd-vulbox</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">本人才疏学浅，分享一下自己的学习过程</p>
+      <p class="site-subtitle" itemprop="description">本人才疏学浅，分享一下自己的学习过程，如有问题可加vx:qiwentaid1与本人联系</p>
   </div>
 
   <div class="site-nav-right">
@@ -161,7 +161,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/06/hadoop/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/06/Elasticsearch/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -175,7 +175,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/07/06/hadoop/" class="post-title-link" itemprop="url">hadoop</a>
+            <a href="/2022/07/06/Elasticsearch/" class="post-title-link" itemprop="url">Elasticsearch</a>
         </h2>
 
         <div class="post-meta">
@@ -186,7 +186,87 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-07-06 11:14:49 / 修改时间：10:19:19" itemprop="dateCreated datePublished" datetime="2022-07-06T11:14:49+08:00">2022-07-06</time>
+              <time title="创建时间：2022-07-06 11:14:49 / 修改时间：11:33:06" itemprop="dateCreated datePublished" datetime="2022-07-06T11:14:49+08:00">2022-07-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/unauth/" itemprop="url" rel="index"><span itemprop="name">unauth</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="Elasticsearch未授权访问"><a href="#Elasticsearch未授权访问" class="headerlink" title="Elasticsearch未授权访问"></a>Elasticsearch未授权访问</h3><h4 id="风险描述："><a href="#风险描述：" class="headerlink" title="风险描述："></a>风险描述：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Elasticsearch是一款java编写的企业级搜索服务。越来越多的公司使用ELK作为日志分析，启动此服务默认会开放9200端口，可被非法操作数据</span><br></pre></td></tr></table></figure>
+
+<p>More info : 该服务默认开放端口9200，通过空间搜索引擎可以观察到有大量IP开放了此端口</p>
+<p><img src="https://s2.loli.net/2022/07/06/wy3UbJSEjdWCFHP.png" alt="image-20220706110218953"></p>
+<h4 id="复现过程："><a href="#复现过程：" class="headerlink" title="复现过程："></a>复现过程：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">访问x.x.x.x:9200发现下图页面</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/06/XTgVnKO6NGoWUyq.png" alt="image-20220706110427054.png"></p>
+<h4 id="漏洞利用："><a href="#漏洞利用：" class="headerlink" title="漏洞利用："></a>漏洞利用：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="漏洞修复："><a href="#漏洞修复：" class="headerlink" title="漏洞修复："></a>漏洞修复：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1、开启身份验证，防止未经授权用户访问。</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/06/Hadoop/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-vulbox">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/06/Hadoop/" class="post-title-link" itemprop="url">hadoop</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-07-06 11:14:49 / 修改时间：11:00:00" itemprop="dateCreated datePublished" datetime="2022-07-06T11:14:49+08:00">2022-07-06</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -211,7 +291,7 @@
       
           <h3 id="hadoop未授权访问"><a href="#hadoop未授权访问" class="headerlink" title="hadoop未授权访问"></a>hadoop未授权访问</h3><h4 id="风险描述："><a href="#风险描述：" class="headerlink" title="风险描述："></a>风险描述：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Apache Hadoop YARN 提供有默认开放在8088和8090的 REST API（默认前者）允许用户直接通过 API 进行相关的应用创建、任务提交执行等操作，如果配置不当，REST API 将会开放在公网导致未授权访问的问题，那么任何黑客则就均可利用其进行远程命令执行，从而进行挖矿等行为。</span><br></pre></td></tr></table></figure>
 
-<p>More info : 该服务默认开放端扣50070，未授权端口8088</p>
+<p>More info : 该服务默认开放端口50070，未授权端口8088</p>
 <h4 id="环境搭建："><a href="#环境搭建：" class="headerlink" title="环境搭建："></a>环境搭建：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">攻击者：kali 192.168.179.129</span><br><span class="line">靶机：ubuntu 192.168.179.130 -- 需要安装 vulhub 环境</span><br><span class="line">		</span><br><span class="line">		靶机部署：</span><br><span class="line">		pip install docker-compose</span><br><span class="line">		git clone https://github.com/vulhub/vulhub.git // 安装 vulhub 环境</span><br><span class="line">		cd vulhub/hadoop/unauthorized-yarn // 进入环境目录</span><br><span class="line">		sudo docker-compose up -d // 启动环境</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://s2.loli.net/2022/07/06/e5Yks3aDljJHAXt.png" alt="image-20220706094141516"></p>
@@ -246,7 +326,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/05/rsync/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/06/Tomcat/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -260,7 +340,80 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/07/05/rsync/" class="post-title-link" itemprop="url">rsync</a>
+            <a href="/2022/07/06/Tomcat/" class="post-title-link" itemprop="url">Tomcat</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-07-06 11:14:49 / 修改时间：14:49:52" itemprop="dateCreated datePublished" datetime="2022-07-06T11:14:49+08:00">2022-07-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MiddleWare/" itemprop="url" rel="index"><span itemprop="name">MiddleWare</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="弱口令-war后门文件部署"><a href="#弱口令-war后门文件部署" class="headerlink" title="弱口令+war后门文件部署"></a>弱口令+war后门文件部署</h3><h3 id="任意文件写入（CVE-2017-12615）"><a href="#任意文件写入（CVE-2017-12615）" class="headerlink" title="任意文件写入（CVE-2017-12615）"></a>任意文件写入（CVE-2017-12615）</h3><h4 id="影响版本："><a href="#影响版本：" class="headerlink" title="影响版本："></a>影响版本：</h4><p><code>Apache Tomcat 7.0.0 to 7.0.79</code></p>
+<h4 id="环境搭建："><a href="#环境搭建：" class="headerlink" title="环境搭建："></a>环境搭建：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">靶机：win10 192.168.179.131</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/06/35UBTsJ9F1QqSb7.png" alt="image-20220706140946401"></p>
+<h4 id="漏洞修复："><a href="#漏洞修复：" class="headerlink" title="漏洞修复："></a>漏洞修复：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1、将 Tomcat 版本升级到7.0.81以上</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/05/Rsync/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-vulbox">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/05/Rsync/" class="post-title-link" itemprop="url">rsync</a>
         </h2>
 
         <div class="post-meta">
@@ -403,7 +556,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/04/mongodb/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/04/Mongodb/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -417,7 +570,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/07/04/mongodb/" class="post-title-link" itemprop="url">mongodb</a>
+            <a href="/2022/07/04/Mongodb/" class="post-title-link" itemprop="url">mongodb</a>
         </h2>
 
         <div class="post-meta">
@@ -485,7 +638,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/04/redis/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/04/Redis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -499,7 +652,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/07/04/redis/" class="post-title-link" itemprop="url">redis</a>
+            <a href="/2022/07/04/Redis/" class="post-title-link" itemprop="url">redis</a>
         </h2>
 
         <div class="post-meta">
@@ -570,7 +723,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/04/zookeeper/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/04/Zookeeper/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -584,7 +737,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/07/04/zookeeper/" class="post-title-link" itemprop="url">zookeeper</a>
+            <a href="/2022/07/04/Zookeeper/" class="post-title-link" itemprop="url">zookeeper</a>
         </h2>
 
         <div class="post-meta">
@@ -859,14 +1012,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
