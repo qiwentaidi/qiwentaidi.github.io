@@ -20,18 +20,22 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="端口 (默认) 服务 渗透用途    tcp 20,21 FTP 允许匿名的上传下载,爆破,嗅探,win提权,远程执行(proftpd 1.3.5),各类后门(proftpd,vsftp  2.3.4)   tcp 22 SSH 可根据已搜集到的信息尝试爆破,v1版本可中间人,ssh隧道及内网代理转发,文件传输等等   tcp 23 Telnet 爆破,嗅探,一般常用于路由,交换登陆,可尝试">
+  <meta name="description" content="常见端口默认服务，可以通过nmap或其他端口扫描工具获取信息   端口 (默认) 服务 渗透用途    tcp 20,21 FTP 允许匿名的上传下载,爆破,嗅探,win提权,远程执行(proftpd 1.3.5),各类后门(proftpd,vsftp  2.3.4)   tcp 22 SSH 可根据已搜集到的信息尝试爆破,v1版本可中间人,ssh隧道及内网代理转发,文件传输等等   tcp 23">
 <meta property="og:type" content="article">
 <meta property="og:title" content="信息收集">
 <meta property="og:url" content="http://example.com/2022/07/06/GetInfo/index.html">
 <meta property="og:site_name" content="qwtd-vulbox">
-<meta property="og:description" content="端口 (默认) 服务 渗透用途    tcp 20,21 FTP 允许匿名的上传下载,爆破,嗅探,win提权,远程执行(proftpd 1.3.5),各类后门(proftpd,vsftp  2.3.4)   tcp 22 SSH 可根据已搜集到的信息尝试爆破,v1版本可中间人,ssh隧道及内网代理转发,文件传输等等   tcp 23 Telnet 爆破,嗅探,一般常用于路由,交换登陆,可尝试">
+<meta property="og:description" content="常见端口默认服务，可以通过nmap或其他端口扫描工具获取信息   端口 (默认) 服务 渗透用途    tcp 20,21 FTP 允许匿名的上传下载,爆破,嗅探,win提权,远程执行(proftpd 1.3.5),各类后门(proftpd,vsftp  2.3.4)   tcp 22 SSH 可根据已搜集到的信息尝试爆破,v1版本可中间人,ssh隧道及内网代理转发,文件传输等等   tcp 23">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/07/07/xXOdKqbTk7ALInQ.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/07/Sc4M6EgP5QTnCyp.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/07/ZYnBCtAXFdHJxQf.png">
 <meta property="article:published_time" content="2022-07-06T03:14:49.000Z">
-<meta property="article:modified_time" content="2022-07-06T09:39:07.022Z">
+<meta property="article:modified_time" content="2022-07-07T06:42:09.367Z">
 <meta property="article:author" content="气温太低">
 <meta property="article:tag" content="网络安全">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/07/07/xXOdKqbTk7ALInQ.png">
 
 <link rel="canonical" href="http://example.com/2022/07/06/GetInfo/">
 
@@ -100,7 +104,7 @@
       <h1 class="site-title">qwtd-vulbox</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">本人才疏学浅，分享一下自己的学习过程，如有问题可加vx:qiwentaid1与本人联系</p>
+      <p class="site-subtitle" itemprop="description">该网站文章仅作为知识分享，不可进行非法网络攻击，若有危害国家、企业、个人安全的行为与本人无关。</p>
   </div>
 
   <div class="site-nav-right">
@@ -188,10 +192,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-07-06 11:14:49 / 修改时间：17:39:07" itemprop="dateCreated datePublished" datetime="2022-07-06T11:14:49+08:00">2022-07-06</time>
+              <time title="创建时间：2022-07-06 11:14:49" itemprop="dateCreated datePublished" datetime="2022-07-06T11:14:49+08:00">2022-07-06</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-07 14:42:09" itemprop="dateModified" datetime="2022-07-07T14:42:09+08:00">2022-07-07</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -213,245 +223,254 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <table>
+        <h4 id="常见端口默认服务，可以通过nmap或其他端口扫描工具获取信息"><a href="#常见端口默认服务，可以通过nmap或其他端口扫描工具获取信息" class="headerlink" title="常见端口默认服务，可以通过nmap或其他端口扫描工具获取信息"></a>常见端口默认服务，可以通过nmap或其他端口扫描工具获取信息</h4><table>
 <thead>
 <tr>
 <th>端口 (默认)</th>
 <th><strong>服务</strong></th>
-<th><strong>渗透用途</strong></th>
+<th align="left"><strong>渗透用途</strong></th>
 </tr>
 </thead>
 <tbody><tr>
 <td>tcp 20,21</td>
 <td>FTP</td>
-<td>允许匿名的上传下载,爆破,嗅探,win提权,远程执行(proftpd 1.3.5),各类后门(proftpd,vsftp  2.3.4)</td>
+<td align="left">允许匿名的上传下载,爆破,嗅探,win提权,远程执行(proftpd 1.3.5),各类后门(proftpd,vsftp  2.3.4)</td>
 </tr>
 <tr>
 <td>tcp 22</td>
 <td>SSH</td>
-<td>可根据已搜集到的信息尝试爆破,v1版本可中间人,ssh隧道及内网代理转发,文件传输等等</td>
+<td align="left">可根据已搜集到的信息尝试爆破,v1版本可中间人,ssh隧道及内网代理转发,文件传输等等</td>
 </tr>
 <tr>
 <td>tcp 23</td>
 <td>Telnet</td>
-<td>爆破,嗅探,一般常用于路由,交换登陆,可尝试弱口令</td>
+<td align="left">爆破,嗅探,一般常用于路由,交换登陆,可尝试弱口令</td>
 </tr>
 <tr>
 <td>tcp 25</td>
 <td>SMTP</td>
-<td>邮件伪造,vrfy&#x2F;expn查询邮件用户信息,可使用smtp-user-enum工具来自动跑</td>
+<td align="left">邮件伪造,vrfy&#x2F;expn查询邮件用户信息,可使用smtp-user-enum工具来自动跑</td>
 </tr>
 <tr>
 <td>tcp&#x2F;udp 53</td>
 <td>DNS</td>
-<td>允许区域传送,dns劫持,缓存投毒,欺骗以及各种基于dns隧道的远控</td>
+<td align="left">允许区域传送,dns劫持,缓存投毒,欺骗以及各种基于dns隧道的远控</td>
 </tr>
 <tr>
 <td>tcp&#x2F;udp 69</td>
 <td>TFTP</td>
-<td>尝试下载目标及其的各类重要配置文件</td>
+<td align="left">尝试下载目标及其的各类重要配置文件</td>
 </tr>
 <tr>
 <td>tcp 80-89,443,8440-8450,8080-8089</td>
 <td>各种常用的Web服务端口</td>
-<td>可尝试经典的topn,vpn,owa,webmail,目标oa,各类Java控制台,各类服务器Web管理面板,各类Web中间件漏洞利用,各类Web框架漏洞利用等等……</td>
+<td align="left">可尝试经典的topn,vpn,owa,webmail,目标oa,各类Java控制台,各类服务器Web管理面板,各类Web中间件漏洞利用,各类Web框架漏洞利用等等……</td>
 </tr>
 <tr>
 <td>tcp 110</td>
 <td>POP3</td>
-<td>可尝试爆破,嗅探</td>
+<td align="left">可尝试爆破,嗅探</td>
 </tr>
 <tr>
 <td>tcp 111,2049</td>
 <td>NFS</td>
-<td>权限配置不当</td>
+<td align="left">权限配置不当</td>
 </tr>
 <tr>
 <td>tcp 137,139,445</td>
 <td>Samba</td>
-<td>可尝试爆破以及smb自身的各种远程执行类漏洞利用,如,ms08-067,ms17-010,嗅探等……</td>
+<td align="left">可尝试爆破以及smb自身的各种远程执行类漏洞利用,如,ms08-067,ms17-010,嗅探等……</td>
 </tr>
 <tr>
 <td>tcp 143</td>
 <td>IMAP</td>
-<td>可尝试爆破</td>
+<td align="left">可尝试爆破</td>
 </tr>
 <tr>
 <td>udp 161</td>
 <td>SNMP</td>
-<td>爆破默认团队字符串,搜集目标内网信息</td>
+<td align="left">爆破默认团队字符串,搜集目标内网信息</td>
 </tr>
 <tr>
 <td>tcp 389</td>
 <td>LDAP</td>
-<td>ldap注入,允许匿名访问,弱口令</td>
+<td align="left">ldap注入,允许匿名访问,弱口令</td>
 </tr>
 <tr>
 <td>tcp 512,513,514</td>
 <td>Linux rexec</td>
-<td>可爆破,rlogin登陆</td>
+<td align="left">可爆破,rlogin登陆</td>
 </tr>
 <tr>
 <td>tcp 873</td>
 <td>Rsync</td>
-<td>匿名访问,文件上传</td>
+<td align="left">匿名访问,文件上传</td>
 </tr>
 <tr>
 <td>tcp 1194</td>
 <td>OpenVPN</td>
-<td>想办法钓VPN账号,进内网</td>
+<td align="left">想办法钓VPN账号,进内网</td>
 </tr>
 <tr>
 <td>tcp 1352</td>
 <td>Lotus</td>
-<td>弱口令,信息泄漏,爆破</td>
+<td align="left">弱口令,信息泄漏,爆破</td>
 </tr>
 <tr>
 <td>tcp 1433</td>
 <td>SQL Server</td>
-<td>注入,提权,sa弱口令,爆破</td>
+<td align="left">注入,提权,sa弱口令,爆破</td>
 </tr>
 <tr>
 <td>tcp 1521</td>
 <td>Oracle</td>
-<td>tns爆破,注入,弹shell…</td>
+<td align="left">tns爆破,注入,弹shell…</td>
 </tr>
 <tr>
 <td>tcp 1500</td>
 <td>ISPmanager</td>
-<td>弱口令</td>
+<td align="left">弱口令</td>
 </tr>
 <tr>
 <td>tcp 1723</td>
 <td>PPTP</td>
-<td>爆破,想办法钓VPN账号,进内网</td>
+<td align="left">爆破,想办法钓VPN账号,进内网</td>
 </tr>
 <tr>
 <td>tcp 2082,2083</td>
 <td>cPanel</td>
-<td>弱口令</td>
+<td align="left">弱口令</td>
 </tr>
 <tr>
 <td>tcp 2181</td>
 <td>ZooKeeper</td>
-<td>未授权访问</td>
+<td align="left">未授权访问</td>
 </tr>
 <tr>
 <td>tcp 2601,2604</td>
 <td>Zebra</td>
-<td>默认密码zerbra</td>
+<td align="left">默认密码zerbra</td>
 </tr>
 <tr>
 <td>tcp 3128</td>
 <td>Squid</td>
-<td>弱口令</td>
+<td align="left">弱口令</td>
 </tr>
 <tr>
 <td>tcp 3312,3311</td>
 <td>kangle</td>
-<td>弱口令</td>
+<td align="left">弱口令</td>
 </tr>
 <tr>
 <td>tcp 3306</td>
 <td>MySQL</td>
-<td>注入,提权,爆破</td>
+<td align="left">注入,提权,爆破</td>
 </tr>
 <tr>
 <td>tcp 3389</td>
 <td>Windows rdp</td>
-<td>shift后门[需要03以下的系统],爆破,ms12-020</td>
+<td align="left">shift后门[需要03以下的系统],爆破,ms12-020</td>
 </tr>
 <tr>
 <td>tcp 3690</td>
 <td>SVN</td>
-<td>svn泄露,未授权访问</td>
+<td align="left">svn泄露,未授权访问</td>
 </tr>
 <tr>
 <td>tcp 4848</td>
 <td>GlassFish</td>
-<td>弱口令</td>
+<td align="left">弱口令</td>
 </tr>
 <tr>
 <td>tcp 5000</td>
 <td>Sybase&#x2F;DB2</td>
-<td>爆破,注入</td>
+<td align="left">爆破,注入</td>
 </tr>
 <tr>
 <td>tcp 5432</td>
 <td>PostgreSQL</td>
-<td>爆破,注入,弱口令</td>
+<td align="left">爆破,注入,弱口令</td>
 </tr>
 <tr>
 <td>tcp 5900,5901,5902</td>
 <td>VNC</td>
-<td>弱口令爆破</td>
+<td align="left">弱口令爆破、未授权访问</td>
 </tr>
 <tr>
 <td>tcp 5984</td>
 <td>CouchDB</td>
-<td>未授权导致的任意指令执行</td>
+<td align="left">未授权导致的任意指令执行</td>
 </tr>
 <tr>
 <td>tcp 6379</td>
 <td>Redis</td>
-<td>可尝试未授权访问,弱口令爆破</td>
+<td align="left">可尝试未授权访问,弱口令爆破</td>
 </tr>
 <tr>
 <td>tcp 7001,7002</td>
 <td>WebLogic</td>
-<td>Java反序列化,弱口令</td>
+<td align="left">Java反序列化,弱口令</td>
 </tr>
 <tr>
 <td>tcp 7778</td>
 <td>Kloxo</td>
-<td>主机面板登录</td>
+<td align="left">主机面板登录</td>
 </tr>
 <tr>
 <td>tcp 8000</td>
 <td>Ajenti</td>
-<td>弱口令</td>
+<td align="left">弱口令</td>
 </tr>
 <tr>
 <td>tcp 8443</td>
 <td>Plesk</td>
-<td>弱口令</td>
+<td align="left">弱口令</td>
 </tr>
 <tr>
 <td>tcp 8069</td>
 <td>Zabbix</td>
-<td>远程执行,SQL注入</td>
+<td align="left">远程执行,SQL注入</td>
 </tr>
 <tr>
 <td>tcp 8080-8089</td>
 <td>Jenkins,JBoss</td>
-<td>反序列化,控制台弱口令</td>
+<td align="left">反序列化,控制台弱口令</td>
 </tr>
 <tr>
 <td>Tcp 9080-9081,9090</td>
 <td>WebSphere</td>
-<td>Java反序列化&#x2F;弱口令</td>
+<td align="left">Java反序列化&#x2F;弱口令</td>
 </tr>
 <tr>
 <td>tcp 9200,9300</td>
 <td>ElasticSearch</td>
-<td>远程执行</td>
+<td align="left">未授权访问、远程代码执行</td>
 </tr>
 <tr>
 <td>tcp 11211</td>
 <td>Memcached</td>
-<td>未授权访问</td>
+<td align="left">未授权访问</td>
 </tr>
 <tr>
 <td>tcp 27017,27018</td>
 <td>MongoDB</td>
-<td>爆破,未授权访问</td>
+<td align="left">爆破,未授权访问</td>
 </tr>
 <tr>
 <td>tcp 50070,50030</td>
 <td>Hadoop</td>
-<td>默认端口未授权访问</td>
+<td align="left">默认端口未授权访问</td>
 </tr>
 </tbody></table>
+<h4 id="目录扫描"><a href="#目录扫描" class="headerlink" title="目录扫描"></a>目录扫描</h4><p><code>可以通过dirsearch、御剑、burp等工具进行爆破目录，从而查看是否存在一些敏感信息页面，进行下一步攻击</code></p>
+<h4 id="子域名收集"><a href="#子域名收集" class="headerlink" title="子域名收集"></a>子域名收集</h4><p><code>可以通过Layer子域名挖掘机、google语法、空间搜索引擎去获得子域名信息</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">空间搜索引擎:</span><br><span class="line">https://fofa.info/		fofa  --  华顺信安</span><br><span class="line">https://hunter.qianxin.com/		鹰图	 --  奇安信</span><br><span class="line">https://www.shodan.io/		撒旦	--	约翰·马瑟利</span><br><span class="line">https://www.zoomeye.org/	钟馗之眼  --  知道创宇</span><br></pre></td></tr></table></figure>
+
+<h4 id="备案查询"><a href="#备案查询" class="headerlink" title="备案查询"></a>备案查询</h4><p>输入主域名查询域名备案信息，输入公司名称则查询公司备案域名</p>
+<p><img src="https://s2.loli.net/2022/07/07/xXOdKqbTk7ALInQ.png" alt="image-20220707141335587"></p>
+<h4 id="IP反查or域名反查"><a href="#IP反查or域名反查" class="headerlink" title="IP反查or域名反查"></a>IP反查or域名反查</h4><p><img src="https://s2.loli.net/2022/07/07/Sc4M6EgP5QTnCyp.png" alt="image-20220707142435837"></p>
+<h4 id="威胁情报查询"><a href="#威胁情报查询" class="headerlink" title="威胁情报查询"></a>威胁情报查询</h4><p>主要是查询IP是否存在威胁，也可以查看是否存在域名，以及端口开放情况等信息</p>
+<p><img src="https://s2.loli.net/2022/07/07/ZYnBCtAXFdHJxQf.png" alt="image-20220707142654422"></p>
 
     </div>
 
@@ -467,8 +486,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/07/06/hadoop/" rel="prev" title="Hadoop">
-      <i class="fa fa-chevron-left"></i> Hadoop
+    <a href="/2022/07/06/Tomcat/" rel="prev" title="Tomcat">
+      <i class="fa fa-chevron-left"></i> Tomcat
     </a></div>
       <div class="post-nav-item">
     <a href="/2022/07/06/Elasticsearch/" rel="next" title="Elasticsearch">
@@ -532,6 +551,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%AB%AF%E5%8F%A3%E9%BB%98%E8%AE%A4%E6%9C%8D%E5%8A%A1%EF%BC%8C%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87nmap%E6%88%96%E5%85%B6%E4%BB%96%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7%E8%8E%B7%E5%8F%96%E4%BF%A1%E6%81%AF"><span class="nav-number">1.</span> <span class="nav-text">常见端口默认服务，可以通过nmap或其他端口扫描工具获取信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%E6%89%AB%E6%8F%8F"><span class="nav-number">2.</span> <span class="nav-text">目录扫描</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%90%E5%9F%9F%E5%90%8D%E6%94%B6%E9%9B%86"><span class="nav-number">3.</span> <span class="nav-text">子域名收集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%87%E6%A1%88%E6%9F%A5%E8%AF%A2"><span class="nav-number">4.</span> <span class="nav-text">备案查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IP%E5%8F%8D%E6%9F%A5or%E5%9F%9F%E5%90%8D%E5%8F%8D%E6%9F%A5"><span class="nav-number">5.</span> <span class="nav-text">IP反查or域名反查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E6%9F%A5%E8%AF%A2"><span class="nav-number">6.</span> <span class="nav-text">威胁情报查询</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
