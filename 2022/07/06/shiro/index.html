@@ -20,18 +20,25 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="shiro反序列化（shiro-550,shiro721）漏洞原理：123shiro默认使用了CookieRememberMeManager，其处理cookie的流程是：得到rememberMe的cookie值 --&gt; Base64解码 --&gt; AES解密 --&gt; 反序列化然而AES的密钥是硬编码的，就导致了攻击者可以构造恶意数据造成反序列化的RCE漏洞。  shiro-550影">
+  <meta name="description" content="shiro反序列化（shiro-550,shiro721）More info : 抓包查看请求包的cookie字段中是否包含remeberMe字段，存在则代表该网页使用的是shiro框架 shiro-550漏洞原理：1Apache Shiro框架提供了记住密码的功能（RememberMe），用户登录成功后会生成经过加密并编码的cookie。在服务端对rememberMe的cookie值，先base">
 <meta property="og:type" content="article">
 <meta property="og:title" content="shiro">
 <meta property="og:url" content="http://example.com/2022/07/06/shiro/index.html">
 <meta property="og:site_name" content="qwtd-vulbox">
-<meta property="og:description" content="shiro反序列化（shiro-550,shiro721）漏洞原理：123shiro默认使用了CookieRememberMeManager，其处理cookie的流程是：得到rememberMe的cookie值 --&gt; Base64解码 --&gt; AES解密 --&gt; 反序列化然而AES的密钥是硬编码的，就导致了攻击者可以构造恶意数据造成反序列化的RCE漏洞。  shiro-550影">
+<meta property="og:description" content="shiro反序列化（shiro-550,shiro721）More info : 抓包查看请求包的cookie字段中是否包含remeberMe字段，存在则代表该网页使用的是shiro框架 shiro-550漏洞原理：1Apache Shiro框架提供了记住密码的功能（RememberMe），用户登录成功后会生成经过加密并编码的cookie。在服务端对rememberMe的cookie值，先base">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/07/07/HLhufiWJybSI9T8.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/07/SQer1iDbEFmlNaA.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/07/F973B5D2tySpfXl.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/07/trdvbyQq24RmnFx.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/07/HFuGYQUgpJ6hKyk.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/07/e2hFoWxw3Il6VcX.png">
 <meta property="article:published_time" content="2022-07-06T10:14:49.000Z">
-<meta property="article:modified_time" content="2022-07-06T09:16:08.664Z">
+<meta property="article:modified_time" content="2022-07-07T04:53:27.149Z">
 <meta property="article:author" content="气温太低">
 <meta property="article:tag" content="网络安全">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/07/07/HLhufiWJybSI9T8.png">
 
 <link rel="canonical" href="http://example.com/2022/07/06/shiro/">
 
@@ -188,10 +195,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-07-06 18:14:49 / 修改时间：17:16:08" itemprop="dateCreated datePublished" datetime="2022-07-06T18:14:49+08:00">2022-07-06</time>
+              <time title="创建时间：2022-07-06 18:14:49" itemprop="dateCreated datePublished" datetime="2022-07-06T18:14:49+08:00">2022-07-06</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-07 12:53:27" itemprop="dateModified" datetime="2022-07-07T12:53:27+08:00">2022-07-07</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -213,10 +226,30 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="shiro反序列化（shiro-550-shiro721）"><a href="#shiro反序列化（shiro-550-shiro721）" class="headerlink" title="shiro反序列化（shiro-550,shiro721）"></a>shiro反序列化（shiro-550,shiro721）</h3><h3 id="漏洞原理："><a href="#漏洞原理：" class="headerlink" title="漏洞原理："></a>漏洞原理：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">shiro默认使用了CookieRememberMeManager，其处理cookie的流程是：</span><br><span class="line">得到rememberMe的cookie值 --&gt; Base64解码 --&gt; AES解密 --&gt; 反序列化</span><br><span class="line">然而AES的密钥是硬编码的，就导致了攻击者可以构造恶意数据造成反序列化的RCE漏洞。</span><br></pre></td></tr></table></figure>
+        <h3 id="shiro反序列化（shiro-550-shiro721）"><a href="#shiro反序列化（shiro-550-shiro721）" class="headerlink" title="shiro反序列化（shiro-550,shiro721）"></a>shiro反序列化（shiro-550,shiro721）</h3><p>More info : 抓包查看请求包的cookie字段中是否包含remeberMe字段，存在则代表该网页使用的是shiro框架</p>
+<h4 id="shiro-550"><a href="#shiro-550" class="headerlink" title="shiro-550"></a>shiro-550</h4><h5 id="漏洞原理："><a href="#漏洞原理：" class="headerlink" title="漏洞原理："></a>漏洞原理：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Apache Shiro框架提供了记住密码的功能（RememberMe），用户登录成功后会生成经过加密并编码的cookie。在服务端对rememberMe的cookie值，先base64解码然后AES解密再反序列化，就导致了反序列化RCE漏洞。</span><br></pre></td></tr></table></figure>
 
-<h4 id="shiro-550"><a href="#shiro-550" class="headerlink" title="shiro-550"></a>shiro-550</h4><h5 id="影响版本："><a href="#影响版本：" class="headerlink" title="影响版本："></a>影响版本：</h5><p><code>Apache Shiro &lt; 1.2.4</code></p>
-<h4 id="shiro-721"><a href="#shiro-721" class="headerlink" title="shiro-721"></a>shiro-721</h4><h5 id="影响版本：-1"><a href="#影响版本：-1" class="headerlink" title="影响版本："></a>影响版本：</h5><p><code>Apache Shiro &lt; 1.4.2</code></p>
+<h5 id="影响版本："><a href="#影响版本：" class="headerlink" title="影响版本："></a>影响版本：</h5><p><code>Apache Shiro &lt; 1.2.4</code></p>
+<h5 id="环境搭建："><a href="#环境搭建：" class="headerlink" title="环境搭建："></a>环境搭建：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">攻击者:kali 192.168.179.129</span><br><span class="line">靶机:ubuntu 192.168.179.130 -- 需要安装vulhub</span><br><span class="line"></span><br><span class="line">		靶机部署:</span><br><span class="line">		下载安装vulhub，不会安装可以看unauth中的hadoop那篇文章</span><br><span class="line">		cd vulhub/shiro/CVE-2016-4437/</span><br><span class="line">		sudo docker-compose up -d // 启动环境</span><br><span class="line">		访问靶机8080端口页面如下即部署完成</span><br><span class="line">		sudo docker-compose down // 做完关闭靶机环境</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/07/HLhufiWJybSI9T8.png" alt="image-20220707093716391"></p>
+<h5 id="漏洞复现："><a href="#漏洞复现：" class="headerlink" title="漏洞复现："></a>漏洞复现：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">这里使用到了shiro_rce检测工具和railgun利用工具</span><br><span class="line">先使用shiro_rce工具检测key值</span><br><span class="line">再使用railgun工具进行命令执行</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/07/SQer1iDbEFmlNaA.png" alt="image-20220707112306178"></p>
+<p><img src="https://s2.loli.net/2022/07/07/F973B5D2tySpfXl.png" alt="image-20220707112355992"></p>
+<h4 id="shiro-721"><a href="#shiro-721" class="headerlink" title="shiro-721"></a>shiro-721</h4><h5 id="漏洞原理：-1"><a href="#漏洞原理：-1" class="headerlink" title="漏洞原理："></a>漏洞原理：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Apache Shiro RememberMe Cookie默认通过AES-128-CBC模式加密，这种加密方式容易受到Padding Oracle Attack（Oracle填充攻击），利用有效的RememberMe Cookie作为Padding Oracle Attack的前缀，然后精心构造 RememberMe Cookie 值来实现反序列化漏洞攻击.</span><br></pre></td></tr></table></figure>
+
+<h5 id="影响版本：-1"><a href="#影响版本：-1" class="headerlink" title="影响版本："></a>影响版本：</h5><p><code>Apache Shiro &lt; 1.4.2</code></p>
+<h3 id="shiro认证绕过（CVE-2020-1957）"><a href="#shiro认证绕过（CVE-2020-1957）" class="headerlink" title="shiro认证绕过（CVE-2020-1957）"></a>shiro认证绕过（CVE-2020-1957）</h3><h4 id="漏洞原理：-2"><a href="#漏洞原理：-2" class="headerlink" title="漏洞原理："></a>漏洞原理：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">我们请求的URL在整个项目的传入传递过程。在使用了shiro的项目中，是我们请求的URL(URL1),进过shiro权限检验(URL2), 最后到springboot项目找到路由来处理(URL3)</span><br><span class="line">漏洞的出现就在URL1,URL2和URL3 有可能不是同一个URL，这就导致我们能绕过shiro的校验，直接访问后端需要首选的URL</span><br></pre></td></tr></table></figure>
+
+<h4 id="影响版本：-2"><a href="#影响版本：-2" class="headerlink" title="影响版本："></a>影响版本：</h4><p><code>Apache Shiro &lt; 1.5.3</code></p>
+<h4 id="环境搭建：-1"><a href="#环境搭建：-1" class="headerlink" title="环境搭建："></a>环境搭建：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">靶机:ubuntu 192.168.179.130</span><br><span class="line"></span><br><span class="line">		靶机部署:</span><br><span class="line">			cd vulhub/shiro/CVE-2020-1957/</span><br><span class="line">			sudo docker-compose up -d // 启动环境</span><br><span class="line">			访问到靶机8080端口，显示下图页面即部署成功</span><br><span class="line">			sudo docker-compose down // 做完关闭靶机环境</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/07/trdvbyQq24RmnFx.png" alt="image-20220707124311092"></p>
+<h4 id="漏洞复现：-1"><a href="#漏洞复现：-1" class="headerlink" title="漏洞复现："></a>漏洞复现：</h4><p><code>正常情况访问点login登录是需要密码的，访问admin页面会重定向回登录页面</code></p>
+<p><img src="https://s2.loli.net/2022/07/07/HFuGYQUgpJ6hKyk.png" alt="image-20220707125124117"></p>
+<p><code>访问该目录/xxx/..;/admin/即可绕过登录验证</code></p>
+<p><img src="https://s2.loli.net/2022/07/07/e2hFoWxw3Il6VcX.png" alt="image-20220707124942061"></p>
 
     </div>
 
@@ -294,7 +327,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#shiro%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%EF%BC%88shiro-550-shiro721%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">shiro反序列化（shiro-550,shiro721）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">漏洞原理：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#shiro-550"><span class="nav-number">2.1.</span> <span class="nav-text">shiro-550</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BD%B1%E5%93%8D%E7%89%88%E6%9C%AC%EF%BC%9A"><span class="nav-number">2.1.1.</span> <span class="nav-text">影响版本：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#shiro-721"><span class="nav-number">2.2.</span> <span class="nav-text">shiro-721</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BD%B1%E5%93%8D%E7%89%88%E6%9C%AC%EF%BC%9A-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">影响版本：</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#shiro%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%EF%BC%88shiro-550-shiro721%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">shiro反序列化（shiro-550,shiro721）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#shiro-550"><span class="nav-number">1.1.</span> <span class="nav-text">shiro-550</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%EF%BC%9A"><span class="nav-number">1.1.1.</span> <span class="nav-text">漏洞原理：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BD%B1%E5%93%8D%E7%89%88%E6%9C%AC%EF%BC%9A"><span class="nav-number">1.1.2.</span> <span class="nav-text">影响版本：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%EF%BC%9A"><span class="nav-number">1.1.3.</span> <span class="nav-text">环境搭建：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%EF%BC%9A"><span class="nav-number">1.1.4.</span> <span class="nav-text">漏洞复现：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#shiro-721"><span class="nav-number">1.2.</span> <span class="nav-text">shiro-721</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%EF%BC%9A-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">漏洞原理：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BD%B1%E5%93%8D%E7%89%88%E6%9C%AC%EF%BC%9A-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">影响版本：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shiro%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87%EF%BC%88CVE-2020-1957%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">shiro认证绕过（CVE-2020-1957）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%EF%BC%9A-2"><span class="nav-number">2.1.</span> <span class="nav-text">漏洞原理：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BD%B1%E5%93%8D%E7%89%88%E6%9C%AC%EF%BC%9A-2"><span class="nav-number">2.2.</span> <span class="nav-text">影响版本：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%EF%BC%9A-1"><span class="nav-number">2.3.</span> <span class="nav-text">环境搭建：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%EF%BC%9A-1"><span class="nav-number">2.4.</span> <span class="nav-text">漏洞复现：</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -310,14 +343,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>

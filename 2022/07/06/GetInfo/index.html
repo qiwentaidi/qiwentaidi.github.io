@@ -20,22 +20,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="弱口令+war后门文件部署任意文件写入（CVE-2017-12615）影响版本：Apache Tomcat 7.0.0 to 7.0.79 环境搭建：1靶机：win10 192.168.179.131   漏洞修复：11、将 Tomcat 版本升级到7.0.81以上">
+  <meta name="description" content="端口 (默认) 服务 渗透用途    tcp 20,21 FTP 允许匿名的上传下载,爆破,嗅探,win提权,远程执行(proftpd 1.3.5),各类后门(proftpd,vsftp  2.3.4)   tcp 22 SSH 可根据已搜集到的信息尝试爆破,v1版本可中间人,ssh隧道及内网代理转发,文件传输等等   tcp 23 Telnet 爆破,嗅探,一般常用于路由,交换登陆,可尝试">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Tomcat">
-<meta property="og:url" content="http://example.com/2022/07/06/Tomcat/index.html">
+<meta property="og:title" content="信息收集">
+<meta property="og:url" content="http://example.com/2022/07/06/GetInfo/index.html">
 <meta property="og:site_name" content="qwtd-vulbox">
-<meta property="og:description" content="弱口令+war后门文件部署任意文件写入（CVE-2017-12615）影响版本：Apache Tomcat 7.0.0 to 7.0.79 环境搭建：1靶机：win10 192.168.179.131   漏洞修复：11、将 Tomcat 版本升级到7.0.81以上">
+<meta property="og:description" content="端口 (默认) 服务 渗透用途    tcp 20,21 FTP 允许匿名的上传下载,爆破,嗅探,win提权,远程执行(proftpd 1.3.5),各类后门(proftpd,vsftp  2.3.4)   tcp 22 SSH 可根据已搜集到的信息尝试爆破,v1版本可中间人,ssh隧道及内网代理转发,文件传输等等   tcp 23 Telnet 爆破,嗅探,一般常用于路由,交换登陆,可尝试">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://s2.loli.net/2022/07/06/35UBTsJ9F1QqSb7.png">
 <meta property="article:published_time" content="2022-07-06T03:14:49.000Z">
-<meta property="article:modified_time" content="2022-07-06T06:49:52.119Z">
+<meta property="article:modified_time" content="2022-07-06T09:39:07.022Z">
 <meta property="article:author" content="气温太低">
 <meta property="article:tag" content="网络安全">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://s2.loli.net/2022/07/06/35UBTsJ9F1QqSb7.png">
 
-<link rel="canonical" href="http://example.com/2022/07/06/Tomcat/">
+<link rel="canonical" href="http://example.com/2022/07/06/GetInfo/">
 
 
 <script id="page-configurations">
@@ -48,7 +46,7 @@
   };
 </script>
 
-  <title>Tomcat | qwtd-vulbox</title>
+  <title>信息收集 | qwtd-vulbox</title>
   
 
 
@@ -168,7 +166,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/06/Tomcat/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/06/GetInfo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -181,7 +179,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Tomcat
+          信息收集
         </h1>
 
         <div class="post-meta">
@@ -192,7 +190,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-07-06 11:14:49 / 修改时间：14:49:52" itemprop="dateCreated datePublished" datetime="2022-07-06T11:14:49+08:00">2022-07-06</time>
+              <time title="创建时间：2022-07-06 11:14:49 / 修改时间：17:39:07" itemprop="dateCreated datePublished" datetime="2022-07-06T11:14:49+08:00">2022-07-06</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -200,7 +198,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MiddleWare/" itemprop="url" rel="index"><span itemprop="name">MiddleWare</span></a>
+                  <a href="/categories/GetInfo/" itemprop="url" rel="index"><span itemprop="name">GetInfo</span></a>
                 </span>
             </span>
 
@@ -215,12 +213,245 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="弱口令-war后门文件部署"><a href="#弱口令-war后门文件部署" class="headerlink" title="弱口令+war后门文件部署"></a>弱口令+war后门文件部署</h3><h3 id="任意文件写入（CVE-2017-12615）"><a href="#任意文件写入（CVE-2017-12615）" class="headerlink" title="任意文件写入（CVE-2017-12615）"></a>任意文件写入（CVE-2017-12615）</h3><h4 id="影响版本："><a href="#影响版本：" class="headerlink" title="影响版本："></a>影响版本：</h4><p><code>Apache Tomcat 7.0.0 to 7.0.79</code></p>
-<h4 id="环境搭建："><a href="#环境搭建：" class="headerlink" title="环境搭建："></a>环境搭建：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">靶机：win10 192.168.179.131</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2022/07/06/35UBTsJ9F1QqSb7.png" alt="image-20220706140946401"></p>
-<h4 id="漏洞修复："><a href="#漏洞修复：" class="headerlink" title="漏洞修复："></a>漏洞修复：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1、将 Tomcat 版本升级到7.0.81以上</span><br></pre></td></tr></table></figure>
-
+        <table>
+<thead>
+<tr>
+<th>端口 (默认)</th>
+<th><strong>服务</strong></th>
+<th><strong>渗透用途</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tcp 20,21</td>
+<td>FTP</td>
+<td>允许匿名的上传下载,爆破,嗅探,win提权,远程执行(proftpd 1.3.5),各类后门(proftpd,vsftp  2.3.4)</td>
+</tr>
+<tr>
+<td>tcp 22</td>
+<td>SSH</td>
+<td>可根据已搜集到的信息尝试爆破,v1版本可中间人,ssh隧道及内网代理转发,文件传输等等</td>
+</tr>
+<tr>
+<td>tcp 23</td>
+<td>Telnet</td>
+<td>爆破,嗅探,一般常用于路由,交换登陆,可尝试弱口令</td>
+</tr>
+<tr>
+<td>tcp 25</td>
+<td>SMTP</td>
+<td>邮件伪造,vrfy&#x2F;expn查询邮件用户信息,可使用smtp-user-enum工具来自动跑</td>
+</tr>
+<tr>
+<td>tcp&#x2F;udp 53</td>
+<td>DNS</td>
+<td>允许区域传送,dns劫持,缓存投毒,欺骗以及各种基于dns隧道的远控</td>
+</tr>
+<tr>
+<td>tcp&#x2F;udp 69</td>
+<td>TFTP</td>
+<td>尝试下载目标及其的各类重要配置文件</td>
+</tr>
+<tr>
+<td>tcp 80-89,443,8440-8450,8080-8089</td>
+<td>各种常用的Web服务端口</td>
+<td>可尝试经典的topn,vpn,owa,webmail,目标oa,各类Java控制台,各类服务器Web管理面板,各类Web中间件漏洞利用,各类Web框架漏洞利用等等……</td>
+</tr>
+<tr>
+<td>tcp 110</td>
+<td>POP3</td>
+<td>可尝试爆破,嗅探</td>
+</tr>
+<tr>
+<td>tcp 111,2049</td>
+<td>NFS</td>
+<td>权限配置不当</td>
+</tr>
+<tr>
+<td>tcp 137,139,445</td>
+<td>Samba</td>
+<td>可尝试爆破以及smb自身的各种远程执行类漏洞利用,如,ms08-067,ms17-010,嗅探等……</td>
+</tr>
+<tr>
+<td>tcp 143</td>
+<td>IMAP</td>
+<td>可尝试爆破</td>
+</tr>
+<tr>
+<td>udp 161</td>
+<td>SNMP</td>
+<td>爆破默认团队字符串,搜集目标内网信息</td>
+</tr>
+<tr>
+<td>tcp 389</td>
+<td>LDAP</td>
+<td>ldap注入,允许匿名访问,弱口令</td>
+</tr>
+<tr>
+<td>tcp 512,513,514</td>
+<td>Linux rexec</td>
+<td>可爆破,rlogin登陆</td>
+</tr>
+<tr>
+<td>tcp 873</td>
+<td>Rsync</td>
+<td>匿名访问,文件上传</td>
+</tr>
+<tr>
+<td>tcp 1194</td>
+<td>OpenVPN</td>
+<td>想办法钓VPN账号,进内网</td>
+</tr>
+<tr>
+<td>tcp 1352</td>
+<td>Lotus</td>
+<td>弱口令,信息泄漏,爆破</td>
+</tr>
+<tr>
+<td>tcp 1433</td>
+<td>SQL Server</td>
+<td>注入,提权,sa弱口令,爆破</td>
+</tr>
+<tr>
+<td>tcp 1521</td>
+<td>Oracle</td>
+<td>tns爆破,注入,弹shell…</td>
+</tr>
+<tr>
+<td>tcp 1500</td>
+<td>ISPmanager</td>
+<td>弱口令</td>
+</tr>
+<tr>
+<td>tcp 1723</td>
+<td>PPTP</td>
+<td>爆破,想办法钓VPN账号,进内网</td>
+</tr>
+<tr>
+<td>tcp 2082,2083</td>
+<td>cPanel</td>
+<td>弱口令</td>
+</tr>
+<tr>
+<td>tcp 2181</td>
+<td>ZooKeeper</td>
+<td>未授权访问</td>
+</tr>
+<tr>
+<td>tcp 2601,2604</td>
+<td>Zebra</td>
+<td>默认密码zerbra</td>
+</tr>
+<tr>
+<td>tcp 3128</td>
+<td>Squid</td>
+<td>弱口令</td>
+</tr>
+<tr>
+<td>tcp 3312,3311</td>
+<td>kangle</td>
+<td>弱口令</td>
+</tr>
+<tr>
+<td>tcp 3306</td>
+<td>MySQL</td>
+<td>注入,提权,爆破</td>
+</tr>
+<tr>
+<td>tcp 3389</td>
+<td>Windows rdp</td>
+<td>shift后门[需要03以下的系统],爆破,ms12-020</td>
+</tr>
+<tr>
+<td>tcp 3690</td>
+<td>SVN</td>
+<td>svn泄露,未授权访问</td>
+</tr>
+<tr>
+<td>tcp 4848</td>
+<td>GlassFish</td>
+<td>弱口令</td>
+</tr>
+<tr>
+<td>tcp 5000</td>
+<td>Sybase&#x2F;DB2</td>
+<td>爆破,注入</td>
+</tr>
+<tr>
+<td>tcp 5432</td>
+<td>PostgreSQL</td>
+<td>爆破,注入,弱口令</td>
+</tr>
+<tr>
+<td>tcp 5900,5901,5902</td>
+<td>VNC</td>
+<td>弱口令爆破</td>
+</tr>
+<tr>
+<td>tcp 5984</td>
+<td>CouchDB</td>
+<td>未授权导致的任意指令执行</td>
+</tr>
+<tr>
+<td>tcp 6379</td>
+<td>Redis</td>
+<td>可尝试未授权访问,弱口令爆破</td>
+</tr>
+<tr>
+<td>tcp 7001,7002</td>
+<td>WebLogic</td>
+<td>Java反序列化,弱口令</td>
+</tr>
+<tr>
+<td>tcp 7778</td>
+<td>Kloxo</td>
+<td>主机面板登录</td>
+</tr>
+<tr>
+<td>tcp 8000</td>
+<td>Ajenti</td>
+<td>弱口令</td>
+</tr>
+<tr>
+<td>tcp 8443</td>
+<td>Plesk</td>
+<td>弱口令</td>
+</tr>
+<tr>
+<td>tcp 8069</td>
+<td>Zabbix</td>
+<td>远程执行,SQL注入</td>
+</tr>
+<tr>
+<td>tcp 8080-8089</td>
+<td>Jenkins,JBoss</td>
+<td>反序列化,控制台弱口令</td>
+</tr>
+<tr>
+<td>Tcp 9080-9081,9090</td>
+<td>WebSphere</td>
+<td>Java反序列化&#x2F;弱口令</td>
+</tr>
+<tr>
+<td>tcp 9200,9300</td>
+<td>ElasticSearch</td>
+<td>远程执行</td>
+</tr>
+<tr>
+<td>tcp 11211</td>
+<td>Memcached</td>
+<td>未授权访问</td>
+</tr>
+<tr>
+<td>tcp 27017,27018</td>
+<td>MongoDB</td>
+<td>爆破,未授权访问</td>
+</tr>
+<tr>
+<td>tcp 50070,50030</td>
+<td>Hadoop</td>
+<td>默认端口未授权访问</td>
+</tr>
+</tbody></table>
 
     </div>
 
@@ -236,12 +467,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/07/05/rsync/" rel="prev" title="Rsync">
-      <i class="fa fa-chevron-left"></i> Rsync
+    <a href="/2022/07/06/hadoop/" rel="prev" title="Hadoop">
+      <i class="fa fa-chevron-left"></i> Hadoop
     </a></div>
       <div class="post-nav-item">
-    <a href="/2022/07/06/hadoop/" rel="next" title="Hadoop">
-      Hadoop <i class="fa fa-chevron-right"></i>
+    <a href="/2022/07/06/Elasticsearch/" rel="next" title="Elasticsearch">
+      Elasticsearch <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -301,7 +532,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%B1%E5%8F%A3%E4%BB%A4-war%E5%90%8E%E9%97%A8%E6%96%87%E4%BB%B6%E9%83%A8%E7%BD%B2"><span class="nav-number">1.</span> <span class="nav-text">弱口令+war后门文件部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%86%99%E5%85%A5%EF%BC%88CVE-2017-12615%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">任意文件写入（CVE-2017-12615）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BD%B1%E5%93%8D%E7%89%88%E6%9C%AC%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">影响版本：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%EF%BC%9A"><span class="nav-number">2.2.</span> <span class="nav-text">环境搭建：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D%EF%BC%9A"><span class="nav-number">2.3.</span> <span class="nav-text">漏洞修复：</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
