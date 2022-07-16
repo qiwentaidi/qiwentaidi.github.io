@@ -161,6 +161,157 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/15/sys&argparse/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-vulbox">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/15/sys&argparse/" class="post-title-link" itemprop="url">modular</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-15 03:56:49" itemprop="dateCreated datePublished" datetime="2022-07-15T03:56:49+08:00">2022-07-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-16 10:32:08" itemprop="dateModified" datetime="2022-07-16T10:32:08+08:00">2022-07-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="python处理命令行参数"><a href="#python处理命令行参数" class="headerlink" title="python处理命令行参数"></a>python处理命令行参数</h2><h3 id="sys"><a href="#sys" class="headerlink" title="sys"></a>sys</h3><h4 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法:"></a>使用方法:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1.sys.argv[n]	n&gt;=0</span><br></pre></td></tr></table></figure>
+
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例:"></a>实例:</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="built_in">print</span>(sys.argv[<span class="number">0</span>])	<span class="comment">#	打印自身</span></span><br><span class="line"><span class="built_in">print</span>(sys.argv[<span class="number">1</span>])	<span class="comment">#	输出参数1</span></span><br><span class="line"><span class="built_in">print</span>(sys.argv[<span class="number">2</span>])	<span class="comment">#	输出参数2</span></span><br><span class="line">-----------------------------------------------------------------------------------------</span><br><span class="line">PS D:\测试&gt;python3 .\test.py <span class="number">1</span> <span class="number">2</span></span><br><span class="line">.\test.py</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="argparse"><a href="#argparse" class="headerlink" title="argparse"></a>argparse</h3><h4 id="使用方法-1"><a href="#使用方法-1" class="headerlink" title="使用方法:"></a>使用方法:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">1. import argparse # 导入模块</span><br><span class="line">2. parse = argparse.ArgumentParser() # 创建对象</span><br><span class="line"></span><br><span class="line">    # add_argument</span><br><span class="line">    #     name: 参数名称</span><br><span class="line">    #     narg:</span><br><span class="line">    #           “+” 代表至少一个参数</span><br><span class="line">    #           &quot;*&quot; 代表0个或所有</span><br><span class="line">    #           &quot;?&quot; 代表0个或至少一个参数</span><br><span class="line">    #     type: 参数类型</span><br><span class="line">    #           str 字符类型</span><br><span class="line">    #           int 整型</span><br><span class="line">    #           ...</span><br><span class="line">    #     default: 默认值</span><br><span class="line">    #     help: 显示帮助信息</span><br><span class="line">    #     dest: 后续对象调用参数的名称</span><br><span class="line">    </span><br><span class="line">3. parse.add_argument() # 添加参数</span><br><span class="line">4. parse.parse_args() # 解析参数</span><br></pre></td></tr></table></figure>
+
+<h4 id="实例-1"><a href="#实例-1" class="headerlink" title="实例:"></a>实例:</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test</span>():</span><br><span class="line">    parse = argparse.ArgumentParser()   <span class="comment"># 创建ArgumentParser对象</span></span><br><span class="line">    </span><br><span class="line">    parse.add_argument(<span class="string">&quot;-u&quot;</span>, <span class="string">&quot;--url&quot;</span>, nargs=<span class="string">&quot;?&quot;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, <span class="built_in">help</span>=<span class="string">&quot;Set URL&quot;</span>, dest=<span class="string">&quot;url&quot;</span>)    <span class="comment"># 增加参数1</span></span><br><span class="line">    parse.add_argument(<span class="string">&quot;-o&quot;</span>, <span class="string">&quot;--output&quot;</span>, nargs=<span class="string">&quot;?&quot;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, <span class="built_in">help</span>=<span class="string">&quot;Set output file&quot;</span>, dest=<span class="string">&quot;output&quot;</span>)    <span class="comment"># 增加参数2 ...</span></span><br><span class="line"></span><br><span class="line">    arg = parse.parse_args()  <span class="comment"># 解析参数</span></span><br><span class="line">    <span class="keyword">return</span> arg</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    parse = test()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;URL链接为:<span class="subst">&#123;parse.url&#125;</span>\n输出文件目录为:<span class="subst">&#123;parse.output&#125;</span>&quot;</span>)</span><br><span class="line">-----------------------------------------------------------------------------------------</span><br><span class="line">PS E:\python&gt; python3 .\Argparse.py -u https://www.baidu.com -o C://desktop</span><br><span class="line">URL链接为:https://www.baidu.com</span><br><span class="line">输出文件目录为:C://desktop</span><br><span class="line">PS E:\python&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/13/WebCheck/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-vulbox">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/13/WebCheck/" class="post-title-link" itemprop="url">WebCheck</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-07-13 15:56:49 / 修改时间：17:10:47" itemprop="dateCreated datePublished" datetime="2022-07-13T15:56:49+08:00">2022-07-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="如何用python实现网页状态码，标题批量检测"><a href="#如何用python实现网页状态码，标题批量检测" class="headerlink" title="如何用python实现网页状态码，标题批量检测"></a>如何用python实现网页状态码，标题批量检测</h3><h4 id="思路"><a href="#思路" class="headerlink" title="思路:"></a>思路:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、使用python的request模块的status_code属性去实现状态码的获取</span><br><span class="line">2、使用bs4实现页面title的获取</span><br><span class="line">3、使用try/except/else	实现网页未响应的异常处理</span><br><span class="line">4、使用线程池实现多线程批量处理</span><br></pre></td></tr></table></figure>
+
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码:"></a>代码:</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>:<span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/13/strust2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -186,7 +337,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-07-13 14:06:53 / 修改时间：14:19:49" itemprop="dateCreated datePublished" datetime="2022-07-13T14:06:53+08:00">2022-07-13</time>
+              <time title="创建时间：2022-07-13 14:06:53 / 修改时间：15:08:55" itemprop="dateCreated datePublished" datetime="2022-07-13T14:06:53+08:00">2022-07-13</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -210,18 +361,23 @@
 
       
           <p>s2-001</p>
-<p>s2-005</p>
+<h3 id="s2-005"><a href="#s2-005" class="headerlink" title="s2-005"></a>s2-005</h3><h4 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理:"></a>漏洞原理:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Struts2 标签中 &#x27;&lt;s:a&gt;&#x27; 和 &#x27;&lt;s:url&gt;&#x27; 都包含一个 includeParams 属性，其值可设置为 none，get 或 all，参考官方其对应意义如下：</span><br><span class="line"></span><br><span class="line">1. none - 链接不包含请求的任意参数值（默认）</span><br><span class="line">2. get - 链接只包含 GET 请求中的参数和其值</span><br><span class="line">3. all - 链接包含 GET 和 POST 所有参数和其值</span><br><span class="line"></span><br><span class="line">&#x27;&lt;s:a&gt;&#x27;用来显示一个超链接，当&#x27;includeParams=all&#x27;的时候，会将本次请求的GET和POST参数都放在URL的GET参数上。在放置参数的过程中会将参数进行OGNL渲染，造成任意命令执行漏洞。</span><br></pre></td></tr></table></figure>
+
 <p>s2-007</p>
 <p>s2-008</p>
 <p>s2-009</p>
 <p>s2-012</p>
 <p>s2-013</p>
 <p>s2-015</p>
-<p>s2-016</p>
+<h3 id="s2-016"><a href="#s2-016" class="headerlink" title="s2-016"></a>s2-016</h3><h4 id="漏洞原理-1"><a href="#漏洞原理-1" class="headerlink" title="漏洞原理:"></a>漏洞原理:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在struts2中，DefaultActionMapper类支持以&quot;action:&quot;、&quot;redirect:&quot;、&quot;redirectAction:&quot;作为导航或是重定向前缀，但是这些前缀后面同时可以跟OGNL表达式，由于struts2没有对这些前缀做过滤，导致利用OGNL表达式调用java静态方法执行任意系统命令。</span><br></pre></td></tr></table></figure>
+
 <p>s2-032</p>
-<p>s2-045</p>
-<p>s2-046</p>
-<p>s2-052</p>
+<h3 id="s2-045"><a href="#s2-045" class="headerlink" title="s2-045"></a>s2-045</h3><h4 id="漏洞原理-2"><a href="#漏洞原理-2" class="headerlink" title="漏洞原理:"></a>漏洞原理:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Struts使用的Jakarta解析文件上传请求包不当，当远程攻击者构造恶意的Content-Type，可能导致远程命令执行。</span><br><span class="line">实际上在default.properties文件中，struts.multipart.parser的值有两个选择，分别是jakarta和pell（另外原本其实也有第三种选择cos）。其中的jakarta解析器是Struts 2框架的标准组成部分。默认情况下jakarta是启用的，所以该漏洞的严重性需要得到正视。</span><br></pre></td></tr></table></figure>
+
+<h3 id="s2-046"><a href="#s2-046" class="headerlink" title="s2-046"></a>s2-046</h3><h4 id="漏洞原理-3"><a href="#漏洞原理-3" class="headerlink" title="漏洞原理:"></a>漏洞原理:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">使用恶意的Content-Disposition值或者使用不合适的Content-Length头就可能导致远程命令执行。该漏洞与S2-045 (CVE-2017-5638)相似，但使用了不同的攻击向量。</span><br><span class="line"></span><br><span class="line">JakartaStreamMultipartRequest已开启。也就是说，Struts2需要通过Jakarta stream parser配置（非默认）。在Struts2配置文件中检查&lt;constant name=”struts.multipart.parser” value=”jakarta-stream” /&gt;</span><br><span class="line">上传的文件大小根据Content-Length头的声明要大于Struts2默认允许的2GB大小</span><br><span class="line">文件名中包含OGNL payload</span><br></pre></td></tr></table></figure>
+
+<h3 id="s2-052"><a href="#s2-052" class="headerlink" title="s2-052"></a>s2-052</h3><h4 id="漏洞原理-4"><a href="#漏洞原理-4" class="headerlink" title="漏洞原理:"></a>漏洞原理:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Apache 官方发布 Struts 2 紧急漏洞公告（S2-052），CVE 编号CVE-2017-9805。公告中披露，Struts2 REST插件的XStream组件存在反序列化漏洞，导致远程代码执行。攻击者利用此漏洞可执行任意代码，创建/删除系统账号，修改任意文件，植入后门等</span><br></pre></td></tr></table></figure>
+
 <p>s2-053</p>
 <p>s2-057</p>
 <p>s2-059</p>
@@ -436,7 +592,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-12 15:47:34" itemprop="dateModified" datetime="2022-07-12T15:47:34+08:00">2022-07-12</time>
+                <time title="修改时间：2022-07-15 01:59:44" itemprop="dateModified" datetime="2022-07-15T01:59:44+08:00">2022-07-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -461,31 +617,31 @@
       
           <h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">靶机:win11 192.168.179.1</span><br><span class="line">		靶机部署:</span><br><span class="line">		-- 安装完phpstudy2018并把upload-labs放在WWW目录下开启Apache+Mysql服务</span><br><span class="line">		</span><br></pre></td></tr></table></figure>
 
-<h3 id="Page-1"><a href="#Page-1" class="headerlink" title="Page 1"></a>Page 1</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">绕过前端js验证</span><br><span class="line">将木马后缀改为shell.php.jpg，上传时 burp抓包将 shell.php.jpg  ==&gt; shell.php 上传成功</span><br></pre></td></tr></table></figure>
+<h3 id="Page-1–绕过前端js验证"><a href="#Page-1–绕过前端js验证" class="headerlink" title="Page 1	–	绕过前端js验证"></a>Page 1	–	绕过前端js验证</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">将木马后缀改为shell.php.jpg，上传时 burp抓包将 shell.php.jpg  ==&gt; shell.php 上传成功</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://s2.loli.net/2022/07/12/qDGmhgjNBbVFsMP.png" alt="image-20220712092841476"></p>
 <h3 id="Page-2"><a href="#Page-2" class="headerlink" title="Page 2"></a>Page 2</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">使用和Page 1一样的方法即可上传成功</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://s2.loli.net/2022/07/12/J3BWtFn52Hpa7hZ.png" alt="image-20220712093555024"></p>
-<h3 id="Page-3"><a href="#Page-3" class="headerlink" title="Page 3"></a>Page 3</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">php5绕过后缀黑名单</span><br><span class="line">该方法需要更改httpd.conf文件，需要增加下列代码</span><br><span class="line">AddType application/x-httpd-php .php .phtml .phps .php5 .pht</span><br></pre></td></tr></table></figure>
+<h3 id="Page-3–黑名单绕过"><a href="#Page-3–黑名单绕过" class="headerlink" title="Page 3	–	黑名单绕过"></a>Page 3	–	黑名单绕过</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">php5绕过后缀黑名单</span><br><span class="line">该方法需要更改httpd.conf文件，需要增加下列代码</span><br><span class="line">AddType application/x-httpd-php .php .phtml .phps .php5 .pht</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://s2.loli.net/2022/07/12/Rsb8uKhX9t3Cmnw.png" alt="image-20220712134313400"></p>
 <p><img src="https://s2.loli.net/2022/07/12/tMB13pVdTJqSWE2.png" alt="image-20220712142938108"></p>
-<h3 id="Page-4"><a href="#Page-4" class="headerlink" title="Page 4"></a>Page 4</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、上传.htaccess文件,文件内容如下:</span><br><span class="line">SetHandler application/x-httpd-php	//	作用为将该目录及子目录下的所有文件都解析成php</span><br><span class="line">2、再上传upload4.png,再访问该页面文件即可解析</span><br></pre></td></tr></table></figure>
+<h3 id="Page-4–-htaccess绕过"><a href="#Page-4–-htaccess绕过" class="headerlink" title="Page 4	–	.htaccess绕过"></a>Page 4	–	.htaccess绕过</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、上传.htaccess文件,文件内容如下:</span><br><span class="line">SetHandler application/x-httpd-php	//	作用为将该目录及子目录下的所有文件都解析成php</span><br><span class="line">2、再上传upload4.png,再访问该页面文件即可解析</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://s2.loli.net/2022/07/12/YIjEv8tr2GcuQnF.png" alt="image-20220712143337298"></p>
-<h3 id="Page-5"><a href="#Page-5" class="headerlink" title="Page 5"></a>Page 5</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">后缀名大小写绕过,改为Php即可上传成功</span><br></pre></td></tr></table></figure>
+<h3 id="Page-5–大小写绕过"><a href="#Page-5–大小写绕过" class="headerlink" title="Page 5	–	大小写绕过"></a>Page 5	–	大小写绕过</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">后缀名大小写绕过,改为Php即可上传成功</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://s2.loli.net/2022/07/12/srhSUwJt4OnPFdo.png" alt="image-20220712150305754"></p>
-<h3 id="Page-6"><a href="#Page-6" class="headerlink" title="Page 6"></a>Page 6</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">后缀名后加空格绕过</span><br></pre></td></tr></table></figure>
+<h3 id="Page-6–空格绕过"><a href="#Page-6–空格绕过" class="headerlink" title="Page 6	–	空格绕过"></a>Page 6	–	空格绕过</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">后缀名后加空格绕过</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://s2.loli.net/2022/07/12/yGnB6CKz7IiLNkb.png" alt="image-20220712151829884"></p>
 <p><img src="https://s2.loli.net/2022/07/12/ZQELaGcizou9vBt.png" alt="image-20220712151901044"></p>
-<h3 id="Page-7"><a href="#Page-7" class="headerlink" title="Page 7"></a>Page 7</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">后缀名后加.绕过</span><br></pre></td></tr></table></figure>
+<h3 id="Page-7–点绕过"><a href="#Page-7–点绕过" class="headerlink" title="Page 7	–	点绕过"></a>Page 7	–	点绕过</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">后缀名后加.绕过</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://s2.loli.net/2022/07/12/qOmhZEByAjKMxog.png" alt="image-20220712152014146"></p>
 <p><img src="https://s2.loli.net/2022/07/12/oEFVLykIbjPh8MA.png" alt="image-20220712152028012"></p>
-<h3 id="Page-8"><a href="#Page-8" class="headerlink" title="Page 8"></a>Page 8</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">增加::$DATA绕过</span><br></pre></td></tr></table></figure>
+<h3 id="Page-8–-DATA绕过"><a href="#Page-8–-DATA绕过" class="headerlink" title="Page 8	–	::$DATA绕过"></a>Page 8	–	::$DATA绕过</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">增加::$DATA绕过</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://s2.loli.net/2022/07/12/ZCMnEGHWfq5xivA.png" alt="image-20220712151247550"></p>
 <p><img src="https://s2.loli.net/2022/07/12/OxGINUmhDL7Q36t.png" alt="image-20220712151426255"></p>
@@ -498,7 +654,7 @@
 <p><img src="https://s2.loli.net/2022/07/12/VJ4cMCxzewGs57y.png" alt="image-20220712153204392"></p>
 <p><img src="C:\Users\huyubing\AppData\Roaming\Typora\typora-user-images\image-20220712154130339.png" alt="image-20220712154130339"></p>
 <p><img src="https://s2.loli.net/2022/07/12/1k7EgPaZwcpFYz5.png" alt="image-20220712154335426"></p>
-
+<h3 id="Page-11"><a href="#Page-11" class="headerlink" title="Page 11"></a>Page 11</h3><h3 id="Page-12"><a href="#Page-12" class="headerlink" title="Page 12"></a>Page 12</h3><h3 id="Page-13"><a href="#Page-13" class="headerlink" title="Page 13"></a>Page 13</h3><h3 id="Page-14"><a href="#Page-14" class="headerlink" title="Page 14"></a>Page 14</h3><h3 id="Page-15"><a href="#Page-15" class="headerlink" title="Page 15"></a>Page 15</h3><h3 id="Page-16"><a href="#Page-16" class="headerlink" title="Page 16"></a>Page 16</h3><h3 id="Page-17"><a href="#Page-17" class="headerlink" title="Page 17"></a>Page 17</h3><h3 id="Page-18"><a href="#Page-18" class="headerlink" title="Page 18"></a>Page 18</h3><h3 id="Page-19"><a href="#Page-19" class="headerlink" title="Page 19"></a>Page 19</h3><h3 id="Page-20"><a href="#Page-20" class="headerlink" title="Page 20"></a>Page 20</h3>
       
     </div>
 
@@ -900,191 +1056,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/06/shiro/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="气温太低">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="qwtd-vulbox">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/07/06/shiro/" class="post-title-link" itemprop="url">shiro</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-07-06 18:14:49" itemprop="dateCreated datePublished" datetime="2022-07-06T18:14:49+08:00">2022-07-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-07 13:37:35" itemprop="dateModified" datetime="2022-07-07T13:37:35+08:00">2022-07-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iframe/" itemprop="url" rel="index"><span itemprop="name">iframe</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="shiro反序列化（shiro-550-shiro721）"><a href="#shiro反序列化（shiro-550-shiro721）" class="headerlink" title="shiro反序列化（shiro-550,shiro721）"></a>shiro反序列化（shiro-550,shiro721）</h3><p>More info : 抓包查看请求包的cookie字段中是否包含remeberMe字段，存在则代表该网页使用的是shiro框架</p>
-<h4 id="shiro-550"><a href="#shiro-550" class="headerlink" title="shiro-550"></a>shiro-550</h4><h5 id="漏洞原理："><a href="#漏洞原理：" class="headerlink" title="漏洞原理："></a>漏洞原理：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Apache Shiro框架提供了记住密码的功能（RememberMe），用户登录成功后会生成经过加密并编码的cookie。在服务端对rememberMe的cookie值，先base64解码然后AES解密再反序列化，就导致了反序列化RCE漏洞。</span><br></pre></td></tr></table></figure>
-
-<h5 id="影响版本："><a href="#影响版本：" class="headerlink" title="影响版本："></a>影响版本：</h5><p><code>Apache Shiro &lt; 1.2.4</code></p>
-<h5 id="环境搭建："><a href="#环境搭建：" class="headerlink" title="环境搭建："></a>环境搭建：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">攻击者:kali 192.168.179.129</span><br><span class="line">靶机:ubuntu 192.168.179.130 -- 需要安装vulhub</span><br><span class="line"></span><br><span class="line">		靶机部署:</span><br><span class="line">		下载安装vulhub，不会安装可以看unauth中的hadoop那篇文章</span><br><span class="line">		cd vulhub/shiro/CVE-2016-4437/</span><br><span class="line">		sudo docker-compose up -d // 启动环境</span><br><span class="line">		访问靶机8080端口页面如下即部署完成</span><br><span class="line">		sudo docker-compose down // 做完关闭靶机环境</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2022/07/07/HLhufiWJybSI9T8.png" alt="image-20220707093716391"></p>
-<h5 id="漏洞复现："><a href="#漏洞复现：" class="headerlink" title="漏洞复现："></a>漏洞复现：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">这里使用到了shiro_rce检测工具和railgun利用工具</span><br><span class="line">先使用shiro_rce工具检测key值</span><br><span class="line">再使用railgun工具进行命令执行</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2022/07/07/SQer1iDbEFmlNaA.png" alt="image-20220707112306178"></p>
-<p><img src="https://s2.loli.net/2022/07/07/F973B5D2tySpfXl.png" alt="image-20220707112355992"></p>
-<hr>
-<h4 id="shiro-721"><a href="#shiro-721" class="headerlink" title="shiro-721"></a>shiro-721</h4><h5 id="漏洞原理：-1"><a href="#漏洞原理：-1" class="headerlink" title="漏洞原理："></a>漏洞原理：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">由于Apache Shiro cookie中通过 AES-128-CBC 模式加密的rememberMe字段存在问题，用户可通过Padding Oracle 加密生成的攻击代码来构造恶意的rememberMe字段，并重新请求网站，进行反序列化攻击，最终导致任意代码执行</span><br></pre></td></tr></table></figure>
-
-<h5 id="影响版本：-1"><a href="#影响版本：-1" class="headerlink" title="影响版本："></a>影响版本：</h5><p><code>Apache Shiro &lt; 1.4.2</code></p>
-<h5 id="漏洞利用："><a href="#漏洞利用：" class="headerlink" title="漏洞利用："></a>漏洞利用：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">条件:</span><br><span class="line">1. 登录目标网站，获取登录后的Cookie，因为需要有效cookie，且必须存在remember字段</span><br><span class="line">复现方法：</span><br><span class="line">使用railgun工具</span><br><span class="line">1. 将cookie完整的复制到cookie栏</span><br><span class="line">2. 选择yso gadget，并在命令栏写入对应命令</span><br><span class="line">3. 点击获取信息，即可根据gadget和cmd开始伪造cookie，最终会返回一个伪造后的cookie，使用该cookie发包请求即可造成反序列化攻击</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="shiro认证绕过（CVE-2020-1957）"><a href="#shiro认证绕过（CVE-2020-1957）" class="headerlink" title="shiro认证绕过（CVE-2020-1957）"></a>shiro认证绕过（CVE-2020-1957）</h3><h4 id="漏洞原理：-2"><a href="#漏洞原理：-2" class="headerlink" title="漏洞原理："></a>漏洞原理：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">我们请求的URL在整个项目的传入传递过程。在使用了shiro的项目中，是我们请求的URL(URL1),进过shiro权限检验(URL2), 最后到springboot项目找到路由来处理(URL3)</span><br><span class="line">漏洞的出现就在URL1,URL2和URL3 有可能不是同一个URL，这就导致我们能绕过shiro的校验，直接访问后端需要首选的URL</span><br></pre></td></tr></table></figure>
-
-<h4 id="影响版本：-2"><a href="#影响版本：-2" class="headerlink" title="影响版本："></a>影响版本：</h4><p><code>Apache Shiro &lt; 1.5.3</code></p>
-<h4 id="环境搭建：-1"><a href="#环境搭建：-1" class="headerlink" title="环境搭建："></a>环境搭建：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">靶机:ubuntu 192.168.179.130</span><br><span class="line"></span><br><span class="line">		靶机部署:</span><br><span class="line">			cd vulhub/shiro/CVE-2020-1957/</span><br><span class="line">			sudo docker-compose up -d // 启动环境</span><br><span class="line">			访问到靶机8080端口，显示下图页面即部署成功</span><br><span class="line">			sudo docker-compose down // 做完关闭靶机环境</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2022/07/07/trdvbyQq24RmnFx.png" alt="image-20220707124311092"></p>
-<h4 id="漏洞复现：-1"><a href="#漏洞复现：-1" class="headerlink" title="漏洞复现："></a>漏洞复现：</h4><p><code>正常情况访问点login登录是需要密码的，访问admin页面会重定向回登录页面</code></p>
-<p><img src="https://s2.loli.net/2022/07/07/HFuGYQUgpJ6hKyk.png" alt="image-20220707125124117"></p>
-<p><code>访问该目录/xxx/..;/admin/即可绕过登录验证</code></p>
-<p><img src="https://s2.loli.net/2022/07/07/e2hFoWxw3Il6VcX.png" alt="image-20220707124942061"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/06/RuoYi/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="气温太低">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="qwtd-vulbox">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/07/06/RuoYi/" class="post-title-link" itemprop="url">RuoYi</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-07-06 17:14:49" itemprop="dateCreated datePublished" datetime="2022-07-06T17:14:49+08:00">2022-07-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-07 13:43:55" itemprop="dateModified" datetime="2022-07-07T13:43:55+08:00">2022-07-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CMS/" itemprop="url" rel="index"><span itemprop="name">CMS</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="RuoYi后台默认口令-任意文件读取"><a href="#RuoYi后台默认口令-任意文件读取" class="headerlink" title="RuoYi后台默认口令+任意文件读取"></a>RuoYi后台默认口令+任意文件读取</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">有些情况访问若依后台时网页会已输入账号密码，通常情况为默认口令保存</span><br><span class="line">默认口令 admin/admin123</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2022/07/06/hYU6e14y8XOSlus.png"></p>
-<h4 id="漏洞利用："><a href="#漏洞利用：" class="headerlink" title="漏洞利用："></a>漏洞利用：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">登录到后台时可以尝试读取下面文件，不一定成功</span><br><span class="line">/common/download/resource?resource=/profile/../../../../etc/passwd // 读取passwd文件</span><br></pre></td></tr></table></figure>
-
-<h3 id="Shiro反序列化"><a href="#Shiro反序列化" class="headerlink" title="Shiro反序列化"></a>Shiro反序列化</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">若依后台管理系统基于SpringBoot的权限管理系统 易读易懂、界面简洁美观。 核心技术采用Spring、MyBatis、Shiro。所以也可能存在Shiro反序列化</span><br><span class="line">可到iframe分类shiro中查看文章</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1152,7 +1127,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
