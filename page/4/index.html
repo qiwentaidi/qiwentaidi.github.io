@@ -184,6 +184,89 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pages/WEB%E6%A1%86%E6%9E%B6/Struts2.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/pages/WEB%E6%A1%86%E6%9E%B6/Struts2.html" class="post-title-link" itemprop="url">Struts2</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-13 14:06:53" itemprop="dateCreated datePublished" datetime="2022-07-13T14:06:53+08:00">2022-07-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-16 10:27:08" itemprop="dateModified" datetime="2023-04-16T10:27:08+08:00">2023-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WEB%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">WEB框架</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="s2-005">1. s2-005</h1><h4 id="漏洞原理">1.0.0.1. 漏洞原理:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Struts2 标签中 &#x27;&lt;s:a&gt;&#x27; 和 &#x27;&lt;s:url&gt;&#x27; 都包含一个 includeParams 属性，其值可设置为 none，get 或 all，参考官方其对应意义如下：</span><br><span class="line"></span><br><span class="line">1. none - 链接不包含请求的任意参数值（默认）</span><br><span class="line">2. get - 链接只包含 GET 请求中的参数和其值</span><br><span class="line">3. all - 链接包含 GET 和 POST 所有参数和其值</span><br><span class="line"></span><br><span class="line">&#x27;&lt;s:a&gt;&#x27;用来显示一个超链接，当&#x27;includeParams=all&#x27;的时候，会将本次请求的GET和POST参数都放在URL的GET参数上。在放置参数的过程中会将参数进行OGNL渲染，造成任意命令执行漏洞。</span><br></pre></td></tr></table></figure>
+
+<h1 id="s2-007">2. s2-007</h1><h1 id="s2-008">3. s2-008</h1><h1 id="s2-009">4. s2-009</h1><h1 id="s2-012">5. s2-012</h1><h1 id="s2-013">6. s2-013</h1><h1 id="s2-015">7. s2-015</h1><h1 id="s2-016">8. s2-016</h1><h2 id="漏洞原理-1">8.1. 漏洞原理:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在struts2中，DefaultActionMapper类支持以&quot;action:&quot;、&quot;redirect:&quot;、&quot;redirectAction:&quot;作为导航或是重定向前缀，但是这些前缀后面同时可以跟OGNL表达式，由于struts2没有对这些前缀做过滤，导致利用OGNL表达式调用java静态方法执行任意系统命令。</span><br></pre></td></tr></table></figure>
+
+<h1 id="s2-045">9. s2-045</h1><h2 id="漏洞原理-2">9.1. 漏洞原理:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Struts使用的Jakarta解析文件上传请求包不当，当远程攻击者构造恶意的Content-Type，可能导致远程命令执行。</span><br><span class="line">实际上在default.properties文件中，struts.multipart.parser的值有两个选择，分别是jakarta和pell（另外原本其实也有第三种选择cos）。其中的jakarta解析器是Struts 2框架的标准组成部分。默认情况下jakarta是启用的，所以该漏洞的严重性需要得到正视。</span><br></pre></td></tr></table></figure>
+
+<h1 id="s2-046">10. s2-046</h1><h2 id="漏洞原理-3">10.1. 漏洞原理:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">使用恶意的Content-Disposition值或者使用不合适的Content-Length头就可能导致远程命令执行。该漏洞与S2-045 (CVE-2017-5638)相似，但使用了不同的攻击向量。</span><br><span class="line"></span><br><span class="line">JakartaStreamMultipartRequest已开启。也就是说，Struts2需要通过Jakarta stream parser配置（非默认）。在Struts2配置文件中检查&lt;constant name=”struts.multipart.parser” value=”jakarta-stream” /&gt;</span><br><span class="line">上传的文件大小根据Content-Length头的声明要大于Struts2默认允许的2GB大小</span><br><span class="line">文件名中包含OGNL payload</span><br></pre></td></tr></table></figure>
+
+<h1 id="s2-052">11. s2-052</h1><h2 id="漏洞原理-4">11.1. 漏洞原理:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Apache 官方发布 Struts 2 紧急漏洞公告（S2-052），CVE 编号CVE-2017-9805。公告中披露，Struts2 REST插件的XStream组件存在反序列化漏洞，导致远程代码执行。攻击者利用此漏洞可执行任意代码，创建/删除系统账号，修改任意文件，植入后门等</span><br></pre></td></tr></table></figure>
+
+<h1 id="s2-053">12. s2-053</h1><h1 id="s2-057">13. s2-057</h1><h1 id="s2-059">14. s2-059</h1><h1 id="s2-061">15. s2-061</h1>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/pages/%E4%BA%91%E6%94%BB%E9%98%B2/Grafana.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1036,113 +1119,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/pages/%E4%B8%AD%E9%97%B4%E4%BB%B6/Tomcat.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="气温太低">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="qwtd-blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/pages/%E4%B8%AD%E9%97%B4%E4%BB%B6/Tomcat.html" class="post-title-link" itemprop="url">Tomcat</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-07-06 11:14:49" itemprop="dateCreated datePublished" datetime="2022-07-06T11:14:49+08:00">2022-07-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-16 10:28:12" itemprop="dateModified" datetime="2023-04-16T10:28:12+08:00">2023-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">中间件</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="弱口令-war后门文件部署">1. 弱口令+war后门文件部署</h1><h2 id="影响版本：">1.1. 影响版本：</h2><p><code>全版本 Tomcat</code></p>
-<h2 id="漏洞复现：">1.2. 漏洞复现：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、弱口令登录Tomcat后台</span><br><span class="line">2、找到war包部署点、上传war木马 // war木马可通过先将木马压缩成rar再改后缀名变成war的方式制作</span><br><span class="line">3、访问木马连接查看是否存在</span><br><span class="line">4、使用菜刀、冰蝎等webshell管理工具连接木马 // 需要访问压缩包里的木马文件</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2022/08/09/IhvsNlpVU9gkm7j.png" alt="image-20220809015111839"></p>
-<p><img src="https://s2.loli.net/2022/08/09/zrVUSwE2JmvxAoH.png" alt="image-20220809015226353"></p>
-<p><img src="https://s2.loli.net/2022/08/09/aU7FL1vMJQwjTYP.png" alt="image-20220809015306931"></p>
-<h2 id="漏洞修复：">1.3. 漏洞修复：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1、修改tomcat弱口令，保证密码复杂度</span><br></pre></td></tr></table></figure>
-
-<h1 id="任意文件写入（CVE-2017-12615）">2. 任意文件写入（CVE-2017-12615）</h1><h2 id="漏洞原理：">2.1. 漏洞原理：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">由于配置不当（非默认配置），将配置文件conf/web.xml中的readonly设置为了 false，导致可以使用PUT方法上传任意文件，不过限制了jsp后缀的上传，但是可以通过/绕过上传限制获取服务器权限。</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2022/07/08/dFM7WJRa56bUE9A.png" alt="image-20220706140946401"></p>
-<h2 id="影响版本：-1">2.2. 影响版本：</h2><p><code>Apache Tomcat 7.0.0-7.0.81</code></p>
-<h2 id="环境搭建：">2.3. 环境搭建：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">靶机:ubuntu 192.168.179.130	// 需要安装vulhub环境</span><br><span class="line"></span><br><span class="line">		靶机部署:</span><br><span class="line">		cd vulhub/tomcat/CVE-2017-12615</span><br><span class="line">		sudo docker-compose up -d	// 启动环境</span><br><span class="line">		访问靶机8080端口，回显tomcat 8.5.19即完成部署</span><br></pre></td></tr></table></figure>
-
-<h2 id="漏洞复现：-1">2.4. 漏洞复现：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1、使用PUT方法，上传木马文件</span><br><span class="line">2、访问木马文件验证是否已存在</span><br><span class="line">3、使用冰蝎连接木马文件，密码rebeyond，成功获取服务器权限</span><br><span class="line"></span><br><span class="line">复现完成后sudo find / -name shell.jsp // 查找木马上传路径，并rm删除该文件</span><br><span class="line">sudo docker-compose down // 关闭环境</span><br></pre></td></tr></table></figure>
-
-<p>More info : 这里如果只上传shell.jsp 会被拦截，需要加&#x2F;绕过文件上传限制，即shell.jsp&#x2F;</p>
-<p><img src="https://s2.loli.net/2022/07/08/mFTpE5A1ZxfbXkS.png" alt="image-20220708100500738"></p>
-<p><img src="https://s2.loli.net/2022/07/08/E38ZPfWNJUCltx2.png" alt="image-20220708101531577"></p>
-<h2 id="漏洞修复：-1">2.5. 漏洞修复：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1、将 Tomcat 版本升级到7.0.81以上</span><br></pre></td></tr></table></figure>
-
-<h1 id="文件包含（CVE-2020-1938）">3. 文件包含（CVE-2020-1938）</h1><h2 id="漏洞原理：-1">3.1. 漏洞原理：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">由于 Tomcat AJP 协议设计上存在缺陷，攻击者通过 Tomcat AJP Connector 可以读取或包含 Tomcat 上所有 webapp 目录下的任意文件，例如可以读取 webapp 配置文件或源代码。此外在目标应用有文件上传功能的情况下，配合文件包含的利用还可以达到远程代码执行的危害。</span><br></pre></td></tr></table></figure>
-
-<h2 id="影响版本：-2">3.2. 影响版本：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Apache Tomcat 9.x &lt; 9.0.31</span><br><span class="line">Apache Tomcat 8.x &lt; 8.5.51</span><br><span class="line">Apache Tomcat 7.x &lt; 7.0.100</span><br><span class="line">Apache Tomcat 6.x</span><br></pre></td></tr></table></figure>
-
-<h2 id="环境搭建：-1">3.3. 环境搭建：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">靶机:ubuntu 192.168.179.130	// 需要安装vulhub环境</span><br><span class="line">		</span><br><span class="line">		靶机部署:</span><br><span class="line">		cd vulhub/tomcat/CVE-2020-1938</span><br><span class="line">		sudo docker-compose up -d	// 启动环境		</span><br><span class="line">		访问靶机8080端口，回显tomcat 9.5.30即完成部署</span><br></pre></td></tr></table></figure>
-
-<h2 id="漏洞复现">3.4. 漏洞复现:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、nmap 扫描查看8009端口ajp服务是否开启 	// 未开启则不存在该漏洞</span><br><span class="line">2、使用exp读取文件web.xml文件 // 正常机器读取目录为 /usr/local/tomcat/webapps/ROOT/WEB-INF/web.xml</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2022/07/08/cfAToDgFvrkpZtO.png" alt="image-20220708111439999"></p>
-<p><img src="https://s2.loli.net/2022/07/08/ejI9m8xn7d3gkGL.png" alt="image-20220708133359252"></p>
-<p><img src="https://s2.loli.net/2022/07/08/aYXmTzBOlJRbHou.png" alt="Ubuntu web.xml文件"></p>
-<h2 id="漏洞修复：-2">3.5. 漏洞修复：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、将 Tomcat 升级到不受影响的版本</span><br><span class="line">2、关闭AJP Connector</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1214,14 +1190,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

