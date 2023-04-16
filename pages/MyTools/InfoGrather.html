@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="1. InfoGratherInfoGrather(信息收集)可以自动化进行域名解析成IP，whois查询，子域名暴破(可以检测泛解析)，基础端口的扫描，使用方法python3 InfoGrather.py -d 域名 -f 子域目录地址 1.1. 使用效果 1.2. 源码123456789101112131415161718192021222324252627282930313233343536">
+<meta property="og:type" content="article">
+<meta property="og:title" content="InfoGrather">
+<meta property="og:url" content="http://example.com/pages/MyTools/InfoGrather.html">
+<meta property="og:site_name" content="qwtd-blog">
+<meta property="og:description" content="1. InfoGratherInfoGrather(信息收集)可以自动化进行域名解析成IP，whois查询，子域名暴破(可以检测泛解析)，基础端口的扫描，使用方法python3 InfoGrather.py -d 域名 -f 子域目录地址 1.1. 使用效果 1.2. 源码123456789101112131415161718192021222324252627282930313233343536">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20221228094107704.png">
+<meta property="article:published_time" content="2022-12-28T00:56:49.000Z">
+<meta property="article:modified_time" content="2023-04-16T02:40:55.434Z">
+<meta property="article:author" content="气温太低">
+<meta property="article:tag" content="网络安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20221228094107704.png">
+
+<link rel="canonical" href="http://example.com/pages/MyTools/InfoGrather.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>InfoGrather | qwtd-blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">qwtd-blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">该网站文章仅作为知识分享，严禁用于非法用途，否则产生的一切后果自行承担。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/qiwentaidi/qiwentaidi.github.io" class="github-corner" title="qiwentaidi GitHub" aria-label="qiwentaidi GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pages/MyTools/InfoGrather.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          InfoGrather
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-12-28 08:56:49" itemprop="dateCreated datePublished" datetime="2022-12-28T08:56:49+08:00">2022-12-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-16 10:40:55" itemprop="dateModified" datetime="2023-04-16T10:40:55+08:00">2023-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MyTools/" itemprop="url" rel="index"><span itemprop="name">MyTools</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="InfoGrather">1. InfoGrather</h1><p>InfoGrather(信息收集)可以自动化进行域名解析成IP，whois查询，子域名暴破(可以检测泛解析)，基础端口的扫描，使用方法<code>python3 InfoGrather.py -d 域名 -f 子域目录地址</code></p>
+<h2 id="使用效果">1.1. 使用效果</h2><p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20221228094107704.png" alt="image-20221228094107704"></p>
+<h2 id="源码">1.2. 源码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> urllib3</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> concurrent.futures <span class="keyword">import</span> ThreadPoolExecutor</span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36&quot;</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">InfoGather</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, domain, port, file</span>):</span><br><span class="line">        self.domain = domain</span><br><span class="line">        self.port = port</span><br><span class="line">        self.file = file</span><br><span class="line">        start_time = time.time()</span><br><span class="line">        <span class="keyword">if</span> self.domain != <span class="string">&quot;&quot;</span>:</span><br><span class="line">            self.resolve_ip()</span><br><span class="line">            self.whois_query()</span><br><span class="line">        <span class="keyword">if</span> self.domain != <span class="string">&quot;&quot;</span> <span class="keyword">and</span> self.file <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;子域名扫描结果=================================&quot;</span>)</span><br><span class="line">            ran = self.ran_str(<span class="number">6</span>)</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                socket.gethostbyname(ran + <span class="string">&quot;.&quot;</span> + self.domain)</span><br><span class="line">            <span class="keyword">except</span> socket.error:</span><br><span class="line">                <span class="built_in">print</span>(self.domain + <span class="string">&quot;不是泛解析，暴破结果如下↓↓↓↓↓↓↓↓↓↓↓↓↓&quot;</span>)</span><br><span class="line">                <span class="keyword">with</span> <span class="built_in">open</span>(self.file, mode=<span class="string">&quot;r&quot;</span>, encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">                    subdomain_list = f.readlines()</span><br><span class="line">                    f.close()</span><br><span class="line">                <span class="keyword">with</span> ThreadPoolExecutor(<span class="number">50</span>) <span class="keyword">as</span> t:</span><br><span class="line">                    <span class="keyword">for</span> sub <span class="keyword">in</span> subdomain_list:</span><br><span class="line">                        subdomain = sub.strip(<span class="string">&quot;\n&quot;</span>) + <span class="string">&quot;.&quot;</span> + self.domain</span><br><span class="line">                        t.submit(self.subdomain_burst, subdomain=subdomain)</span><br><span class="line">        <span class="keyword">if</span> self.domain != <span class="string">&quot;&quot;</span> <span class="keyword">and</span> self.port != <span class="string">&quot;&quot;</span>:</span><br><span class="line">            self.port_scan()</span><br><span class="line">        end_time = time.time()</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;本次检查共耗时: &quot;</span> + <span class="built_in">str</span>(<span class="built_in">int</span>(end_time-start_time)) + <span class="string">&quot;s&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">resolve_ip</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;ip解析结果=====================================&quot;</span>)</span><br><span class="line">        url = <span class="string">&quot;https://site.ip138.com/domain/read.do?domain=&quot;</span> + self.domain + <span class="string">&quot;&amp;time=&quot;</span> + <span class="built_in">str</span>(time.time())</span><br><span class="line">        resp = requests.get(url=url, headers=headers).json()</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> resp[<span class="string">&quot;data&quot;</span>]:</span><br><span class="line">                ip = i[<span class="string">&quot;ip&quot;</span>]</span><br><span class="line">                sign = i[<span class="string">&quot;sign&quot;</span>]</span><br><span class="line">                url = <span class="string">&quot;https://api.ip138.com/query/?ip=&quot;</span> + ip + <span class="string">&quot;&amp;oid=5&amp;mid=5&amp;datatype=jsonp&amp;sign=&quot;</span> + sign</span><br><span class="line">                resp2 = requests.get(url=url, headers=headers).json()</span><br><span class="line">                position = resp2[<span class="string">&quot;data&quot;</span>]</span><br><span class="line">                <span class="built_in">print</span>(ip + <span class="string">&quot;==&gt;&quot;</span> + <span class="built_in">str</span>(position))</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;site.ip138.com不支持该域名解析或存在缓存==&gt;&quot;</span> + <span class="built_in">str</span>(e))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">whois_query</span>(<span class="params">self</span>):</span><br><span class="line">        data = &#123;</span><br><span class="line">            <span class="string">&quot;domain&quot;</span>: self.domain</span><br><span class="line">        &#125;</span><br><span class="line">        urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)</span><br><span class="line">        resp = requests.post(url=<span class="string">&quot;https://www.hostinger.com.hk/whois&quot;</span>, headers=headers, data=data,verify=<span class="literal">False</span>).content.decode(<span class="string">&quot;utf-8&quot;</span>)</span><br><span class="line">        obj = re.<span class="built_in">compile</span>(<span class="string">r&quot;Creation Date: (?P&lt;create_time&gt;.*?)\\r\\n(.*?)&quot;</span></span><br><span class="line">                         <span class="string">r&quot;Expiration Date: (?P&lt;expiration_time&gt;.*?)\\r\\n(.*?)&quot;</span></span><br><span class="line">                         <span class="string">r&quot;Registrar: (?P&lt;registrar&gt;.*?)\\r\\nRegistrar(.*?)&quot;</span></span><br><span class="line">                         <span class="string">r&quot;Domain Status: (?P&lt;status&gt;.*?)\\r\\n(.*?)&quot;</span></span><br><span class="line">                         <span class="string">r&quot;Name Server: (?P&lt;dns&gt;.*?)\\r\\nDNSSEC(.*?)&quot;</span></span><br><span class="line">                         <span class="string">r&quot;Contact Email: (?P&lt;email&gt;.*?)\\r\\n(.*?)&quot;</span></span><br><span class="line">                         <span class="string">r&quot;Contact Phone: (?P&lt;phone&gt;.*?)\\r\\n&quot;</span>, re.S)</span><br><span class="line">        result = obj.finditer(resp)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;whois查询结果==================================&quot;</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> result:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;创建时间: &quot;</span> + i.group(<span class="string">&#x27;create_time&#x27;</span>))</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;过期时间: &quot;</span> + i.group(<span class="string">&#x27;expiration_time&#x27;</span>))</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;注册商: &quot;</span> + i.group(<span class="string">&#x27;registrar&#x27;</span>))</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;状态: &quot;</span> + i.group(<span class="string">&#x27;status&#x27;</span>).replace(<span class="string">&quot;\\&quot;</span>, <span class="string">&quot;&quot;</span>))</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;DNS: &quot;</span> + i.group(<span class="string">&#x27;dns&#x27;</span>))</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;注册邮箱: &quot;</span> + i.group(<span class="string">&#x27;email&#x27;</span>))</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;注册电话: &quot;</span> + i.group(<span class="string">&#x27;phone&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">subdomain_burst</span>(<span class="params">subdomain</span>):</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            ip = socket.gethostbyname(subdomain)</span><br><span class="line">            <span class="built_in">print</span>(subdomain + <span class="string">&quot; ==&gt; &quot;</span> + ip)</span><br><span class="line">            time.sleep(<span class="number">0.1</span>)</span><br><span class="line">        <span class="keyword">except</span> socket.error:</span><br><span class="line">            time.sleep(<span class="number">0.1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">port_scan</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;端口扫描结果===================================&quot;</span>)</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">for</span> port <span class="keyword">in</span> self.port:</span><br><span class="line">                sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">                sock.settimeout(<span class="number">0.1</span>)</span><br><span class="line">                state = sock.connect_ex((self.domain, port))</span><br><span class="line">                <span class="keyword">if</span> <span class="number">0</span> == state:</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">&quot;port: &#123;&#125; is open&quot;</span>.<span class="built_in">format</span>(port))</span><br><span class="line">                sock.close()</span><br><span class="line">        <span class="keyword">except</span> socket.error:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">ran_str</span>(<span class="params">str_num</span>):</span><br><span class="line">        str1 = <span class="string">&#x27;1234567890abcdefghijklnmopqrstuvwxyzABCDEFGHIJKLNMOPQRSTUVWXYZ&#x27;</span></span><br><span class="line">        ran_string = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(str_num):</span><br><span class="line">            num = random.randint(<span class="number">0</span>, <span class="built_in">len</span>(str1) - <span class="number">1</span>)</span><br><span class="line">            ran_string += str1[num]</span><br><span class="line">        <span class="keyword">return</span> ran_string</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">r&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">      ___       __        ___          _   _            </span></span><br><span class="line"><span class="string">     |_ _|_ _  / _|___   / __|_ _ __ _| |_| |_  ___ _ _ </span></span><br><span class="line"><span class="string">      | || &#x27; \|  _/ _ \ | (_ | &#x27;_/ _` |  _| &#x27; \/ -_) &#x27;_|</span></span><br><span class="line"><span class="string">     |___|_||_|_| \___/  \___|_| \__,_|\__|_||_\___|_|  InfoGrather 1.0 by qiwent@idi                                    </span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span>)</span><br><span class="line">    parse = argparse.ArgumentParser()</span><br><span class="line">    parse.add_argument(<span class="string">&quot;-d&quot;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, default=<span class="literal">None</span>, <span class="built_in">help</span>=<span class="string">&quot;Target domain name&quot;</span>, dest=<span class="string">&quot;domain&quot;</span>)</span><br><span class="line">    parse.add_argument(<span class="string">&quot;-f&quot;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, default=<span class="literal">None</span>, <span class="built_in">help</span>=<span class="string">&quot;Subdomain burst dictionary file&quot;</span>, dest=<span class="string">&quot;file&quot;</span>)</span><br><span class="line">    parse.add_argument(<span class="string">&quot;-p&quot;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, default=[<span class="number">21</span>,<span class="number">23</span>,<span class="number">80</span>,<span class="number">81</span>,<span class="number">82</span>,<span class="number">83</span>,<span class="number">84</span>,<span class="number">85</span>,<span class="number">86</span>,<span class="number">87</span>,<span class="number">88</span>,<span class="number">89</span>,<span class="number">90</span>,<span class="number">135</span>,<span class="number">137</span>,<span class="number">161</span>,<span class="number">389</span>,<span class="number">443</span>,<span class="number">445</span>,<span class="number">873</span>,<span class="number">1099</span>,</span><br><span class="line">                                                <span class="number">1433</span>,<span class="number">1521</span>,<span class="number">1900</span>,<span class="number">2082</span>,<span class="number">2181</span>,<span class="number">2222</span>,<span class="number">2375</span>,<span class="number">2376</span>,<span class="number">2601</span>,<span class="number">2604</span>,<span class="number">3128</span>,<span class="number">3306</span>,<span class="number">3311</span>,<span class="number">3312</span>,</span><br><span class="line">                                                <span class="number">3389</span>,<span class="number">4440</span>,<span class="number">4848</span>,<span class="number">5001</span>,<span class="number">5432</span>,<span class="number">5560</span>,<span class="number">5900</span>,<span class="number">5901</span>,<span class="number">5902</span>,<span class="number">6082</span>,<span class="number">6379</span>,<span class="number">7001</span>,<span class="number">7002</span>,<span class="number">7003</span>,</span><br><span class="line">                                                <span class="number">7004</span>,<span class="number">7005</span>,<span class="number">7006</span>,<span class="number">7007</span>,<span class="number">7008</span>,<span class="number">7009</span>,<span class="number">7010</span>,<span class="number">7778</span>,<span class="number">8009</span>,<span class="number">8080</span>,<span class="number">8081</span>,<span class="number">8082</span>,<span class="number">8083</span>,<span class="number">8084</span>,</span><br><span class="line">                                                <span class="number">8085</span>,<span class="number">8086</span>,<span class="number">8087</span>,<span class="number">8088</span>,<span class="number">8089</span>,<span class="number">8090</span>,<span class="number">8649</span>,<span class="number">8888</span>,<span class="number">9000</span>,<span class="number">9200</span>,<span class="number">10000</span>,<span class="number">11211</span>,<span class="number">27017</span>,</span><br><span class="line">                                                <span class="number">28017</span>,<span class="number">50000</span>,<span class="number">51111</span>,<span class="number">50030</span>,<span class="number">50060</span>], <span class="built_in">help</span>=<span class="string">&quot;Port scan, default 81 ports&quot;</span>, dest=<span class="string">&quot;port&quot;</span>)</span><br><span class="line">    arg = parse.parse_args()</span><br><span class="line">    InfoGather(domain=arg.domain, port=arg.port, file=arg.file)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/pages/%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80/Golang/Golang.html" rel="prev" title="Golang基础学习">
+      <i class="fa fa-chevron-left"></i> Golang基础学习
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/pages/MyTools/SSE.html" rel="next" title="Spatial Search Engine">
+      Spatial Search Engine <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#InfoGrather"><span class="nav-text">1. InfoGrather</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%95%88%E6%9E%9C"><span class="nav-text">1.1. 使用效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BA%90%E7%A0%81"><span class="nav-text">1.2. 源码</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="气温太低"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">气温太低</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">气温太低</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '10a13e21c051c2fd1206',
+      clientSecret: '878720df382c17c619240f2d52c2afd6d39c1512',
+      repo        : 'qiwentaidi.github.io',
+      owner       : 'qiwentaidi',
+      admin       : ['qiwentaidi'],
+      id          : '2c994f84a8431d81c408f18689fa7de8',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+    </div>
+</body>
+</html>

