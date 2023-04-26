@@ -20,20 +20,30 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="1. s2-0051.0.0.1. 漏洞原理:1234567Struts2 标签中 &amp;#x27;&lt;s:a&gt;&amp;#x27; 和 &amp;#x27;&lt;s:url&gt;&amp;#x27; 都包含一个 includeParams 属性，其值可设置为 none，get 或 all，参考官方其对应意义如下：1. none - 链接不包含请求的任意参数值（默认）2. get - 链接只包含 GET 请求中">
+  <meta name="description" content="1. JWT1.1. 简介 JWT即Json Web Token的缩写，顾名思义，是Token的一种。它常被用来在向服务器发起请求时用作身份认证。使用JWT作为身份认证的优势在于：它不需要在服务端去保留用户的认证信息。仅需要对该Token正确性进行校验即可,这就意味着基于token认证机制的应用,不需要去考虑用户在哪一台服务器登录了，为应用的扩展提供了便利。 JWT由三部分组成，类似于xxx.yy">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Struts2">
-<meta property="og:url" content="http://example.com/pages/WEB%E6%A1%86%E6%9E%B6/Struts2.html">
+<meta property="og:title" content="JWT">
+<meta property="og:url" content="http://example.com/pages/%E6%B8%97%E9%80%8F%E9%9A%8F%E7%AC%94/JWT.html">
 <meta property="og:site_name" content="qwtd-blog">
-<meta property="og:description" content="1. s2-0051.0.0.1. 漏洞原理:1234567Struts2 标签中 &amp;#x27;&lt;s:a&gt;&amp;#x27; 和 &amp;#x27;&lt;s:url&gt;&amp;#x27; 都包含一个 includeParams 属性，其值可设置为 none，get 或 all，参考官方其对应意义如下：1. none - 链接不包含请求的任意参数值（默认）2. get - 链接只包含 GET 请求中">
+<meta property="og:description" content="1. JWT1.1. 简介 JWT即Json Web Token的缩写，顾名思义，是Token的一种。它常被用来在向服务器发起请求时用作身份认证。使用JWT作为身份认证的优势在于：它不需要在服务端去保留用户的认证信息。仅需要对该Token正确性进行校验即可,这就意味着基于token认证机制的应用,不需要去考虑用户在哪一台服务器登录了，为应用的扩展提供了便利。 JWT由三部分组成，类似于xxx.yy">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-07-13T06:06:53.000Z">
-<meta property="article:modified_time" content="2023-04-16T02:27:08.851Z">
+<meta property="og:image" content="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230426171539694.png">
+<meta property="og:image" content="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230426171904978.png">
+<meta property="og:image" content="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230426172209424.png">
+<meta property="og:image" content="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230426172249522.png">
+<meta property="og:image" content="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230426172724702.png">
+<meta property="og:image" content="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230426173237671.png">
+<meta property="og:image" content="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230426173519531.png">
+<meta property="og:image" content="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230426173556074.png">
+<meta property="og:image" content="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230426173819984.png">
+<meta property="article:published_time" content="2023-04-26T07:56:49.000Z">
+<meta property="article:modified_time" content="2023-04-26T09:39:14.801Z">
 <meta property="article:author" content="气温太低">
 <meta property="article:tag" content="网络安全">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230426171539694.png">
 
-<link rel="canonical" href="http://example.com/pages/WEB%E6%A1%86%E6%9E%B6/Struts2.html">
+<link rel="canonical" href="http://example.com/pages/%E6%B8%97%E9%80%8F%E9%9A%8F%E7%AC%94/JWT.html">
 
 
 <script id="page-configurations">
@@ -46,7 +56,7 @@
   };
 </script>
 
-  <title>Struts2 | qwtd-blog</title>
+  <title>JWT | qwtd-blog</title>
   
 
 
@@ -189,7 +199,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/pages/WEB%E6%A1%86%E6%9E%B6/Struts2.html">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pages/%E6%B8%97%E9%80%8F%E9%9A%8F%E7%AC%94/JWT.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -202,7 +212,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Struts2
+          JWT
         </h1>
 
         <div class="post-meta">
@@ -211,23 +221,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-07-13 14:06:53" itemprop="dateCreated datePublished" datetime="2022-07-13T14:06:53+08:00">2022-07-13</time>
+              <time title="创建时间：2023-04-26 15:56:49 / 修改时间：17:39:14" itemprop="dateCreated datePublished" datetime="2023-04-26T15:56:49+08:00">2023-04-26</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-16 10:27:08" itemprop="dateModified" datetime="2023-04-16T10:27:08+08:00">2023-04-16</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/WEB%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">WEB框架</span></a>
+                  <a href="/categories/%E6%B8%97%E9%80%8F%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">渗透随笔</span></a>
                 </span>
             </span>
 
@@ -249,17 +253,32 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="s2-005">1. s2-005</h1><h4 id="漏洞原理">1.0.0.1. 漏洞原理:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Struts2 标签中 &#x27;&lt;s:a&gt;&#x27; 和 &#x27;&lt;s:url&gt;&#x27; 都包含一个 includeParams 属性，其值可设置为 none，get 或 all，参考官方其对应意义如下：</span><br><span class="line"></span><br><span class="line">1. none - 链接不包含请求的任意参数值（默认）</span><br><span class="line">2. get - 链接只包含 GET 请求中的参数和其值</span><br><span class="line">3. all - 链接包含 GET 和 POST 所有参数和其值</span><br><span class="line"></span><br><span class="line">&#x27;&lt;s:a&gt;&#x27;用来显示一个超链接，当&#x27;includeParams=all&#x27;的时候，会将本次请求的GET和POST参数都放在URL的GET参数上。在放置参数的过程中会将参数进行OGNL渲染，造成任意命令执行漏洞。</span><br></pre></td></tr></table></figure>
+        <h1 id="JWT">1. JWT</h1><h2 id="简介">1.1. 简介</h2><ol>
+<li><code>JWT</code>即<code>Json Web Token</code>的缩写，顾名思义，是<code>Token</code>的一种。它常被用来在向服务器发起请求时用作身份认证。使用<code>JWT</code>作为身份认证的优势在于：它不需要在服务端去保留用户的认证信息。仅需要对该<code>Token</code>正确性进行校验即可,这就意味着基于<code>token</code>认证机制的应用,不需要去考虑用户在哪一台服务器登录了，为应用的扩展提供了便利。</li>
+<li><code>JWT</code>由三部分组成，类似于<code>xxx.yyy.zzz</code>，前两部分是<code>base64</code>编码的内容，第三部分是加密的签名部分，例如：<code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODI1MjIyNjcsInN0YWZmSWQiOiI5In0.YDD-n58nIGGl-M1p2LHKHcYSWxXLINwmskZfCvOVIF8</code></li>
+</ol>
+<h2 id="实例">1.2. 实例</h2><p>某次渗透<code>JWT token</code>接口泄露到越权接管后台</p>
+<h3 id="准备">1.2.1. 准备</h3><ol>
+<li>因为是渗透测试，客户方提供了超管和普通两个用户（这个漏洞没用到已有账户）。</li>
+<li>前期信息收集跑目录，找到了后台管理员的登录地址。</li>
+</ol>
+<h3 id="开始">1.2.2. 开始</h3><ol>
+<li><p>​	在使用<code>superSearchPlusTools的jsFindPlus</code>功能+目录扫描时，发现了一个接口返回的<code>JWT的token</code>信息，在使用浏览器访问这个接口时，返回的是500异常，但是用插件和<code>Postman</code>测试确实返回成功的信息。</p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230426171539694.png" alt="image-20230426171539694"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230426171904978.png" alt="image-20230426171904978"></p>
+<p>​	经过后续测试发现该接口验证了Accep字段。</p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230426172209424.png" alt="image-20230426172209424"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230426172249522.png" alt="image-20230426172249522"></p>
+</li>
+<li><p>拿普通用户去登录后台会显示只能用<code>admin</code>账号进行登录，burp可以接收到请求包（无所谓账号存不存在），响应内容如下图2，将<code>token</code>信息更改为上放获取到的正确的<code>JWT token status</code>等其他信息也改为正确的，Forward转发，成功接管后台（可以进行任何操作）。</p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230426172724702.png" alt="image-20230426172724702"></p>
+</li>
+</ol>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230426173237671.png" alt="image-20230426173237671"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230426173519531.png" alt="image-20230426173519531"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230426173556074.png" alt="image-20230426173556074"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230426173819984.png" alt="image-20230426173819984"></p>
 
-<h1 id="s2-007">2. s2-007</h1><h1 id="s2-008">3. s2-008</h1><h1 id="s2-009">4. s2-009</h1><h1 id="s2-012">5. s2-012</h1><h1 id="s2-013">6. s2-013</h1><h1 id="s2-015">7. s2-015</h1><h1 id="s2-016">8. s2-016</h1><h2 id="漏洞原理-1">8.1. 漏洞原理:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在struts2中，DefaultActionMapper类支持以&quot;action:&quot;、&quot;redirect:&quot;、&quot;redirectAction:&quot;作为导航或是重定向前缀，但是这些前缀后面同时可以跟OGNL表达式，由于struts2没有对这些前缀做过滤，导致利用OGNL表达式调用java静态方法执行任意系统命令。</span><br></pre></td></tr></table></figure>
-
-<h1 id="s2-045">9. s2-045</h1><h2 id="漏洞原理-2">9.1. 漏洞原理:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Struts使用的Jakarta解析文件上传请求包不当，当远程攻击者构造恶意的Content-Type，可能导致远程命令执行。</span><br><span class="line">实际上在default.properties文件中，struts.multipart.parser的值有两个选择，分别是jakarta和pell（另外原本其实也有第三种选择cos）。其中的jakarta解析器是Struts 2框架的标准组成部分。默认情况下jakarta是启用的，所以该漏洞的严重性需要得到正视。</span><br></pre></td></tr></table></figure>
-
-<h1 id="s2-046">10. s2-046</h1><h2 id="漏洞原理-3">10.1. 漏洞原理:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">使用恶意的Content-Disposition值或者使用不合适的Content-Length头就可能导致远程命令执行。该漏洞与S2-045 (CVE-2017-5638)相似，但使用了不同的攻击向量。</span><br><span class="line"></span><br><span class="line">JakartaStreamMultipartRequest已开启。也就是说，Struts2需要通过Jakarta stream parser配置（非默认）。在Struts2配置文件中检查&lt;constant name=”struts.multipart.parser” value=”jakarta-stream” /&gt;</span><br><span class="line">上传的文件大小根据Content-Length头的声明要大于Struts2默认允许的2GB大小</span><br><span class="line">文件名中包含OGNL payload</span><br></pre></td></tr></table></figure>
-
-<h1 id="s2-052">11. s2-052</h1><h2 id="漏洞原理-4">11.1. 漏洞原理:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Apache 官方发布 Struts 2 紧急漏洞公告（S2-052），CVE 编号CVE-2017-9805。公告中披露，Struts2 REST插件的XStream组件存在反序列化漏洞，导致远程代码执行。攻击者利用此漏洞可执行任意代码，创建/删除系统账号，修改任意文件，植入后门等</span><br></pre></td></tr></table></figure>
-
-<h1 id="s2-053">12. s2-053</h1><h1 id="s2-057">13. s2-057</h1><h1 id="s2-059">14. s2-059</h1><h1 id="s2-061">15. s2-061</h1>
     </div>
 
     
@@ -274,13 +293,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/pages/%E4%BA%91%E6%94%BB%E9%98%B2/Grafana.html" rel="prev" title="Grafana">
-      <i class="fa fa-chevron-left"></i> Grafana
+    <a href="/pages/%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80/Java/JavaWeb.html" rel="prev" title="JavaSE">
+      <i class="fa fa-chevron-left"></i> JavaSE
     </a></div>
-      <div class="post-nav-item">
-    <a href="/pages/%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80/PHP/php8.1.html" rel="next" title="Php8.1backdoor">
-      Php8.1backdoor <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -340,7 +356,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#s2-005"><span class="nav-text">1. s2-005</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86"><span class="nav-text">1.0.0.1. 漏洞原理:</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#s2-007"><span class="nav-text">2. s2-007</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#s2-008"><span class="nav-text">3. s2-008</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#s2-009"><span class="nav-text">4. s2-009</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#s2-012"><span class="nav-text">5. s2-012</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#s2-013"><span class="nav-text">6. s2-013</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#s2-015"><span class="nav-text">7. s2-015</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#s2-016"><span class="nav-text">8. s2-016</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86-1"><span class="nav-text">8.1. 漏洞原理:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#s2-045"><span class="nav-text">9. s2-045</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86-2"><span class="nav-text">9.1. 漏洞原理:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#s2-046"><span class="nav-text">10. s2-046</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86-3"><span class="nav-text">10.1. 漏洞原理:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#s2-052"><span class="nav-text">11. s2-052</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86-4"><span class="nav-text">11.1. 漏洞原理:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#s2-053"><span class="nav-text">12. s2-053</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#s2-057"><span class="nav-text">13. s2-057</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#s2-059"><span class="nav-text">14. s2-059</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#s2-061"><span class="nav-text">15. s2-061</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JWT"><span class="nav-text">1. JWT</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-text">1.1. 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B"><span class="nav-text">1.2. 实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%86%E5%A4%87"><span class="nav-text">1.2.1. 准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B"><span class="nav-text">1.2.2. 开始</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -549,7 +565,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'qiwentaidi.github.io',
       owner       : 'qiwentaidi',
       admin       : ['qiwentaidi'],
-      id          : '27198b5503cea1be5863b4d3c0ffc06a',
+      id          : '15405a85115d5dc6b09b8ff07e8f1424',
         language: 'zh-CN',
       distractionFreeMode: true
     });

