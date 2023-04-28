@@ -562,7 +562,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-16 11:16:12" itemprop="dateModified" datetime="2023-04-16T11:16:12+08:00">2023-04-16</time>
+                <time title="修改时间：2023-04-28 10:45:53" itemprop="dateModified" datetime="2023-04-28T10:45:53+08:00">2023-04-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -660,6 +660,21 @@
 <li><p>可以burp下游再配置xray…</p>
 </li>
 </ol>
+<h2 id="渗透随笔：">3.5. 渗透随笔：</h2><p>某次渗透时提供了一个站点为登录窗口，扫目录的时候发现了<code>Swagger-UI</code>文件，刚开始看的时候以为啥也没用就是个空的，看了一下<code>Select a spec</code>发现不止一个API接口还有4个可以访问的。</p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230428103140983.png" alt="image-20230428103140983"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230428102126999.png" alt="image-20230428102126999"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230428102353211.png" alt="image-20230428102353211"></p>
+<p>这里配合<code>Postman+Burp</code>成功将接口测试包都转到<code>Burp</code>上（这里主要漏洞在admin接口上，其他的都对后续渗透没什么用），扫到了一个未授权日志的接口，当时下载下来日志大概30MB+。</p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230428102549383.png" alt="image-20230428102549383"></p>
+<p>由于要码的地方太多了，就不放全部数据截图了，里面的可有信息有<code>username</code>字段，解密出来是手机号（即登录用户的账号）856个，拿到用户名再去看看有没有地方可以通过用户名查找其他信息（当然是有的，不然写到这就结束了）。</p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230428102912861.png" alt="image-20230428102912861"></p>
+<p>在某个接口可以通过解密后的手机号查询到手机号归属人的姓名和职务信息。</p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230428103709593.png" alt="image-20230428103709593"></p>
+<p>这里也有个根据用户名查询信息的接口，也同样用手机号进行查询，发现没有数据返回，然后又用<code>base64</code>加密前的用户名进行参数，ok出货了！至此已经拿下了856位用户的账号密码信息，其中包含管理权限信息。</p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230428103541523.png" alt="image-20230428103541523"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230428103928992.png" alt="image-20230428103928992"></p>
+<p>此处密码登录和存储都采用MD5加密，可以通过替换数据包或者解密进行登录，成功接管后台。</p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230428104418873.png" alt="image-20230428104418873"></p>
 <h1 id="CVE-2022-22965">4. CVE-2022-22965</h1><h2 id="漏洞原理：">4.1. 漏洞原理：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">由于Spring框架存在处理流程缺陷，攻击者可在远程条件下，实现对目标主机的后门文件写入和配置修改，继而通过后门文件访问获得目标主机权限。CVE-2022-22965漏洞是CVE-2010-1622漏洞的绕过。</span><br></pre></td></tr></table></figure>
 
 <h2 id="影响版本：">4.2. 影响版本：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、JDK ≥ 9</span><br><span class="line">2、Spring Framework 版本为5.3.0 - 5.3.17，5.2.0 - 5.2.19或更旧的版本</span><br></pre></td></tr></table></figure>
