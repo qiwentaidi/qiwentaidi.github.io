@@ -20,16 +20,27 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="qwtd-blog">
-<meta property="og:url" content="http://example.com/archives/page/2/index.html">
+  <meta name="description" content="1. 渗透路径目录浏览-&gt;敏感信息泄露-&gt;短信验证码暴破-&gt;接管后台-&gt;水平越权-&gt;接管全部用户账号 1.1. 目录遍历测试惯例先刨墙皮（跑目录），找到个目录浏览漏洞，里面存在2个PDF一个是写如何使用API的，另一个是后台功能介绍。  1.2. 手机号信息泄露​		在翻阅bankDoc的时候，查看到了之前很多测试账号，但是后面测试的时候发现都删除了，后面在仔细的查看">
+<meta property="og:type" content="article">
+<meta property="og:title" content="短信验证码暴破">
+<meta property="og:url" content="http://example.com/pages/%E6%B8%97%E9%80%8F%E9%9A%8F%E7%AC%94/%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81%E7%A0%81%E6%9A%B4%E7%A0%B4.html">
 <meta property="og:site_name" content="qwtd-blog">
+<meta property="og:description" content="1. 渗透路径目录浏览-&gt;敏感信息泄露-&gt;短信验证码暴破-&gt;接管后台-&gt;水平越权-&gt;接管全部用户账号 1.1. 目录遍历测试惯例先刨墙皮（跑目录），找到个目录浏览漏洞，里面存在2个PDF一个是写如何使用API的，另一个是后台功能介绍。  1.2. 手机号信息泄露​		在翻阅bankDoc的时候，查看到了之前很多测试账号，但是后面测试的时候发现都删除了，后面在仔细的查看">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230530172935168.png">
+<meta property="og:image" content="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230530173214919.png">
+<meta property="og:image" content="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230530173546688.png">
+<meta property="og:image" content="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230530173812503.png">
+<meta property="og:image" content="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230530174211794.png">
+<meta property="og:image" content="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230530201729164.png">
+<meta property="article:published_time" content="2023-05-30T09:05:49.000Z">
+<meta property="article:modified_time" content="2023-05-30T12:21:58.933Z">
 <meta property="article:author" content="气温太低">
 <meta property="article:tag" content="网络安全">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230530172935168.png">
 
-<link rel="canonical" href="http://example.com/archives/page/2/">
+<link rel="canonical" href="http://example.com/pages/%E6%B8%97%E9%80%8F%E9%9A%8F%E7%AC%94/%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81%E7%A0%81%E6%9A%B4%E7%A0%B4.html">
 
 
 <script id="page-configurations">
@@ -37,12 +48,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | qwtd-blog</title>
+  <title>短信验证码暴破 | qwtd-blog</title>
   
 
 
@@ -178,240 +189,114 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        
-        <span class="collection-header">不错! 目前共计 54 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pages/%E6%B8%97%E9%80%8F%E9%9A%8F%E7%AC%94/%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81%E7%A0%81%E6%9A%B4%E7%A0%B4.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="气温太低">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qwtd-blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          短信验证码暴破
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-05-30 17:05:49 / 修改时间：20:21:58" itemprop="dateCreated datePublished" datetime="2023-05-30T17:05:49+08:00">2023-05-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%97%E9%80%8F%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">渗透随笔</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2022</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-12-07T15:56:49+08:00"
-              content="2022-12-07">
-          12-07
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/pages/%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80/Golang/Golang.html" itemprop="url">
-            <span itemprop="name">Golang基础学习</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-11-16T15:56:49+08:00"
-              content="2022-11-16">
-          11-16
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/pages/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/MS16-075.html" itemprop="url">
-            <span itemprop="name">权限提升</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-11-13T15:56:49+08:00"
-              content="2022-11-13">
-          11-13
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/pages/%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80/Java/JavaGUI.html" itemprop="url">
-            <span itemprop="name">JavaGUI</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-11-05T15:56:49+08:00"
-              content="2022-11-05">
-          11-05
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/pages/%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80/Java/JavaSE.html" itemprop="url">
-            <span itemprop="name">JavaSE</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-11-01T11:14:49+08:00"
-              content="2022-11-01">
-          11-01
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/pages/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94.html" itemprop="url">
-            <span itemprop="name">应急响应</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-10-17T15:56:49+08:00"
-              content="2022-10-17">
-          10-17
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/pages/MyTools/Capricorn.html" itemprop="url">
-            <span itemprop="name">Capricorn</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-10-13T15:56:49+08:00"
-              content="2022-10-13">
-          10-13
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/pages/%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87/Fortinet.html" itemprop="url">
-            <span itemprop="name">Fortinet</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-10-13T15:56:49+08:00"
-              content="2022-10-13">
-          10-13
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/pages/%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87/Pfsense.html" itemprop="url">
-            <span itemprop="name">Pfsense</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-10-01T15:56:49+08:00"
-              content="2022-10-01">
-          10-01
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/pages/%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80/Python/PythonGUI-wxpython.html" itemprop="url">
-            <span itemprop="name">PythonGUI</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-09-28T15:56:49+08:00"
-              content="2022-09-28">
-          09-28
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/pages/WEB%E5%BA%94%E7%94%A8/MPX.html" itemprop="url">
-            <span itemprop="name">MPX Node Overview</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
+        <h1 id="渗透路径">1. 渗透路径</h1><p><code>目录浏览-&gt;敏感信息泄露-&gt;短信验证码暴破-&gt;接管后台-&gt;水平越权-&gt;接管全部用户账号</code></p>
+<h2 id="目录遍历">1.1. 目录遍历</h2><p>测试惯例先刨墙皮（跑目录），找到个目录浏览漏洞，里面存在2个PDF一个是写如何使用API的，另一个是后台功能介绍。</p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230530172935168.png" alt="image-20230530172935168"></p>
+<h2 id="手机号信息泄露">1.2. 手机号信息泄露</h2><p>​		在翻阅bankDoc的时候，查看到了之前很多测试账号，但是后面测试的时候发现都删除了，后面在仔细的查看后发现一个真实用户的手机号，该网站共提供两种登录方式：</p>
+<p>1、账号+密码+图片验证码。</p>
+<p>2、手机号+验证码+短信验证码。</p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230530173214919.png" alt="image-20230530173214919"></p>
+<h2 id="短信验证码可暴破">1.3. 短信验证码可暴破</h2><p>​		在发现手机号可以成功发送短信后，把苗头专项验证码是否可以暴破，输入一个6位验证码时，提示验证码为4位（运气真好^ ^），然后在暴破短信验证码的时候也没校验图片验证码，成功暴破。</p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230530173546688.png" alt="image-20230530173546688"></p>
+<h2 id="水平越权">1.4. 水平越权</h2><p>​		使用burp在登录处抓包，将正确的返回包替换上去成功接管后台账号（涉敏信息太多，不放全部截图了），然后在系统管理处找到用户管理，本来打开用户管理只有当前角色一个用户，burp一看是用id进行角色信息控制的，此处存在水平越权可以遍历所有用户信息。</p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230530173812503.png" alt="image-20230530173812503"></p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230530174211794.png" alt="image-20230530174211794"></p>
+<p>​		更改id值为1看到了管理员，所以等同于我可以查看3000+用户的手机号和姓名信息。</p>
+<p><img src="https://qwtd-image.oss-cn-hangzhou.aliyuncs.com/img/image-20230530201729164.png" alt="image-20230530201729164"></p>
+<h2 id="接管所有用户">1.5. 接管所有用户</h2><p>获得手机号后可以同理重复进行短信验证码暴破，进行其他用户接管。接着就是测后台漏洞…（你们都会的）</p>
 
     </div>
-  </div>
-  
-  
-  
 
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/pages/%E6%B8%97%E9%80%8F%E9%9A%8F%E7%AC%94/JWT.html" rel="prev" title="JWT">
+      <i class="fa fa-chevron-left"></i> JWT
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
   
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/6/">6</a><a class="extend next" rel="next" href="/archives/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
+  
+  
 
 
 
           </div>
           
+    <div class="comments" id="gitalk-container"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -458,6 +343,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B8%97%E9%80%8F%E8%B7%AF%E5%BE%84"><span class="nav-text">1. 渗透路径</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%E9%81%8D%E5%8E%86"><span class="nav-text">1.1. 目录遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%8B%E6%9C%BA%E5%8F%B7%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="nav-text">1.2. 手机号信息泄露</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81%E7%A0%81%E5%8F%AF%E6%9A%B4%E7%A0%B4"><span class="nav-text">1.3. 短信验证码可暴破</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B0%B4%E5%B9%B3%E8%B6%8A%E6%9D%83"><span class="nav-text">1.4. 水平越权</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A5%E7%AE%A1%E6%89%80%E6%9C%89%E7%94%A8%E6%88%B7"><span class="nav-text">1.5. 接管所有用户</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -655,6 +541,25 @@ window.addEventListener('pjax:success', () => {
 
   
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '10a13e21c051c2fd1206',
+      clientSecret: '878720df382c17c619240f2d52c2afd6d39c1512',
+      repo        : 'qiwentaidi.github.io',
+      owner       : 'qiwentaidi',
+      admin       : ['qiwentaidi'],
+      id          : '51030aa215b43ddfeb7c1ac6b17eb913',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
 
     </div>
 </body>
